@@ -21,84 +21,125 @@
   <div class="aaron-page">
     <header class="aaron-nav-fixed">
       <nav class="aaron-nav" aria-label="Primary">
-        <a href="#" class="aaron-nav__item is-active">Home</a>
-        <a href="#" class="aaron-nav__item">Work</a>
-        <a href="#" class="aaron-nav__item">Gallery</a>
+        <a href="index.html" class="aaron-nav__item">Home</a>
+        <a href="work.html" class="aaron-nav__item">Work</a>
+        <a href="gallery.html" class="aaron-nav__item">Gallery</a>
       </nav>
     </header>
 
-    <header class="aaron-nav-info" id="aaron-nav-info">
-      <a href="#" class="aaron-nav-info__name">Aaron Dutta</a>
-      <div class="aaron-nav-info__icons">
-        <a href="#" class="aaron-nav-info__icon" aria-label="Text Me">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        </a>
-        <a href="mailto:hello@aarondutta.com" class="aaron-nav-info__icon" aria-label="Email Me">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        </a>
-        <a href="https://www.aarondutta.com" class="aaron-nav-info__icon" aria-label="CV" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        </a>
-      </div>
-    </header>
-
     <main class="aaron-grid">
-      <!-- Hero -->
-      <section class="aaron-tile aaron-tile--xl aaron-area-hero">
-        <p class="aaron-hero__primary">
-          <span class="aaron-hero__emphasis">Hi,</span> I'm
-          <a href="https://turfsports.com/" class="aaron-hero__link" target="_blank" rel="noopener noreferrer">Aaron</a>.
-        </p>
-        <hr class="aaron-hero__hr">
-        <div class="aaron-hero__statements">
-          <p class="aaron-hero__statement">big fan of the open source movement</p>
-          <p class="aaron-hero__statement">first year honours mathematics student <a href="https://uwaterloo.ca" class="aaron-hero__hl aaron-hero__hl--yellow" target="_blank" rel="noopener noreferrer">@uwaterloo</a></p>
-          <p class="aaron-hero__statement">avid builder, artist, and musician</p>
-        </div>
-        <ul class="aaron-hero__description">
-          <li class="aaron-hero__description-lead">a few things about me:</li>
-          <li>part time swim coach <a href="https://www.olympianswimming.com" class="aaron-hero__hl aaron-hero__hl--red" target="_blank" rel="noopener noreferrer">@Olympian Swimming</a> since 2023</li>
-          <li>mathematics mentor <a href="https://www.youtube.com/watch?v=dpGF6q9Rfy4&t=25s" class="aaron-hero__hl aaron-hero__hl--blue" target="_blank" rel="noopener noreferrer">@Filix School of Education</a> to 12+ under-privileged students in rural India since 2024</li>
-          <li><a href="https://youtube.com/playlist?list=PLFIVVjvIsY4R6XkeJ_IkNMosSr4JlnT9o&si=xlLY974aTDnzU7FM" class="aaron-hero__hl aaron-hero__hl--purple" target="_blank" rel="noopener noreferrer">award-winning pianist</a> with 14 years of experience</li>
-          <li>went to a <a href="https://cemc.uwaterloo.ca/workshops/student-workshops/auckland" class="aaron-hero__hl aaron-hero__hl--green" target="_blank" rel="noopener noreferrer">week-long workshop</a> for the top 70 math students <a href="https://uwaterloo.ca" class="aaron-hero__hl aaron-hero__hl--yellow" target="_blank" rel="noopener noreferrer">@uwaterloo</a> in 2025</li>
-        </ul>
-      </section>
+      <div class="aaron-grid__column">
+        <!-- Hero -->
+        <section class="aaron-tile aaron-tile--xl" data-sticky-trigger>
+          <p class="aaron-hero__primary">
+            <span class="aaron-hero__emphasis">Hi,</span> I'm
+            <span class="aaron-hero__link-wrap">
+              <span class="aaron-hero__link" tabindex="0">Aaron</span>
+              <img src="assets/Firefly.jpg" alt="" class="aaron-hero__link-preview" aria-hidden="true">
+            </span>.
+          </p>
+          <hr class="aaron-hero__hr">
+          <div class="aaron-hero__statements">
+            <p class="aaron-hero__statement">big fan of the open source movement</p>
+            <p class="aaron-hero__statement">first year honours mathematics student <a href="https://uwaterloo.ca" class="aaron-hero__hl aaron-hero__hl--yellow" target="_blank" rel="noopener noreferrer">@uwaterloo</a></p>
+            <p class="aaron-hero__statement">avid builder, artist, and musician</p>
+            <p class="aaron-hero__statement">exploring computational math and agentic AI systems</p>
+          </div>
+          <ul class="aaron-hero__description">
+            <li class="aaron-hero__description-lead">a few things about me:</li>
+            <li>part time swim coach <a href="https://www.olympianswimming.com" class="aaron-hero__hl aaron-hero__hl--red" target="_blank" rel="noopener noreferrer">@Olympian Swimming</a> since 2023</li>
+            <li>mathematics mentor <a href="https://www.youtube.com/watch?v=dpGF6q9Rfy4&t=25s" class="aaron-hero__hl aaron-hero__hl--blue" target="_blank" rel="noopener noreferrer">@Filix School of Education</a> to 12+ under-privileged students in rural India since 2024</li>
+            <li><a href="https://youtube.com/playlist?list=PLFIVVjvIsY4R6XkeJ_IkNMosSr4JlnT9o&si=xlLY974aTDnzU7FM" class="aaron-hero__hl aaron-hero__hl--purple" target="_blank" rel="noopener noreferrer">award-winning pianist</a> with 14 years of experience</li>
+            <li>went to a <a href="https://cemc.uwaterloo.ca/workshops/student-workshops/auckland" class="aaron-hero__hl aaron-hero__hl--green" target="_blank" rel="noopener noreferrer">week-long workshop</a> for the top 70 math students <a href="https://uwaterloo.ca" class="aaron-hero__hl aaron-hero__hl--yellow" target="_blank" rel="noopener noreferrer">@uwaterloo</a> in 2025</li>
+          </ul>
+        </section>
 
-      <!-- Awards -->
-      <section class="aaron-tile aaron-awards aaron-area-awards">
-        <p class="aaron-caption">🏆 cool things i've been doing</p>
-        <h2 class="aaron-awards__title">Awards &amp; Recognition</h2>
-        <ul class="aaron-hero__description">
-          <li><span class="aaron-hero__hl aaron-hero__hl--yellow">1st Place</span>, In-Person Kingbridge STEM MINDS Hackathon 2026</li>
-          <li>Distinction, Chem13 2026 <span class="aaron-hero__hl aaron-hero__hl--yellow">(Top 20%)</span></li>
-          <li>Honour Roll, Fermat 2025 <span class="aaron-hero__hl aaron-hero__hl--yellow">(Top 200 out of 16,000, Score of 140)</span></li>
-          <li>Honour Roll, Hypatia 2025 <span class="aaron-hero__hl aaron-hero__hl--yellow">(Top 400 out of 6,132, Score of 33)</span></li>
-          <li>Distinction, Euclid 2025 <span class="aaron-hero__hl aaron-hero__hl--yellow">(Score of 70)</span></li>
-          <li>Distinction, Sir Isaac Newton 2025 <span class="aaron-hero__hl aaron-hero__hl--yellow">(Top 17%)</span></li>
-          <li>Distinction, CSMC 2024 <span class="aaron-hero__hl aaron-hero__hl--yellow">(Score of 37)</span></li>
-          <li><span class="aaron-hero__hl aaron-hero__hl--yellow">2x Gold Medal Winner</span>, International Music Festival and Competition 2025</li>
-        </ul>
-      </section>
+        <!-- Education -->
+        <section class="aaron-tile aaron-education">
+          <h2 class="aaron-education__title">Education</h2>
+          <ul class="aaron-education__list">
+            <li class="aaron-education__item">
+              <p class="aaron-education__row">
+                <span class="aaron-education__school">University of Waterloo</span>
+                <span class="aaron-education__date">2026–2031</span>
+              </p>
+              <p class="aaron-education__detail">BMath, Honours Mathematics with Co-op</p>
+            </li>
+            <li class="aaron-education__item">
+              <p class="aaron-education__row">
+                <span class="aaron-education__school">Milliken Mills High School</span>
+                <span class="aaron-education__date">2022–2026</span>
+              </p>
+              <p class="aaron-education__detail">IB Diploma Programme <span class="aaron-hero__hl aaron-hero__hl--yellow">(Top 5 Average: 98.4%)</span></p>
+            </li>
+          </ul>
+        </section>
 
-      <!-- Certifications -->
-      <section class="aaron-tile aaron-certs aaron-area-certs">
-        <p class="aaron-caption">🏅 things i've learned and earned</p>
-        <h2 class="aaron-certs__title">Certifications</h2>
-        <ul class="aaron-hero__description">
-          <li><span class="aaron-hero__hl aaron-hero__hl--blue">Level 10 Piano with Honours</span>, RCM (2026)</li>
-          <li><span class="aaron-hero__hl aaron-hero__hl--blue">Level 10 Music History with Honours</span>, RCM (2024)</li>
-          <li><span class="aaron-hero__hl aaron-hero__hl--blue">CS50x</span>, Harvard University + edX (2024)</li>
-        </ul>
-      </section>
+        <!-- Awards -->
+        <section class="aaron-tile aaron-awards">
+          <p class="aaron-caption">🏆 cool things i've been doing</p>
+          <h2 class="aaron-awards__title">Awards &amp; Recognition</h2>
+          <ul class="aaron-hero__description">
+            <li><span class="aaron-hero__hl aaron-hero__hl--yellow">1st Place</span>, In-Person Kingbridge STEM MINDS Hackathon 2026</li>
+            <li>Distinction, Chem13 2026 <span class="aaron-hero__hl aaron-hero__hl--yellow">(Top 20%)</span></li>
+            <li><span class="aaron-hero__hl aaron-hero__hl--yellow">2x Gold Medal Winner</span>, International Music Festival and Competition 2025</li>
+            <li>Honour Roll, Fermat 2025 <span class="aaron-hero__hl aaron-hero__hl--yellow">(Top 200 out of 16,000, Score of 140)</span></li>
+            <li>Honour Roll, Hypatia 2025 <span class="aaron-hero__hl aaron-hero__hl--yellow">(Top 400 out of 6,132, Score of 33)</span></li>
+            <li>Distinction, Euclid 2025 <span class="aaron-hero__hl aaron-hero__hl--yellow">(Score of 70)</span></li>
+            <li>Distinction, Sir Isaac Newton 2025 <span class="aaron-hero__hl aaron-hero__hl--yellow">(Top 17%)</span></li>
+            <li>Distinction, CSMC 2024 <span class="aaron-hero__hl aaron-hero__hl--yellow">(Score of 37)</span></li>
+          </ul>
+        </section>
+      </div>
 
-      <!-- Dock -->
-      <section class="aaron-tile aaron-tile--dock aaron-area-dock">
-        <div id="mac-dock"></div>
-      </section>
+      <div class="aaron-grid__column">
+        <!-- Dock -->
+        <section class="aaron-tile aaron-tile--dock">
+          <div id="mac-dock"></div>
+        </section>
+
+        <!-- Certifications -->
+        <section class="aaron-tile aaron-certs">
+          <p class="aaron-caption">🏅 things i've learned and earned</p>
+          <h2 class="aaron-certs__title">Certifications</h2>
+          <ul class="aaron-hero__description">
+            <li><span class="aaron-hero__hl aaron-hero__hl--blue">Level 10 Piano with Honours</span>, RCM (2026)</li>
+            <li><span class="aaron-hero__hl aaron-hero__hl--blue">Level 10 Music History with Honours</span>, RCM (2024)</li>
+            <li><span class="aaron-hero__hl aaron-hero__hl--blue">CS50x</span>, Harvard University + edX (2024)</li>
+            <li><span class="aaron-hero__hl aaron-hero__hl--blue">Black Belt</span>, Stouffville Martial Arts Academy (2024)</li>
+            <li><span class="aaron-hero__hl aaron-hero__hl--blue">Standard First Aid with CPR-C</span>, Lifesaving Society Canada (2023)</li>
+            <li><span class="aaron-hero__hl aaron-hero__hl--blue">Emergency First Aid with CPR-B</span>, Lifesaving Society Canada (2023)</li>
+            <li><span class="aaron-hero__hl aaron-hero__hl--blue">Bronze Cross</span>, Lifesaving Society Canada (2023)</li>
+            <li><span class="aaron-hero__hl aaron-hero__hl--blue">Bronze Medallion</span>, Lifesaving Society Canada (2023)</li>
+          </ul>
+        </section>
+
+        <!-- Contact -->
+        <section class="aaron-tile aaron-contact">
+          <p class="aaron-caption">✉️ feel free to reach out with any questions or opportunities, or just to say hi!</p>
+          <ul class="aaron-contact__list">
+            <li>
+              <a href="mailto:a42dutta@uwaterloo.ca" class="aaron-contact__item" aria-label="Email Aaron">
+                <img src="assets/dock/email.svg" alt="">
+              </a>
+            </li>
+            <li>
+              <a href="https://linkedin.com/in/aaron-dutta" class="aaron-contact__item" target="_blank" rel="noopener noreferrer" aria-label="Aaron Dutta on LinkedIn">
+                <img src="assets/dock/linkedin.svg" alt="">
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/defAaron" class="aaron-contact__item" target="_blank" rel="noopener noreferrer" aria-label="defAaron on GitHub">
+                <img src="assets/dock/github.svg" alt="">
+              </a>
+            </li>
+          </ul>
+        </section>
+      </div>
     </main>
 
     <p class="aaron-footer">
-      made by aaron dutta, inspired by <a href="https://www.marco.fyi" target="_blank" rel="noopener noreferrer">marco Ccornacchia</a>
+      made by aaron dutta, inspired by <a href="https://www.marco.fyi" target="_blank" rel="noopener noreferrer">marco cornacchia</a>
     </p>
   </div>
 </body>

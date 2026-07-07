@@ -94,7 +94,7 @@ a {
   justify-content: center;
   width: 100%;
   padding: 0 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 4.5rem;
 }
 
 .aaron-nav {
@@ -110,6 +110,7 @@ a {
 }
 
 .aaron-nav__item {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -129,69 +130,22 @@ a {
   color: var(--aaron-ink);
 }
 
-/* —— Sticky name bar —— */
-.aaron-nav-info {
-  position: sticky;
-  top: 56px;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 1400px;
-  padding: 4px 48px 0;
-  margin-bottom: 0.5rem;
-  opacity: 0;
-  transform: translateY(-8px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  pointer-events: none;
-}
-
-.aaron-nav-info.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-.aaron-nav-info__name {
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--aaron-ink);
-  text-decoration: none;
-}
-
-.aaron-nav-info__icons {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.aaron-nav-info__icon {
-  display: flex;
-  width: 24px;
-  height: 24px;
-  opacity: 0.7;
-  transition: opacity 0.15s ease;
-}
-
-.aaron-nav-info__icon:hover {
-  opacity: 1;
-}
-
-.aaron-nav-info__icon svg {
-  width: 100%;
-  height: 100%;
+.aaron-nav__item.is-active::after {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ff4141;
 }
 
 /* —— Home grid (bento) —— */
 .aaron-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-areas:
-    "hero dock"
-    "awards certs";
-  grid-auto-rows: min-content;
-  align-items: start;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: var(--aaron-gap);
   position: relative;
   z-index: 2;
@@ -200,10 +154,20 @@ a {
   padding: 0 1rem;
 }
 
-.aaron-area-hero { grid-area: hero; }
-.aaron-area-awards { grid-area: awards; }
-.aaron-area-dock { grid-area: dock; }
-.aaron-area-certs { grid-area: certs; }
+.aaron-grid__column {
+  display: grid;
+  gap: var(--aaron-gap);
+  align-content: start;
+  min-width: 0;
+}
+
+.aaron-grid__column:first-child {
+  grid-template-rows: minmax(0, 1fr) auto auto;
+}
+
+.aaron-grid__column:last-child {
+  grid-template-rows: minmax(0, auto) minmax(0, auto) minmax(0, auto);
+}
 
 /* —— Base tile —— */
 .aaron-tile {
@@ -212,6 +176,7 @@ a {
   position: relative;
   overflow: visible;
   width: 100%;
+  min-width: 0;
   height: auto;
 }
 
@@ -248,6 +213,34 @@ a {
   cursor: pointer;
 }
 
+.aaron-hero__link-wrap {
+  position: relative;
+  display: inline;
+}
+
+.aaron-hero__link-preview {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  z-index: 10;
+  width: 168px;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(4px);
+  transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.35s ease;
+}
+
+.aaron-hero__link-wrap:hover .aaron-hero__link-preview,
+.aaron-hero__link-wrap:focus-within .aaron-hero__link-preview {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
 .aaron-hero__hr {
   width: 100%;
   height: 1.4px;
@@ -280,13 +273,13 @@ a {
   position: relative;
 }
 
-.aaron-hero__description-lead {
+.aaron-hero__description li.aaron-hero__description-lead {
   font-weight: 500;
   color: var(--aaron-ink);
   padding-left: 0;
 }
 
-.aaron-hero__description-lead::before {
+.aaron-hero__description li.aaron-hero__description-lead::before {
   content: none;
 }
 
@@ -352,8 +345,9 @@ a.aaron-hero__hl:hover {
   color: #9333ea;
 }
 
-/* —— Awards & Certifications —— */
+/* —— Awards, Education & Certifications —— */
 .aaron-awards,
+.aaron-education,
 .aaron-certs {
   padding: 24px 28px;
   display: flex;
@@ -362,10 +356,44 @@ a.aaron-hero__hl:hover {
 }
 
 .aaron-awards__title,
+.aaron-education__title,
 .aaron-certs__title {
   font-size: 15px;
   font-weight: 500;
   color: var(--aaron-ink);
+}
+
+.aaron-education__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 0;
+}
+
+.aaron-education__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--aaron-ink);
+  line-height: 1.4;
+}
+
+.aaron-education__date {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--aaron-caption);
+  white-space: nowrap;
+}
+
+.aaron-education__detail {
+  margin-top: 4px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--aaron-muted);
 }
 
 .aaron-caption {
@@ -381,6 +409,53 @@ a.aaron-hero__hl:hover {
 .aaron-awards .aaron-hero__description,
 .aaron-certs .aaron-hero__description {
   margin-top: 0;
+}
+
+/* —— Contact —— */
+.aaron-contact {
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.aaron-contact__title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--aaron-ink);
+}
+
+.aaron-contact__list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.aaron-contact__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  background: #fff;
+  border-radius: 16px;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.aaron-contact__item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transform: translateY(-1px);
+}
+
+.aaron-contact__item img {
+  display: block;
+  width: 32%;
+  height: 32%;
+  object-fit: contain;
 }
 
 /* —— Footer —— */
@@ -404,25 +479,23 @@ a.aaron-hero__hl:hover {
 
   .aaron-grid {
     grid-template-columns: 1fr;
-    grid-template-areas:
-      "hero"
-      "awards"
-      "dock"
-      "certs";
     max-width: 100%;
   }
 
+  .aaron-grid__column:first-child,
+  .aaron-grid__column:last-child {
+    grid-template-rows: none;
+  }
+
   .aaron-awards,
-  .aaron-certs {
+  .aaron-education,
+  .aaron-certs,
+  .aaron-contact {
     padding: 20px;
   }
 
   .aaron-tile--dock {
     padding: 16px;
-  }
-
-  .aaron-nav-info {
-    padding: 4px 1rem 0;
   }
 
   .aaron-nav__item {
@@ -437,6 +510,14 @@ a.aaron-hero__hl:hover {
 
   .aaron-hero__statement {
     font-size: 16px;
+  }
+
+  .aaron-education__row {
+    font-size: 14px;
+  }
+
+  .aaron-education__detail {
+    font-size: 13px;
   }
 
   .aaron-hero__description li {

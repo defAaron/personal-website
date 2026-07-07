@@ -13,10 +13,11 @@
     { selector: '.mac-dock__icon', sound: SOUNDS.app },
     { selector: '.mac-dock-tab', sound: SOUNDS.tilda },
     { selector: '.aaron-nav__item', sound: SOUNDS.nav },
-    { selector: '.aaron-nav-info__icon', sound: SOUNDS.nav },
-    { selector: '.aaron-nav-info__name', sound: SOUNDS.nav },
+    { selector: '.aaron-projects__action, .aaron-projects__media', sound: SOUNDS.item },
+    { selector: '.aaron-tab, .aaron-subtab', sound: SOUNDS.tilda },
+    { selector: '.aaron-gallery__img', sound: SOUNDS.item },
     {
-      selector: '.aaron-hero__link, .aaron-hero__hl, .aaron-footer a',
+      selector: '.aaron-hero__link, .aaron-hero__hl, .aaron-footer a, .aaron-contact__item',
       sound: SOUNDS.item,
     },
   ];

@@ -91,8 +91,8 @@
     ],
   };
 
-  let activeAppId = 'notion';
-  let activeTabId = APP_TABS.notion[0].id;
+  let activeAppId = 'arc';
+  let activeTabId = APP_TABS.arc[0].id;
 
   const shell = document.createElement('div');
   shell.className = 'mac-dock-shell';
@@ -293,5 +293,5 @@
     new ResizeObserver(updateCaretPosition).observe(shell);
   }
 
-  selectApp('notion');
+  selectApp('arc');
 })();

@@ -188,7 +188,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 6px 16px 8px;
+  padding: 8px 16px 14px;
   background: rgba(255, 255, 255, 0.85);
   border-radius: 16px;
   box-shadow:
@@ -216,7 +216,8 @@
   gap: 20px;
   width: 100%;
   min-width: 0;
-  padding: 10px 8px 12px;
+  min-height: 96px;
+  padding: 10px 8px 28px;
   box-sizing: border-box;
 }
 
@@ -290,7 +291,7 @@
 
 .mac-dock__indicator {
   position: absolute;
-  bottom: -10px;
+  bottom: -20px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 3;
@@ -308,13 +309,14 @@
 
 @media (max-width: 768px) {
   .mac-dock {
-    padding: 8px 12px 10px;
+    padding: 8px 12px 12px;
     border-radius: 14px;
   }
 
   .mac-dock__icons {
     gap: 14px;
-    padding: 12px 8px 14px;
+    min-height: 80px;
+    padding: 12px 8px 24px;
   }
 
   .mac-dock__icon,

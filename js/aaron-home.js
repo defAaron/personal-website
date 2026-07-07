@@ -2,8 +2,12 @@
   /* Preloader */
   const preloader = document.getElementById('aaron-preloader');
   if (preloader) {
+    const path = window.location.pathname.split('/').pop() || 'index.html';
+    const onHomePage = path === '' || path === 'index.html';
+    const preloaderDelay = onHomePage ? 3200 : 2200;
+
     window.addEventListener('load', () => {
-      setTimeout(() => preloader.classList.add('is-hidden'), 3200);
+      setTimeout(() => preloader.classList.add('is-hidden'), preloaderDelay);
     });
   }
 
@@ -22,25 +26,20 @@
     statements[0].classList.add('is-active');
   }
 
-  /* Sticky name bar on scroll */
-  const navInfo = document.getElementById('aaron-nav-info');
-  const hero = document.querySelector('.aaron-tile--xl');
-
-  if (navInfo && hero) {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        navInfo.classList.toggle('is-visible', !entry.isIntersecting);
-      },
-      { threshold: 0.15 }
-    );
-    observer.observe(hero);
-  }
-
   /* Nav active state */
   const navItems = document.querySelectorAll('.aaron-nav__item');
+  const path = window.location.pathname.split('/').pop() || 'index.html';
+  const onHomePage = path === '' || path === 'index.html';
+
   navItems.forEach((item) => {
-    if (item.getAttribute('href') === '#' || item.getAttribute('href') === 'index.html') {
-      item.classList.add('is-active');
-    }
+    const href = item.getAttribute('href') || '';
+    const isHomeLink = href === '#' || href === './' || href === '/' || href === 'index.html';
+    const isActive =
+      href === path ||
+      (onHomePage && isHomeLink && item.textContent.trim().toLowerCase() === 'home');
+
+    item.classList.toggle('is-active', isActive);
+    if (isActive) item.setAttribute('aria-current', 'page');
+    else item.removeAttribute('aria-current');
   });
 })();
