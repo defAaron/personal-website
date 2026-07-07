@@ -1,14 +1,14 @@
 (function () {
   /* Preloader */
-  const preloader = document.getElementById('marco-preloader');
+  const preloader = document.getElementById('aaron-preloader');
   if (preloader) {
     window.addEventListener('load', () => {
-      setTimeout(() => preloader.classList.add('is-hidden'), 1200);
+      setTimeout(() => preloader.classList.add('is-hidden'), 3200);
     });
   }
 
   /* Hero statement cycle — rotating lines only */
-  const statements = document.querySelectorAll('.marco-hero__statements .marco-hero__statement');
+  const statements = document.querySelectorAll('.aaron-hero__statements .aaron-hero__statement');
   if (statements.length > 1) {
     let index = 0;
     statements[0].classList.add('is-active');
@@ -23,8 +23,8 @@
   }
 
   /* Sticky name bar on scroll */
-  const navInfo = document.getElementById('marco-nav-info');
-  const hero = document.querySelector('.marco-tile--xl');
+  const navInfo = document.getElementById('aaron-nav-info');
+  const hero = document.querySelector('.aaron-tile--xl');
 
   if (navInfo && hero) {
     const observer = new IntersectionObserver(
@@ -37,7 +37,7 @@
   }
 
   /* Nav active state */
-  const navItems = document.querySelectorAll('.marco-nav__item');
+  const navItems = document.querySelectorAll('.aaron-nav__item');
   navItems.forEach((item) => {
     if (item.getAttribute('href') === '#' || item.getAttribute('href') === 'index.html') {
       item.classList.add('is-active');

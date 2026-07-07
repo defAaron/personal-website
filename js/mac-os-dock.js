@@ -1,5 +1,5 @@
 /**
- * Marco.fyi cmd-dock + tilda-bar replica
+ * cmd-dock + tilda-bar (inspired by marco.fyi)
  */
 (function () {
   const mount = document.getElementById('mac-dock');
@@ -23,6 +23,14 @@
       tabActiveBg: '#eff0ff',
     },
     {
+      id: 'cursor',
+      name: 'Cursor',
+      icon: 'assets/dock/cursor.png',
+      accent: '#6366f1',
+      accentBg: '#e8eafc',
+      tabActiveBg: '#eff0ff',
+    },
+    {
       id: 'figma',
       name: 'Figma',
       icon: 'https://cdn.prod.website-files.com/62c89bdb7c26b515f632de67/62c909916f6892fbf32c42dc_figma.webp',
@@ -31,103 +39,60 @@
       tabActiveBg: '#f5f0ff',
     },
     {
-      id: 'webflow',
-      name: 'Webflow',
-      icon: 'https://cdn.prod.website-files.com/62c89bdb7c26b515f632de67/62c90418ca69f34b8f9203e2_webflow.webp',
-      accent: '#4353ff',
-      accentBg: '#e8ebff',
-      tabActiveBg: '#eef0ff',
+      id: 'claude',
+      name: 'Claude',
+      icon: 'assets/dock/claude.png',
+      accent: '#d97757',
+      accentBg: '#fdeee8',
+      tabActiveBg: '#fff5f0',
     },
     {
-      id: 'superhuman',
-      name: 'Superhuman',
-      icon: 'https://cdn.prod.website-files.com/62c89bdb7c26b515f632de67/62c9041809e7a2ac71ddc8aa_superhuman.webp',
-      accent: '#2dc08f',
-      accentBg: '#e9f3f2',
-      tabActiveBg: '#ecfdf8',
-    },
-    {
-      id: 'linear',
-      name: 'Linear',
-      icon: 'https://cdn.prod.website-files.com/62c89bdb7c26b515f632de67/62c906ccc50496a2c7a8ac80_Linear.webp',
-      accent: '#5e6ad2',
-      accentBg: '#e8eafc',
-      tabActiveBg: '#eff0ff',
-    },
-    {
-      id: 'marisol',
-      name: 'Marisol Jones',
-      icon: 'https://cdn.prod.website-files.com/62c89bdb7c26b515f632de67/630d7a9bbf383e7558aa9db2_630d6daa5edb52f8a5433beb_62fea588d12c7147d3b1302a_marisol-new-min.webp',
-      accent: '#ec4899',
-      accentBg: '#fce7f3',
-      tabActiveBg: '#fdf2f8',
-      round: true,
-    },
-    {
-      id: 'slack',
-      name: 'Slack',
-      icon: 'https://cdn.prod.website-files.com/62c89bdb7c26b515f632de67/62c906ccc504966b02a8ac8c_Slack.webp',
-      accent: '#611f69',
-      accentBg: '#f3e8f4',
-      tabActiveBg: '#faf5fb',
+      id: 'spotify',
+      name: 'Spotify',
+      icon: 'assets/dock/spotify.svg',
+      accent: '#1ed760',
+      accentBg: '#dcfce7',
+      tabActiveBg: '#ecfdf3',
     },
   ];
 
   const APP_TABS = {
     arc: [
-      { id: 'arc-1', title: 'Marco Cornacchia', subtitle: 'https://marcooo.xyz/', emoji: '👤', href: 'https://marcooo.xyz/', external: true },
-      { id: 'arc-2', title: 'marco ✦ (@marcofyi)', subtitle: 'https://twitter.com/marcofyi', emoji: '🐦', href: 'https://twitter.com/marcofyi', external: true },
-      { id: 'arc-3', title: 'Are.na — Marco Cornacchia', subtitle: 'are.na/marco-cornacchia', emoji: '📌', href: 'https://www.are.na/marco-cornacchia', external: true },
-      { id: 'arc-4', title: 'Sidebar', subtitle: 'sidebar.io', emoji: '📰', href: 'https://sidebar.io/', external: true },
-      { id: 'arc-5', title: 'Good News', subtitle: 'news.hifolks.com', emoji: '✨', href: 'https://news.hifolks.com/', external: true },
+      { id: 'arc-1', title: 'Aaron Dutta', subtitle: 'aarondutta.com', emoji: '👤', href: 'https://aarondutta.com', external: true },
+      { id: 'arc-2', title: 'LinkedIn', subtitle: 'linkedin.com/in/aaron-dutta', icon: 'assets/dock/linkedin.svg', href: 'https://linkedin.com/in/aaron-dutta', external: true },
+      { id: 'arc-3', title: 'GitHub', subtitle: 'github.com/defAaron', icon: 'assets/dock/github.svg', href: 'https://github.com/defAaron', external: true },
+      { id: 'arc-4', title: 'YouTube', subtitle: 'youtube.com/@aaron_dutta', icon: 'assets/dock/youtube.svg', href: 'https://youtube.com/@aaron_dutta', external: true },
     ],
     notion: [
-      { id: 'notion-1', title: 'DotOS Notes', subtitle: "Marco's Workspace", emoji: '🧞', href: '#', external: false },
-      { id: 'notion-2', title: '1-on-1 Meeting Notes', subtitle: "Marco's Workspace", emoji: '✏️', href: '#', external: false },
-      { id: 'notion-3', title: 'Project Timeline', subtitle: "Marco's Workspace", emoji: '⏰', href: '#', external: false },
-      { id: 'notion-4', title: 'Tasks', subtitle: "Marco's Workspace", emoji: '✅', href: '#', external: false },
-      { id: 'notion-5', title: 'Dev Handoffs', subtitle: "Marco's Workspace", emoji: '🔧', href: '#', external: false },
-      { id: 'notion-6', title: 'Reads', subtitle: "Marco's Workspace", emoji: '📚', href: '#', external: false },
+      { id: 'notion-1', title: 'TechniqueTitan Notes', subtitle: "Aaron's Workspace", emoji: '📝', href: '#', external: false },
+      { id: 'notion-2', title: 'Best Quotes by Mathematicians', subtitle: "Aaron's Workspace", emoji: '💬', href: '#', external: false },
+      { id: 'notion-3', title: 'To-Do List', subtitle: "Aaron's Workspace", emoji: '✅', href: '#', external: false },
+      { id: 'notion-4', title: 'Reads', subtitle: "Aaron's Workspace", emoji: '📚', href: '#', external: false },
     ],
     figma: [
-      { id: 'figma-1', title: 'DotOS Design', subtitle: 'figma.com/dot-os-design', emoji: '🎨', href: '#', external: false },
-      { id: 'figma-2', title: 'Design Sesh', subtitle: 'figma.com/design-sesh', emoji: '💬', href: '#', external: false },
-      { id: 'figma-3', title: 'Portfolio 2.0', subtitle: 'figma.com/portfolio-2-0', emoji: '✦', href: '#', external: false },
-      { id: 'figma-4', title: 'Empathy Map', subtitle: 'figma.com/empathy-map', emoji: '🗺', href: '#', external: false },
+      { id: 'figma-1', title: 'Personal Website', subtitle: 'figma.com/personal-website', emoji: '✦', href: '#', external: false },
+      { id: 'figma-2', title: 'Personal Website 2.0', subtitle: 'figma.com/personal-website-2-0', emoji: '✦', href: '#', external: false },
+      { id: 'figma-3', title: 'Design Sesh', subtitle: 'figma.com/design-sesh', emoji: '🎨', href: '#', external: false },
+      { id: 'figma-4', title: 'Colour Palettes', subtitle: 'figma.com/colour-palettes', emoji: '🎨', href: '#', external: false },
     ],
-    webflow: [
-      { id: 'wf-1', title: 'Dashboard', subtitle: 'webflow.com/dashboard', emoji: '📊', href: '#', external: false },
-      { id: 'wf-2', title: 'Portfolio 2.0', subtitle: 'webflow.com/design/portfolio-2-0', emoji: '✦', href: '#', external: false },
-      { id: 'wf-3', title: 'Be Human Here – Coming Soon', subtitle: 'webflow.com/design/be-human-here', emoji: '🌱', href: '#', external: false },
+    cursor: [
+      { id: 'cursor-1', title: 'FraudGen', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
+      { id: 'cursor-2', title: 'Mycellium', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
+      { id: 'cursor-3', title: 'TechniqueTitan', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
+      { id: 'cursor-4', title: 'Personal Website', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
     ],
-    superhuman: [
-      { id: 'sh-1', title: 'Invitation: All-Hands Meeting', subtitle: 'Amari, Jene, Nina +2 others', emoji: '📧', href: '#', external: false },
-      { id: 'sh-2', title: 'Partnership Opportunity?', subtitle: 'Amari, Jene + 1 other', emoji: '🤝', href: '#', external: false },
-      { id: 'sh-3', title: 'Everyone needs to see this lol', subtitle: 'Amari, Jene, Nina +3 others', emoji: '😂', href: '#', external: false },
+    spotify: [
+      { id: 'spotify-1', title: 'God Was Showing Off', subtitle: 'Bruno Mars', emoji: '🎵', href: '#', external: false },
+      { id: 'spotify-2', title: 'Thinkin Bout You', subtitle: 'Frank Ocean', emoji: '🎵', href: '#', external: false },
+      { id: 'spotify-3', title: 'Piano Concerto No. 2 in C Minor, Op. 18: II. Adagio sostenuto', subtitle: 'Sergei Rachmaninoff', emoji: '🎹', href: '#', external: false },
     ],
-    linear: [
-      { id: 'lin-1', title: 'Launch Portfolio', subtitle: 'linear.app/marcofyi', emoji: '🚀', href: '#', external: false },
-      { id: 'lin-2', title: 'Write Intro + Publish', subtitle: 'linear.app/marcofyi', emoji: '✍️', href: '#', external: false },
-      { id: 'lin-3', title: 'Presentation Deck', subtitle: 'linear.app/marcofyi', emoji: '📊', href: '#', external: false },
-      { id: 'lin-4', title: 'Take Interviews', subtitle: 'linear.app/marcofyi', emoji: '🎤', href: '#', external: false },
-    ],
-    marisol: [
-      { id: 'mari-1', title: 'Mari ✨', subtitle: 'noooo for real tho lol', emoji: '💬', href: '#', external: false },
-      { id: 'mari-2', title: 'marisol jones • @mariiiiijones', subtitle: 'reminder to drink water & rest 💕', emoji: '🐦', href: '#', external: false },
-      { id: 'mari-3', title: 'Marisol Jones', subtitle: 'thanks, ill hit you up later', emoji: '💬', href: '#', external: false },
-      { id: 'mari-4', title: 'Marisol left a comment', subtitle: "i'd add some spacing here", emoji: '💭', href: '#', external: false },
-    ],
-    slack: [
-      { id: 'slack-1', title: 'general', subtitle: 'marco.slack.com', emoji: '#', href: '#', external: false },
-      { id: 'slack-2', title: 'Marisol Jones', subtitle: 'work.slack.com', emoji: '👤', href: '#', external: false },
-      { id: 'slack-3', title: 'design', subtitle: 'marco.slack.com', emoji: '#', href: '#', external: false },
-      { id: 'slack-4', title: 'random', subtitle: 'marco.slack.com', emoji: '#', href: '#', external: false },
+    claude: [
+      { id: 'claude-1', title: 'hey claude, print my resume', subtitle: 'claude.ai', emoji: '💬', href: 'https://claude.ai/new', external: true },
     ],
   };
 
   let activeAppId = 'notion';
   let activeTabId = APP_TABS.notion[0].id;
-  const openApps = new Set(['notion']);
 
   const shell = document.createElement('div');
   shell.className = 'mac-dock-shell';
@@ -136,6 +101,9 @@
   tabPanel.className = 'mac-dock-tabs is-visible';
   tabPanel.setAttribute('role', 'region');
   tabPanel.setAttribute('aria-label', 'Open tabs');
+
+  const tabHeader = document.createElement('div');
+  tabHeader.className = 'mac-dock-tabs__header';
 
   const tabRow = document.createElement('div');
   tabRow.className = 'mac-dock-tabs__row';
@@ -147,7 +115,7 @@
   tabCaret.innerHTML =
     '<svg width="34" height="14" viewBox="0 0 34 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 14L0 0h34L17 14z" fill="#fff" stroke="#cccccf" stroke-width="1"/></svg>';
 
-  tabPanel.append(tabRow, tabCaret);
+  tabPanel.append(tabHeader, tabRow, tabCaret);
 
   const dock = document.createElement('div');
   dock.className = 'mac-dock';
@@ -190,7 +158,7 @@
 
     const dot = document.createElement('span');
     dot.className = 'mac-dock__indicator';
-    dot.hidden = !openApps.has(app.id);
+    dot.hidden = app.id !== activeAppId;
 
     btn.append(ring, hover, img, dot);
     btn.addEventListener('click', () => selectApp(app.id));
@@ -235,17 +203,36 @@
   function updateActiveIconStyles() {
     iconEls.forEach((entry) => {
       const isActive = entry.app.id === activeAppId;
-      const isOpen = openApps.has(entry.app.id);
       entry.btn.classList.toggle('is-active', isActive);
       entry.ring.hidden = !isActive;
-      entry.btn.querySelector('.mac-dock__indicator').hidden = !isOpen;
+      entry.btn.querySelector('.mac-dock__indicator').hidden = !isActive;
     });
     updateCaretPosition();
+  }
+
+  function updateAppHeader() {
+    const app = getActiveApp();
+    if (!app) {
+      tabHeader.innerHTML = '';
+      return;
+    }
+
+    tabHeader.innerHTML =
+      `<img class="mac-dock-tabs__header-icon" src="${app.icon}" alt="" width="18" height="18" draggable="false">` +
+      `<span class="mac-dock-tabs__header-name">${app.name}</span>`;
+  }
+
+  function renderTabIcon(tab) {
+    if (tab.icon) {
+      return `<img class="mac-dock-tab__icon-img" src="${tab.icon}" alt="" width="16" height="16" draggable="false">`;
+    }
+    return tab.emoji || '';
   }
 
   function renderTabPanel() {
     const tabs = APP_TABS[activeAppId] || [];
     applyAccentVars();
+    updateAppHeader();
     tabRow.innerHTML = '';
 
     tabs.forEach((tab) => {
@@ -263,7 +250,7 @@
 
       card.innerHTML = `
         <div class="mac-dock-tab__row">
-          <span class="mac-dock-tab__icon" aria-hidden="true">${tab.emoji}</span>
+          <span class="mac-dock-tab__icon" aria-hidden="true">${renderTabIcon(tab)}</span>
           <span class="mac-dock-tab__title">${tab.title}</span>
         </div>
         <span class="mac-dock-tab__hr" aria-hidden="true"></span>
@@ -292,7 +279,6 @@
 
   function selectApp(appId) {
     activeAppId = appId;
-    openApps.add(appId);
     const tabs = APP_TABS[appId];
     if (tabs && !tabs.some((t) => t.id === activeTabId)) {
       activeTabId = tabs[0].id;
