@@ -1,23 +1,17 @@
 (function () {
-  /* —— Lazy-load fade-in —— */
-  function markLoaded(img) {
-    img.classList.add('is-loaded');
-  }
-
-  function initFadeIn(scope) {
-    const imgs = (scope || document).querySelectorAll('.aaron-gallery__img:not(.is-bound)');
-    imgs.forEach((img) => {
-      img.classList.add('is-bound');
-      if (img.complete && img.naturalWidth > 0) {
-        markLoaded(img);
-      } else {
-        img.addEventListener('load', () => markLoaded(img), { once: true });
-        img.addEventListener('error', () => markLoaded(img), { once: true });
-      }
+  /* —— Image loading —— */
+  function eagerLoadPanel(panel) {
+    if (!panel) return;
+    panel.querySelectorAll('.aaron-gallery__img').forEach((img) => {
+      img.loading = 'eager';
     });
   }
 
-  initFadeIn(document);
+  document.querySelectorAll('.aaron-panel').forEach((panel) => {
+    if (panel.classList.contains('is-active')) {
+      eagerLoadPanel(panel);
+    }
+  });
 
   /* —— Section tabs —— */
   const tabs = document.querySelectorAll('.aaron-tab');
@@ -37,7 +31,7 @@
         const active = panel.dataset.panel === target;
         panel.classList.toggle('is-active', active);
         panel.hidden = !active;
-        if (active) initFadeIn(panel);
+        if (active) eagerLoadPanel(panel);
       });
     });
   });
@@ -60,7 +54,7 @@
         const active = panel.dataset.subpanel === target;
         panel.classList.toggle('is-active', active);
         panel.hidden = !active;
-        if (active) initFadeIn(panel);
+        if (active) eagerLoadPanel(panel);
       });
     });
   });

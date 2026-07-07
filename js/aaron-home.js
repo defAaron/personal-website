@@ -4,11 +4,18 @@
   if (preloader) {
     const path = window.location.pathname.split('/').pop() || 'index.html';
     const onHomePage = path === '' || path === 'index.html';
-    const preloaderDelay = onHomePage ? 3200 : 2200;
+    const onGalleryPage = path === 'gallery.html';
+    const preloaderDelay = onHomePage ? 3200 : onGalleryPage ? 0 : 2200;
 
-    window.addEventListener('load', () => {
-      setTimeout(() => preloader.classList.add('is-hidden'), preloaderDelay);
-    });
+    const hidePreloader = () => preloader.classList.add('is-hidden');
+
+    if (onGalleryPage) {
+      hidePreloader();
+    } else {
+      window.addEventListener('load', () => {
+        setTimeout(hidePreloader, preloaderDelay);
+      });
+    }
   }
 
   /* Hero statement cycle — rotating lines only */
