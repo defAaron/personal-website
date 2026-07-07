@@ -229,6 +229,22 @@
     return tab.emoji || '';
   }
 
+  function scrollActiveTabIntoView() {
+    const activeCard = tabRow.querySelector('.mac-dock-tab.is-active');
+    if (!activeCard || tabRow.scrollWidth <= tabRow.clientWidth) return;
+
+    const cardLeft = activeCard.offsetLeft;
+    const cardRight = cardLeft + activeCard.offsetWidth;
+    const viewLeft = tabRow.scrollLeft;
+    const viewRight = viewLeft + tabRow.clientWidth;
+
+    if (cardLeft < viewLeft) {
+      tabRow.scrollLeft = cardLeft;
+    } else if (cardRight > viewRight) {
+      tabRow.scrollLeft = cardRight - tabRow.clientWidth;
+    }
+  }
+
   function renderTabPanel() {
     const tabs = APP_TABS[activeAppId] || [];
     applyAccentVars();
@@ -269,10 +285,7 @@
     });
 
     requestAnimationFrame(() => {
-      const activeCard = tabRow.querySelector('.mac-dock-tab.is-active');
-      if (activeCard) {
-        activeCard.scrollIntoView({ inline: 'nearest', block: 'nearest', behavior: 'smooth' });
-      }
+      scrollActiveTabIntoView();
       updateCaretPosition();
     });
   }

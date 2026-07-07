@@ -504,6 +504,17 @@ a.aaron-hero__hl:hover {
     font-size: 14px;
   }
 
+  .aaron-nav__item.is-active {
+    padding-bottom: 14px;
+  }
+
+  .aaron-nav__item.is-active::after {
+    left: 50%;
+    top: auto;
+    bottom: 5px;
+    transform: translateX(-50%);
+  }
+
   .aaron-hero__primary {
     font-size: 24px;
   }

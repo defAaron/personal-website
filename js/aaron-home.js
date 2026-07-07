@@ -4,18 +4,13 @@
   if (preloader) {
     const path = window.location.pathname.split('/').pop() || 'index.html';
     const onHomePage = path === '' || path === 'index.html';
-    const onGalleryPage = path === 'gallery.html';
-    const preloaderDelay = onHomePage ? 3200 : onGalleryPage ? 0 : 2200;
+    const preloaderDelay = onHomePage ? 3200 : 2200;
 
     const hidePreloader = () => preloader.classList.add('is-hidden');
 
-    if (onGalleryPage) {
-      hidePreloader();
-    } else {
-      window.addEventListener('load', () => {
-        setTimeout(hidePreloader, preloaderDelay);
-      });
-    }
+    window.addEventListener('load', () => {
+      setTimeout(hidePreloader, preloaderDelay);
+    });
   }
 
   /* Hero statement cycle — rotating lines only */
@@ -33,10 +28,17 @@
     statements[0].classList.add('is-active');
   }
 
-  /* Nav active state */
-  const navItems = document.querySelectorAll('.aaron-nav__item');
+  /* Keep home page scrolled to top on mobile (dock init used to scroll the page) */
   const path = window.location.pathname.split('/').pop() || 'index.html';
   const onHomePage = path === '' || path === 'index.html';
+
+  if (onHomePage) {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+  }
+
+  /* Nav active state */
+  const navItems = document.querySelectorAll('.aaron-nav__item');
 
   navItems.forEach((item) => {
     const href = item.getAttribute('href') || '';
