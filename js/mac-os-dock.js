@@ -62,6 +62,7 @@
       { id: 'arc-2', title: 'LinkedIn', subtitle: 'linkedin.com/in/aaron-dutta', icon: 'assets/dock/linkedin.svg', href: 'https://linkedin.com/in/aaron-dutta', external: true },
       { id: 'arc-3', title: 'GitHub', subtitle: 'github.com/defAaron', icon: 'assets/dock/github.svg', href: 'https://github.com/defAaron', external: true },
       { id: 'arc-4', title: 'YouTube', subtitle: 'youtube.com/@aaron_dutta', icon: 'assets/dock/youtube.svg', href: 'https://youtube.com/@aaron_dutta', external: true },
+      { id: 'arc-5', title: 'X', subtitle: 'x.com/theaar0ndutta', icon: 'assets/dock/x.svg', href: 'https://x.com/theaar0ndutta', external: true },
     ],
     notion: [
       { id: 'notion-1', title: 'TechniqueTitan Notes', subtitle: "Aaron's Workspace", emoji: '📝', href: '#', external: false },
