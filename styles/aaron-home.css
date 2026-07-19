@@ -341,6 +341,10 @@ a.aaron-hero__hl:hover {
   color: #16a34a;
 }
 
+.aaron-hero__hl--green-dark {
+  color: #166534;
+}
+
 .aaron-hero__hl--purple {
   color: #9333ea;
 }
