@@ -9,7 +9,7 @@
     {
       id: 'arc',
       name: 'Arc',
-      icon: 'https://cdn.prod.website-files.com/62c89bdb7c26b515f632de67/62c8b436355950582b0f0695_arc-logo.webp',
+      icon: 'assets/dock/arc.webp',
       accent: '#fc5c54',
       accentBg: '#ffe8e6',
       tabActiveBg: '#fff0ef',
@@ -17,7 +17,7 @@
     {
       id: 'notion',
       name: 'Notion',
-      icon: 'https://cdn.prod.website-files.com/62c89bdb7c26b515f632de67/62c906ccc50496194ba8ac88_Notion.webp',
+      icon: 'assets/dock/notion.webp',
       accent: '#6366f1',
       accentBg: '#dbddff',
       tabActiveBg: '#eff0ff',
@@ -33,7 +33,7 @@
     {
       id: 'figma',
       name: 'Figma',
-      icon: 'https://cdn.prod.website-files.com/62c89bdb7c26b515f632de67/62c909916f6892fbf32c42dc_figma.webp',
+      icon: 'assets/dock/figma.webp',
       accent: '#a259ff',
       accentBg: '#ede5ff',
       tabActiveBg: '#f5f0ff',
@@ -113,8 +113,19 @@
   const tabCaret = document.createElement('div');
   tabCaret.className = 'mac-dock-tabs__caret';
   tabCaret.setAttribute('aria-hidden', 'true');
-  tabCaret.innerHTML =
-    '<svg width="34" height="14" viewBox="0 0 34 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 14L0 0h34L17 14z" fill="#fff" stroke="#cccccf" stroke-width="1"/></svg>';
+
+  const caretSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  caretSvg.setAttribute('width', '34');
+  caretSvg.setAttribute('height', '14');
+  caretSvg.setAttribute('viewBox', '0 0 34 14');
+  caretSvg.setAttribute('fill', 'none');
+  const caretPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  caretPath.setAttribute('d', 'M17 14L0 0h34L17 14z');
+  caretPath.setAttribute('fill', '#fff');
+  caretPath.setAttribute('stroke', '#cccccf');
+  caretPath.setAttribute('stroke-width', '1');
+  caretSvg.appendChild(caretPath);
+  tabCaret.appendChild(caretSvg);
 
   tabPanel.append(tabHeader, tabRow, tabCaret);
 
@@ -213,21 +224,37 @@
 
   function updateAppHeader() {
     const app = getActiveApp();
-    if (!app) {
-      tabHeader.innerHTML = '';
-      return;
-    }
+    tabHeader.replaceChildren();
+    if (!app) return;
 
-    tabHeader.innerHTML =
-      `<img class="mac-dock-tabs__header-icon" src="${app.icon}" alt="" width="18" height="18" draggable="false">` +
-      `<span class="mac-dock-tabs__header-name">${app.name}</span>`;
+    const img = document.createElement('img');
+    img.className = 'mac-dock-tabs__header-icon';
+    img.src = app.icon;
+    img.alt = '';
+    img.width = 18;
+    img.height = 18;
+    img.draggable = false;
+
+    const name = document.createElement('span');
+    name.className = 'mac-dock-tabs__header-name';
+    name.textContent = app.name;
+
+    tabHeader.append(img, name);
   }
 
-  function renderTabIcon(tab) {
+  function appendTabIcon(container, tab) {
     if (tab.icon) {
-      return `<img class="mac-dock-tab__icon-img" src="${tab.icon}" alt="" width="16" height="16" draggable="false">`;
+      const img = document.createElement('img');
+      img.className = 'mac-dock-tab__icon-img';
+      img.src = tab.icon;
+      img.alt = '';
+      img.width = 16;
+      img.height = 16;
+      img.draggable = false;
+      container.appendChild(img);
+      return;
     }
-    return tab.emoji || '';
+    container.textContent = tab.emoji || '';
   }
 
   function scrollActiveTabIntoView() {
@@ -250,7 +277,7 @@
     const tabs = APP_TABS[activeAppId] || [];
     applyAccentVars();
     updateAppHeader();
-    tabRow.innerHTML = '';
+    tabRow.replaceChildren();
 
     tabs.forEach((tab) => {
       const card = document.createElement('a');
@@ -265,16 +292,33 @@
         card.rel = 'noopener noreferrer';
       }
 
-      card.innerHTML = `
-        <div class="mac-dock-tab__row">
-          <span class="mac-dock-tab__icon" aria-hidden="true">${renderTabIcon(tab)}</span>
-          <span class="mac-dock-tab__title">${tab.title}</span>
-        </div>
-        <span class="mac-dock-tab__hr" aria-hidden="true"></span>
-        <div class="mac-dock-tab__row">
-          <span class="mac-dock-tab__subtitle">${tab.subtitle}</span>
-        </div>
-      `;
+      const titleRow = document.createElement('div');
+      titleRow.className = 'mac-dock-tab__row';
+
+      const icon = document.createElement('span');
+      icon.className = 'mac-dock-tab__icon';
+      icon.setAttribute('aria-hidden', 'true');
+      appendTabIcon(icon, tab);
+
+      const title = document.createElement('span');
+      title.className = 'mac-dock-tab__title';
+      title.textContent = tab.title;
+
+      titleRow.append(icon, title);
+
+      const hr = document.createElement('span');
+      hr.className = 'mac-dock-tab__hr';
+      hr.setAttribute('aria-hidden', 'true');
+
+      const subtitleRow = document.createElement('div');
+      subtitleRow.className = 'mac-dock-tab__row';
+
+      const subtitle = document.createElement('span');
+      subtitle.className = 'mac-dock-tab__subtitle';
+      subtitle.textContent = tab.subtitle;
+      subtitleRow.appendChild(subtitle);
+
+      card.append(titleRow, hr, subtitleRow);
 
       card.addEventListener('click', (e) => {
         if (tab.href === '#') e.preventDefault();

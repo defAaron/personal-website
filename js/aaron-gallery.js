@@ -13,51 +13,33 @@
     }
   });
 
-  /* —— Section tabs —— */
-  const tabs = document.querySelectorAll('.aaron-tab');
-  const panels = document.querySelectorAll('.aaron-panel');
+  /* —— Tab groups (section tabs + travel sub-tabs) —— */
+  function bindTabGroup(tabSelector, panelSelector, tabAttr, panelAttr) {
+    const tabs = document.querySelectorAll(tabSelector);
+    const panels = document.querySelectorAll(panelSelector);
 
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      const target = tab.dataset.tab;
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const target = tab.getAttribute(tabAttr);
 
-      tabs.forEach((t) => {
-        const active = t === tab;
-        t.classList.toggle('is-active', active);
-        t.setAttribute('aria-selected', active ? 'true' : 'false');
-      });
+        tabs.forEach((t) => {
+          const active = t === tab;
+          t.classList.toggle('is-active', active);
+          t.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
 
-      panels.forEach((panel) => {
-        const active = panel.dataset.panel === target;
-        panel.classList.toggle('is-active', active);
-        panel.hidden = !active;
-        if (active) eagerLoadPanel(panel);
-      });
-    });
-  });
-
-  /* —— Travel sub-tabs —— */
-  const subtabs = document.querySelectorAll('.aaron-subtab');
-  const subpanels = document.querySelectorAll('.aaron-subpanel');
-
-  subtabs.forEach((subtab) => {
-    subtab.addEventListener('click', () => {
-      const target = subtab.dataset.subtab;
-
-      subtabs.forEach((t) => {
-        const active = t === subtab;
-        t.classList.toggle('is-active', active);
-        t.setAttribute('aria-selected', active ? 'true' : 'false');
-      });
-
-      subpanels.forEach((panel) => {
-        const active = panel.dataset.subpanel === target;
-        panel.classList.toggle('is-active', active);
-        panel.hidden = !active;
-        if (active) eagerLoadPanel(panel);
+        panels.forEach((panel) => {
+          const active = panel.getAttribute(panelAttr) === target;
+          panel.classList.toggle('is-active', active);
+          panel.hidden = !active;
+          if (active) eagerLoadPanel(panel);
+        });
       });
     });
-  });
+  }
+
+  bindTabGroup('.aaron-tab', '.aaron-panel', 'data-tab', 'data-panel');
+  bindTabGroup('.aaron-subtab', '.aaron-subpanel', 'data-subtab', 'data-subpanel');
 
   /* —— Lightbox —— */
   const lightbox = document.getElementById('aaron-lightbox');

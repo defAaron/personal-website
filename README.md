@@ -20,10 +20,21 @@ Static HTML/CSS/JS site deployed via [GitHub Pages](https://pages.github.com/) f
 │   │   └── travel/
 │   ├── images/         # Site imagery (hero, etc.)
 │   ├── dock/           # macOS dock icons
+│   ├── icons/          # Shared UI icons (play, devpost, etc.)
 │   ├── sounds/         # UI sound effects
-│   └── projects/       # Project thumbnails
-├── js/                 # Page scripts
-└── styles/             # Stylesheets
+│   ├── projects/       # Project thumbnails
+│   └── Resume.pdf
+├── js/
+│   ├── aaron-base.js           # Shared shell (preloader, nav, hero)
+│   ├── aaron-gallery.js        # Gallery tabs + lightbox
+│   ├── aaron-sounds.js         # Click sound effects
+│   ├── google-analytics.js     # GA4 loader
+│   └── mac-os-dock.js          # Home dock (home only)
+└── styles/
+    ├── aaron-base.css          # Shared design system
+    ├── aaron-work.css          # Work page
+    ├── aaron-gallery.css       # Gallery page
+    └── mac-os-dock.css         # Dock UI (home only)
 ```
 
 ## Branching

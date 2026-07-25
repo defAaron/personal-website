@@ -1,9 +1,10 @@
 (function () {
+  const path = window.location.pathname.split('/').pop() || 'index.html';
+  const onHomePage = path === '' || path === 'index.html';
+
   /* Preloader */
   const preloader = document.getElementById('aaron-preloader');
   if (preloader) {
-    const path = window.location.pathname.split('/').pop() || 'index.html';
-    const onHomePage = path === '' || path === 'index.html';
     const preloaderDelay = onHomePage ? 3200 : 2200;
 
     const hidePreloader = () => preloader.classList.add('is-hidden');
@@ -29,9 +30,6 @@
   }
 
   /* Keep home page scrolled to top on mobile (dock init used to scroll the page) */
-  const path = window.location.pathname.split('/').pop() || 'index.html';
-  const onHomePage = path === '' || path === 'index.html';
-
   if (onHomePage) {
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);

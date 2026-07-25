@@ -1,35 +1,3 @@
-/* —— Work page layout —— */
-.aaron-work-main {
-  display: flex;
-  flex-direction: column;
-  gap: var(--aaron-gap);
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: calc(var(--aaron-unit) * 4 + var(--aaron-gap) * 3);
-  padding: 0 1rem;
-}
-
-.aaron-work-intro {
-  padding: 28px 32px;
-}
-
-.aaron-work-intro__title {
-  font-size: 31px;
-  font-weight: 500;
-  letter-spacing: -0.4px;
-  color: var(--aaron-ink);
-  margin-top: 2px;
-}
-
-.aaron-work-intro__desc {
-  margin-top: 10px;
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--aaron-muted);
-  max-width: 560px;
-}
-
 /* —— Projects grid —— */
 .aaron-projects {
   display: grid;
@@ -170,14 +138,6 @@
 
 /* Responsive */
 @media (max-width: 900px) {
-  :root {
-    --aaron-unit: min(328px, calc(100vw - 2rem));
-  }
-
-  .aaron-work-intro {
-    padding: 20px;
-  }
-
   .aaron-projects {
     grid-template-columns: 1fr;
     gap: 24px;
