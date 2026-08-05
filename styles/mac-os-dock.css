@@ -79,14 +79,22 @@
 }
 
 /* tilda-feed-item tab card */
-.mac-dock-tab {
+.mac-dock-tab-wrap {
+  position: relative;
   flex: 0 0 auto;
+  margin-right: 10px;
+}
+
+.mac-dock-tab-wrap:last-child {
+  margin-right: 0;
+}
+
+.mac-dock-tab {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap: 0;
-  margin-right: 10px;
   padding: 6px 8px;
   border: 3px solid transparent;
   border-radius: 8px;
@@ -98,8 +106,8 @@
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 
-.mac-dock-tab:last-child {
-  margin-right: 0;
+.mac-dock-tab-wrap--copy .mac-dock-tab {
+  padding-right: 22px;
 }
 
 .mac-dock-tab:hover {
@@ -109,6 +117,49 @@
 .mac-dock-tab.is-active {
   background: var(--app-tab-active-bg, #eff0ff);
   border-color: var(--app-accent, #6366f1);
+}
+
+.mac-dock-tab__copy {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.15s ease, background 0.15s ease;
+}
+
+.mac-dock-tab__copy:hover,
+.mac-dock-tab__copy:focus-visible {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.06);
+  outline: none;
+}
+
+.mac-dock-tab__copy.is-copied {
+  opacity: 1;
+}
+
+.mac-dock-tab__copy img {
+  display: block;
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+  user-select: none;
+}
+
+.mac-dock-tab__copy.is-copied img {
+  filter: brightness(0) saturate(100%);
+  opacity: 0.55;
 }
 
 .mac-dock-tab__row {

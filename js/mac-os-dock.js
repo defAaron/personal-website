@@ -59,10 +59,10 @@
   const APP_TABS = {
     arc: [
       { id: 'arc-1', title: 'Aaron Dutta', subtitle: 'aarondutta.com', emoji: '👤', href: 'https://aarondutta.com', external: true },
-      { id: 'arc-2', title: 'LinkedIn', subtitle: 'linkedin.com/in/aaron-dutta', icon: 'assets/dock/linkedin.svg', href: 'https://linkedin.com/in/aaron-dutta', external: true },
-      { id: 'arc-3', title: 'GitHub', subtitle: 'github.com/defAaron', icon: 'assets/dock/github.svg', href: 'https://github.com/defAaron', external: true },
-      { id: 'arc-4', title: 'YouTube', subtitle: 'youtube.com/@aaron_dutta', icon: 'assets/dock/youtube.svg', href: 'https://youtube.com/@aaron_dutta', external: true },
-      { id: 'arc-5', title: 'X', subtitle: 'x.com/theaar0ndutta', icon: 'assets/dock/x.svg', href: 'https://x.com/theaar0ndutta', external: true },
+      { id: 'arc-2', title: 'LinkedIn', subtitle: 'linkedin.com/in/aaron-dutta', icon: 'assets/dock/linkedin.svg', href: 'https://linkedin.com/in/aaron-dutta', external: true, copy: true },
+      { id: 'arc-3', title: 'GitHub', subtitle: 'github.com/defAaron', icon: 'assets/dock/github.svg', href: 'https://github.com/defAaron', external: true, copy: true },
+      { id: 'arc-4', title: 'YouTube', subtitle: 'youtube.com/@aaron_dutta', icon: 'assets/dock/youtube.svg', href: 'https://youtube.com/@aaron_dutta', external: true, copy: true },
+      { id: 'arc-5', title: 'X', subtitle: 'x.com/theaar0ndutta', icon: 'assets/dock/x.svg', href: 'https://x.com/theaar0ndutta', external: true, copy: true },
     ],
     notion: [
       { id: 'notion-1', title: 'TechniqueTitan Notes', subtitle: "Aaron's Workspace", emoji: '📝', href: '#', external: false },
@@ -258,7 +258,7 @@
   }
 
   function scrollActiveTabIntoView() {
-    const activeCard = tabRow.querySelector('.mac-dock-tab.is-active');
+    const activeCard = tabRow.querySelector('.mac-dock-tab-wrap.is-active, .mac-dock-tab.is-active');
     if (!activeCard || tabRow.scrollWidth <= tabRow.clientWidth) return;
 
     const cardLeft = activeCard.offsetLeft;
@@ -273,6 +273,45 @@
     }
   }
 
+  function createCopyButton(url, label) {
+    const copyBtn = document.createElement('button');
+    copyBtn.type = 'button';
+    copyBtn.className = 'mac-dock-tab__copy';
+    copyBtn.setAttribute('aria-label', `Copy ${label} link`);
+    copyBtn.title = 'Copy link';
+
+    const img = document.createElement('img');
+    img.src = 'assets/icons/copy.svg';
+    img.alt = '';
+    img.width = 12;
+    img.height = 12;
+    img.draggable = false;
+    copyBtn.appendChild(img);
+
+    copyBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const done = () => {
+        copyBtn.classList.add('is-copied');
+        copyBtn.title = 'Copied!';
+        copyBtn.setAttribute('aria-label', `Copied ${label} link`);
+        window.clearTimeout(copyBtn._copyTimer);
+        copyBtn._copyTimer = window.setTimeout(() => {
+          copyBtn.classList.remove('is-copied');
+          copyBtn.title = 'Copy link';
+          copyBtn.setAttribute('aria-label', `Copy ${label} link`);
+        }, 1500);
+      };
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(done).catch(() => {});
+      }
+    });
+
+    return copyBtn;
+  }
+
   function renderTabPanel() {
     const tabs = APP_TABS[activeAppId] || [];
     applyAccentVars();
@@ -280,6 +319,11 @@
     tabRow.replaceChildren();
 
     tabs.forEach((tab) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'mac-dock-tab-wrap';
+      if (tab.id === activeTabId) wrap.classList.add('is-active');
+      if (tab.copy) wrap.classList.add('mac-dock-tab-wrap--copy');
+
       const card = document.createElement('a');
       card.className = 'mac-dock-tab';
       card.href = tab.href;
@@ -326,7 +370,13 @@
         renderTabPanel();
       });
 
-      tabRow.appendChild(card);
+      wrap.appendChild(card);
+
+      if (tab.copy) {
+        wrap.appendChild(createCopyButton(tab.href, tab.title));
+      }
+
+      tabRow.appendChild(wrap);
     });
 
     requestAnimationFrame(() => {
