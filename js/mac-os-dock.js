@@ -259,7 +259,13 @@
 
   function scrollActiveTabIntoView() {
     const activeCard = tabRow.querySelector('.mac-dock-tab-wrap.is-active, .mac-dock-tab.is-active');
-    if (!activeCard || tabRow.scrollWidth <= tabRow.clientWidth) return;
+    if (!activeCard) return;
+
+    // Content fits: no horizontal scroll needed (and CSS centers the row).
+    if (tabRow.scrollWidth <= tabRow.clientWidth) {
+      tabRow.scrollLeft = 0;
+      return;
+    }
 
     const cardLeft = activeCard.offsetLeft;
     const cardRight = cardLeft + activeCard.offsetWidth;
@@ -267,7 +273,7 @@
     const viewRight = viewLeft + tabRow.clientWidth;
 
     if (cardLeft < viewLeft) {
-      tabRow.scrollLeft = cardLeft;
+      tabRow.scrollLeft = Math.max(0, cardLeft);
     } else if (cardRight > viewRight) {
       tabRow.scrollLeft = cardRight - tabRow.clientWidth;
     }

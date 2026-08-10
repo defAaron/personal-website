@@ -2,19 +2,15 @@
 .aaron-projects {
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 80px;
 }
 
 .aaron-projects__card {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 36px;
   align-items: center;
   min-width: 0;
-}
-
-.aaron-projects__card:nth-child(even) {
-  grid-template-columns: 1fr 1.1fr;
 }
 
 .aaron-projects__card:nth-child(even) .aaron-projects__media {
@@ -153,7 +149,7 @@
 /* Responsive — stack on smaller screens */
 @media (max-width: 900px) {
   .aaron-projects {
-    gap: 36px;
+    gap: 56px;
   }
 
   .aaron-projects__card,

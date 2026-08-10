@@ -29,11 +29,9 @@
     statements[0].classList.add('is-active');
   }
 
-  /* Keep home page scrolled to top on mobile (dock init used to scroll the page) */
-  if (onHomePage) {
-    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-    window.scrollTo(0, 0);
-  }
+  /* Start at top on every page load (avoid browser scroll restoration) */
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.scrollTo(0, 0);
 
   /* Nav active state */
   const navItems = document.querySelectorAll('.aaron-nav__item');

@@ -63,7 +63,8 @@
 .mac-dock-tabs__row {
   display: flex;
   align-items: stretch;
-  justify-content: center;
+  /* safe: center when tabs fit; start when overflowing so the left edge isn't clipped */
+  justify-content: safe center;
   gap: 0;
   overflow-x: auto;
   overflow-y: hidden;
