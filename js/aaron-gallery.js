@@ -84,41 +84,80 @@
       : [];
     const travelFeature = document.getElementById('aaron-travel-feature');
     const travelFeatureImgs = travelFeature
-      ? Array.from(travelFeature.querySelectorAll('.aaron-travel-feature__img'))
+      ? Array.from(travelFeature.querySelectorAll('.aaron-fade__img'))
       : [];
+    const TRAVEL_FEATURE_INTERVAL = 3000;
     let travelFeatureIndex = Math.max(
       0,
       travelFeatureImgs.findIndex((img) => img.classList.contains('is-active'))
     );
     let travelFeatureTimer = null;
 
+    function syncTravelFeatureActive() {
+      travelFeatureImgs.forEach((img, i) => {
+        img.classList.toggle('is-active', i === travelFeatureIndex);
+      });
+    }
+
+    syncTravelFeatureActive();
+
+    function isTravelFeatureVisible() {
+      const panel = document.querySelector('.aaron-panel[data-panel="travel"]');
+      return panel && !panel.hidden && !document.hidden;
+    }
+
     function showTravelFeatureSlide(next) {
       if (!travelFeatureImgs.length) return;
-      travelFeatureImgs[travelFeatureIndex].classList.remove('is-active');
       travelFeatureIndex = (next + travelFeatureImgs.length) % travelFeatureImgs.length;
-      travelFeatureImgs[travelFeatureIndex].classList.add('is-active');
+      syncTravelFeatureActive();
     }
 
     function showTravelFeatureByCountry(id) {
       const index = travelFeatureImgs.findIndex((img) => img.getAttribute('data-country') === id);
       if (index < 0) return;
-      travelFeatureImgs[travelFeatureIndex].classList.remove('is-active');
       travelFeatureIndex = index;
-      travelFeatureImgs[travelFeatureIndex].classList.add('is-active');
+      syncTravelFeatureActive();
+    }
+
+    function scheduleTravelFeatureRotation() {
+      stopTravelFeatureRotation();
+      if (travelFeatureImgs.length < 2) return;
+
+      function tick() {
+        if (!isTravelFeatureVisible() || !phone.classList.contains('is-calendar')) {
+          travelFeatureTimer = null;
+          return;
+        }
+        showTravelFeatureSlide(travelFeatureIndex + 1);
+        travelFeatureTimer = setTimeout(tick, TRAVEL_FEATURE_INTERVAL);
+      }
+
+      travelFeatureTimer = setTimeout(tick, TRAVEL_FEATURE_INTERVAL);
     }
 
     function startTravelFeatureRotation() {
       if (travelFeatureTimer || travelFeatureImgs.length < 2) return;
-      travelFeatureTimer = setInterval(() => {
-        showTravelFeatureSlide(travelFeatureIndex + 1);
-      }, 3000);
+      scheduleTravelFeatureRotation();
     }
 
     function stopTravelFeatureRotation() {
       if (!travelFeatureTimer) return;
-      clearInterval(travelFeatureTimer);
+      clearTimeout(travelFeatureTimer);
       travelFeatureTimer = null;
     }
+
+    document.addEventListener('visibilitychange', () => {
+      if (!travelFeatureImgs.length) return;
+      const panel = document.querySelector('.aaron-panel[data-panel="travel"]');
+      if (!panel || panel.hidden) return;
+      if (document.hidden) {
+        stopTravelFeatureRotation();
+        return;
+      }
+      if (phone.classList.contains('is-calendar')) {
+        startTravelFeatureRotation();
+      }
+    });
 
     function setTravelFeature(id) {
       if (!travelFeatureImgs.length) return;

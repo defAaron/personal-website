@@ -75,13 +75,13 @@
   object-fit: cover;
 }
 
-.aaron-travel-feature__img {
+#aaron-travel-feature .aaron-fade__img {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.6s ease;
 }
 
-.aaron-travel-feature__img.is-active {
+#aaron-travel-feature .aaron-fade__img.is-active {
   opacity: 1;
   z-index: 1;
 }
@@ -687,7 +687,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .aaron-fade__img,
-  .aaron-travel-feature__img {
+  #aaron-travel-feature .aaron-fade__img {
     transition: none;
   }
 }
