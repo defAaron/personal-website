@@ -735,10 +735,18 @@
 
   .aaron-phone {
     --s: 0.84;
-    transform: translate3d(-19px, 6px, 0) rotate(8deg);
+    transform: none;
   }
 
   .aaron-split__phone.is-hovering .aaron-phone {
     transform: none;
+  }
+
+  .aaron-phone__cursor {
+    display: none;
+  }
+
+  .aaron-split__phone.is-cursor {
+    cursor: auto;
   }
 }

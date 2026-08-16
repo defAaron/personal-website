@@ -273,15 +273,24 @@
       if (active) moveIndicator(active);
     });
 
+    const mobileLayout = window.matchMedia('(max-width: 900px)');
+
+    function isDesktopLayout() {
+      return !mobileLayout.matches;
+    }
+
     tile.addEventListener('mouseenter', () => {
+      if (!isDesktopLayout()) return;
       tile.classList.add('is-hovering');
     });
     tile.addEventListener('mouseleave', () => {
+      if (!isDesktopLayout()) return;
       tile.classList.remove('is-hovering', 'is-cursor');
     });
 
     if (cursor) {
       tile.addEventListener('mousemove', (e) => {
+        if (!isDesktopLayout()) return;
         const overPhone = !!e.target.closest('.aaron-phone');
         tile.classList.toggle('is-cursor', overPhone);
         if (!overPhone) return;
