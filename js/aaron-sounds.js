@@ -14,8 +14,8 @@
     { selector: '.mac-dock-tab', sound: SOUNDS.tilda },
     { selector: '.aaron-nav__item', sound: SOUNDS.nav },
     { selector: '.aaron-projects__action, .aaron-projects__media', sound: SOUNDS.item },
-    { selector: '.aaron-tab, .aaron-subtab', sound: SOUNDS.tilda },
-    { selector: '.aaron-gallery__img', sound: SOUNDS.item },
+    { selector: '.aaron-subtab, .aaron-photos__dock-btn, .aaron-photos__back', sound: SOUNDS.tilda },
+    { selector: '.aaron-fade, .aaron-gallery__img, .aaron-phone__event, .aaron-phone__slot', sound: SOUNDS.item },
     {
       selector: '.aaron-hero__link, .aaron-hero__hl, .aaron-footer a, .aaron-contact__item',
       sound: SOUNDS.item,

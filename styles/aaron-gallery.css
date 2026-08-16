@@ -1,46 +1,3 @@
-/* —— Section tabs —— */
-.aaron-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  padding: 6px;
-  background: var(--aaron-tile);
-  border-radius: 100px;
-  align-self: flex-start;
-  max-width: 100%;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.aaron-tabs::-webkit-scrollbar {
-  display: none;
-}
-
-.aaron-tab {
-  flex: 0 0 auto;
-  border: none;
-  background: transparent;
-  font-family: var(--aaron-font);
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--aaron-muted);
-  padding: 9px 18px;
-  border-radius: 100px;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: color 0.2s ease, background 0.2s ease;
-}
-
-.aaron-tab:hover {
-  color: var(--aaron-ink);
-}
-
-.aaron-tab.is-active {
-  color: var(--aaron-ink);
-  background: var(--aaron-bg);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-}
-
 /* —— Panels —— */
 .aaron-panel {
   animation: aaronFade 0.4s ease;
@@ -58,9 +15,671 @@
   color: var(--aaron-muted);
 }
 
+.aaron-gallery-empty {
+  min-height: 280px;
+}
+
+/* —— Two-column gallery: copy left, phone right —— */
+.aaron-gallery-main {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  align-items: stretch;
+}
+
+.aaron-gallery-main__col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--aaron-gap);
+  min-width: 0;
+}
+
+.aaron-gallery-main__col--phone {
+  min-height: 0;
+}
+
+.aaron-gallery-main__col .aaron-panel.is-active {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.aaron-gallery-main__col .aaron-panel[hidden] {
+  display: none;
+}
+
+.aaron-gallery-main__col .aaron-panel .aaron-tile {
+  flex: 1 1 auto;
+}
+
+.aaron-split__copy {
+  display: flex;
+  align-items: center;
+  padding: 48px 44px;
+}
+
+.aaron-split__desc {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: -0.5px;
+  color: #222;
+}
+
+.aaron-split__phone {
+  --phone-w: 278;
+  --phone-h: 565;
+  --phone-gap-x: calc(400px - 278px * 1.12);
+  --phone-gap-y: calc(672px - 565px * 1.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  flex: 1 1 auto;
+  height: 100%;
+}
+
+.aaron-phone-frame {
+  container-type: inline-size;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aaron-phone-frame::before {
+  content: '';
+  flex: 0 0 auto;
+  width: 0;
+  height: calc((var(--phone-h) * 1px) * ((100cqw - var(--phone-gap-x)) / (var(--phone-w) * 1px)) + var(--phone-gap-y));
+}
+
+/* —— Photos phone ——
+   Laid out at the on-screen size (--s) so type and UI paint at native
+   resolution. transform is only used for tilt — never scale(), which
+   rasterizes the 278px mock and makes text look soft. */
+.aaron-phone {
+  --s: calc((100cqw - var(--phone-gap-x)) / (var(--phone-w) * 1px));
+  --px: calc(1px * var(--s));
+  position: relative;
+  width: calc(278 * var(--px));
+  height: calc(565 * var(--px));
+  flex-shrink: 0;
+  border-radius: calc(50 * var(--px));
+  background: #111;
+  transform: translate3d(-38px, 6px, 0) rotate(10deg);
+  transform-origin: center center;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 1;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.aaron-split__phone.is-hovering .aaron-phone {
+  transform: none;
+  transition: transform 0.25s ease;
+}
+
+.aaron-phone__shell {
+  display: block;
+  width: 100%;
+  height: calc(561 * var(--px));
+  position: relative;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.aaron-phone__screen {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  margin: calc(13 * var(--px)) calc(15 * var(--px)) calc(16 * var(--px)) calc(14 * var(--px));
+  border-radius: calc(34 * var(--px));
+  background: #111;
+  overflow: hidden;
+}
+
+.aaron-phone__status {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: calc(24 * var(--px));
+  padding: calc(16 * var(--px)) calc(22 * var(--px)) 0;
+  pointer-events: none;
+}
+
+.aaron-phone__time {
+  display: flex;
+  align-items: baseline;
+  gap: calc(4 * var(--px));
+  font-family: -apple-system, 'Inter', sans-serif;
+  font-size: calc(11 * var(--px));
+  font-weight: 600;
+  line-height: calc(20 * var(--px));
+  color: #fff;
+  white-space: nowrap;
+}
+
+.aaron-phone__tz {
+  font-size: calc(7 * var(--px));
+  font-weight: 500;
+  opacity: 0.72;
+}
+
+.aaron-phone__status-icons {
+  display: block;
+  width: calc(48 * var(--px));
+  height: auto;
+  filter: invert(1);
+}
+
+.aaron-photos {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: calc(42 * var(--px)) calc(10 * var(--px)) calc(96 * var(--px));
+}
+
+.aaron-photos__app {
+  position: absolute;
+  top: calc(40 * var(--px));
+  right: calc(12 * var(--px));
+  z-index: 5;
+  width: calc(32 * var(--px));
+  height: calc(32 * var(--px));
+  border-radius: calc(8 * var(--px));
+  object-fit: cover;
+  box-shadow: 0 calc(1 * var(--px)) calc(2 * var(--px)) rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+}
+
+.aaron-photos__heading-row {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: calc(6 * var(--px));
+  margin: 0 calc(4 * var(--px)) calc(10 * var(--px));
+  padding-right: calc(40 * var(--px));
+  min-height: calc(16 * var(--px));
+}
+
+.aaron-photos__back {
+  flex: 0 0 auto;
+  width: calc(18 * var(--px));
+  height: calc(18 * var(--px));
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-size: calc(22 * var(--px));
+  line-height: 1;
+  cursor: pointer;
+}
+
+.aaron-photos__back[hidden] {
+  display: none;
+}
+
+.aaron-photos__heading {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: calc(13 * var(--px));
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: calc(-0.2 * var(--px));
+  color: #fff;
+}
+
+.aaron-photos__stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.aaron-photos__stage::-webkit-scrollbar {
+  display: none;
+}
+
+.aaron-photos__album {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: stretch;
+  gap: calc(8 * var(--px));
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.aaron-photos__album::-webkit-scrollbar {
+  display: none;
+}
+
+.aaron-photos__album.is-active {
+  display: flex;
+}
+
+.aaron-photos__album[hidden] {
+  display: none !important;
+}
+
+.aaron-photos__empty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: calc(16 * var(--px));
+  background: rgba(255, 255, 255, 0.06);
+  font-size: calc(12 * var(--px));
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.aaron-fade {
+  position: relative;
+  flex: 0 0 auto;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: calc(16 * var(--px));
+  overflow: hidden;
+  background: #1c1c1e;
+  cursor: pointer;
+}
+
+.aaron-fade:focus-visible {
+  outline: calc(2 * var(--px)) solid #fff;
+  outline-offset: calc(-2 * var(--px));
+}
+
+.aaron-fade__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.aaron-fade__img.is-active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.aaron-photos__dock {
+  position: absolute;
+  left: calc(18 * var(--px));
+  right: calc(18 * var(--px));
+  bottom: calc(18 * var(--px));
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: calc(42 * var(--px));
+  padding: 0 calc(4 * var(--px));
+  border-radius: calc(56 * var(--px));
+  background: rgba(255, 255, 255, 0.5);
+  border: calc(1.5 * var(--px)) solid rgba(255, 255, 255, 0.19);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.aaron-photos__indicator {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 0;
+  width: calc(48 * var(--px));
+  height: calc(32 * var(--px));
+  margin-top: calc(-16 * var(--px));
+  border-radius: 100px;
+  background: #fff;
+  pointer-events: none;
+  transition: left 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.aaron-photos__dock-btn {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.aaron-photos__dock-btn img {
+  display: block;
+  width: calc(18 * var(--px));
+  height: calc(18 * var(--px));
+  opacity: 0.45;
+  transition: opacity 0.2s ease;
+}
+
+.aaron-photos__dock-btn.is-active img,
+.aaron-photos__dock-btn:hover img {
+  opacity: 1;
+}
+
+/* —— Travel calendar (inside Photos) —— */
+.aaron-phone.is-calendar .aaron-phone__time,
+.aaron-phone.is-calendar .aaron-phone__tz {
+  color: #333;
+}
+
+.aaron-phone.is-calendar .aaron-phone__status-icons {
+  filter: none;
+}
+
+.aaron-phone.is-calendar .aaron-photos {
+  background: #f7f7f9;
+}
+
+.aaron-phone.is-calendar .aaron-photos__app,
+.aaron-phone.is-calendar .aaron-photos__heading-row {
+  display: none;
+}
+
+.aaron-travel-cal {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: calc(16 * var(--px)) calc(16 * var(--px)) 0 0;
+  scrollbar-width: none;
+}
+
+.aaron-travel-cal::-webkit-scrollbar {
+  display: none;
+}
+
+.aaron-travel-cal[hidden] {
+  display: none !important;
+}
+
+.aaron-travel-country {
+  display: none;
+  flex-direction: column;
+  align-items: stretch;
+  gap: calc(8 * var(--px));
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.aaron-travel-country::-webkit-scrollbar {
+  display: none;
+}
+
+.aaron-travel-country.is-active {
+  display: flex;
+}
+
+.aaron-travel-country[hidden] {
+  display: none !important;
+}
+
+.aaron-phone__heading {
+  background: #fff;
+  border-radius: calc(16 * var(--px)) calc(16 * var(--px)) 0 0;
+  padding-top: calc(10 * var(--px));
+}
+
+.aaron-phone__heading-inner {
+  padding: 0 calc(10 * var(--px));
+}
+
+.aaron-phone__cal-label {
+  margin-bottom: calc(6 * var(--px));
+  font-size: calc(6 * var(--px));
+  font-weight: 400;
+  line-height: calc(10 * var(--px));
+  letter-spacing: calc(1.2 * var(--px));
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.aaron-phone__cal-date {
+  margin-bottom: calc(10 * var(--px));
+  font-size: calc(20 * var(--px));
+  line-height: 1.2;
+  color: #000;
+}
+
+.aaron-phone__rule {
+  height: calc(0.8 * var(--px));
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.aaron-phone__hours {
+  padding: 0 calc(10 * var(--px)) calc(16 * var(--px));
+  background: #fff;
+}
+
+.aaron-phone__hour {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  min-height: calc(102 * var(--px));
+  margin-bottom: calc(8 * var(--px));
+}
+
+.aaron-phone__times {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: calc(44 * var(--px));
+  flex-shrink: 0;
+  padding: calc(1 * var(--px)) 0;
+}
+
+.aaron-phone__tick {
+  font-size: calc(10 * var(--px));
+  line-height: calc(10 * var(--px));
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.aaron-phone__tick.is-hidden {
+  opacity: 0;
+}
+
+.aaron-phone__event {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  min-height: calc(102 * var(--px));
+  margin: 0 calc(8 * var(--px));
+  padding: calc(8 * var(--px)) 0;
+  background: #f0f8fe;
+  border-radius: calc(8 * var(--px));
+  box-shadow: 0 calc(1 * var(--px)) calc(2 * var(--px)) rgba(0, 0, 0, 0.06), 0 calc(1 * var(--px)) calc(3 * var(--px)) rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.aaron-phone__event.is-green { background: #f0fdf2; }
+.aaron-phone__event.is-yellow { background: #fff9ed; }
+.aaron-phone__event.is-purple { background: #f7f0ff; }
+.aaron-phone__event.is-pink { background: #f8ebf3; }
+
+.aaron-phone__event-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: calc(6 * var(--px));
+  border-radius: calc(8 * var(--px)) 0 0 calc(8 * var(--px));
+  background: #7dc7ff;
+}
+
+.aaron-phone__event.is-green .aaron-phone__event-bar { background: #96f399; }
+.aaron-phone__event.is-yellow .aaron-phone__event-bar { background: #fed17a; }
+.aaron-phone__event.is-purple .aaron-phone__event-bar { background: #c8a2fd; }
+.aaron-phone__event.is-pink .aaron-phone__event-bar { background: #ec9dca; }
+
+.aaron-phone__event-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 100%;
+  min-height: calc(86 * var(--px));
+  margin: 0 calc(8 * var(--px)) 0 calc(14 * var(--px));
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.aaron-phone__event-title {
+  margin-bottom: calc(8 * var(--px));
+  font-size: calc(12 * var(--px));
+  line-height: calc(12 * var(--px));
+  color: #000;
+}
+
+.aaron-phone__event-when {
+  font-size: calc(10 * var(--px));
+  line-height: calc(12 * var(--px));
+  color: #000;
+}
+
+.aaron-phone__event-cal {
+  display: flex;
+  align-items: center;
+  padding: calc(4 * var(--px));
+  background: #fff;
+  border-radius: calc(20 * var(--px));
+}
+
+.aaron-phone__event-cal img {
+  display: block;
+  width: calc(7 * var(--px));
+  height: calc(8 * var(--px));
+  object-fit: contain;
+}
+
+.aaron-phone__event-cal span {
+  margin-left: calc(4 * var(--px));
+  font-size: calc(8 * var(--px));
+  line-height: calc(8 * var(--px));
+  letter-spacing: calc(0.2 * var(--px));
+  color: #333;
+}
+
+.aaron-phone__event-shot {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.aaron-phone__slot {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  width: calc(44 * var(--px));
+  flex-shrink: 0;
+  padding: calc(5 * var(--px)) calc(6 * var(--px));
+  border-radius: calc(8 * var(--px));
+  background: linear-gradient(16deg, #ff4d79, #ff8040 85%);
+  box-shadow: 0 calc(1 * var(--px)) calc(2 * var(--px)) rgba(0, 0, 0, 0.06), 0 calc(3 * var(--px)) calc(3 * var(--px)) rgba(0, 0, 0, 0.06);
+  align-self: flex-start;
+  cursor: pointer;
+}
+
+.aaron-phone__slot img {
+  display: block;
+  width: calc(32 * var(--px));
+  height: calc(32 * var(--px));
+  object-fit: cover;
+  border-radius: calc(4 * var(--px));
+  pointer-events: none;
+}
+
+.aaron-phone__slot-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: calc(32 * var(--px));
+  margin-top: calc(4 * var(--px));
+  padding-bottom: calc(4 * var(--px));
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: calc(4 * var(--px));
+}
+
+.aaron-phone__slot-meta span:first-child {
+  margin-bottom: calc(2 * var(--px));
+  font-size: calc(16 * var(--px));
+  font-weight: 500;
+  line-height: calc(20 * var(--px));
+  color: #fff;
+  text-align: center;
+}
+
+.aaron-phone__slot-meta span:last-child {
+  font-size: calc(6 * var(--px));
+  font-weight: 500;
+  line-height: calc(8 * var(--px));
+  letter-spacing: calc(0.4 * var(--px));
+  color: #fff;
+  text-align: center;
+}
+
+.aaron-phone__cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  margin: -12px 0 0 -12px;
+  border-radius: 100%;
+  background: rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  pointer-events: none;
+  opacity: 0;
+  z-index: 50;
+  will-change: transform;
+  transition: opacity 0.15s ease;
+}
+
 @keyframes aaronFade {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aaron-fade__img {
+    transition: none;
+  }
 }
 
 /* —— Travel sub-tabs —— */
@@ -131,6 +750,16 @@
   transform: scale(1.03);
 }
 
+.aaron-fade .aaron-gallery__img {
+  height: 100%;
+  cursor: inherit;
+  transition: opacity 0.6s ease;
+}
+
+.aaron-fade .aaron-gallery__img:hover {
+  transform: none;
+}
+
 /* —— Lightbox —— */
 .aaron-lightbox {
   position: fixed;
@@ -199,8 +828,49 @@
   background: rgba(255, 255, 255, 0.25);
 }
 
+.aaron-split__phone.is-cursor {
+  cursor: none;
+}
+
+.aaron-split__phone.is-cursor .aaron-phone__cursor {
+  opacity: 1;
+}
+
 /* —— Responsive —— */
 @media (max-width: 900px) {
+  .aaron-gallery-main {
+    grid-template-columns: 1fr;
+  }
+
+  .aaron-gallery-main__col--phone {
+    min-height: 496px;
+  }
+
+  .aaron-split__copy {
+    padding: 28px 24px;
+  }
+
+  .aaron-split__desc {
+    font-size: 22px;
+  }
+
+  .aaron-split__phone {
+    max-width: 100%;
+  }
+
+  .aaron-phone-frame::before {
+    height: 496px;
+  }
+
+  .aaron-phone {
+    --s: 0.84;
+    transform: translate3d(-19px, 6px, 0) rotate(8deg);
+  }
+
+  .aaron-split__phone.is-hovering .aaron-phone {
+    transform: none;
+  }
+
   .aaron-masonry {
     column-count: 2;
   }
