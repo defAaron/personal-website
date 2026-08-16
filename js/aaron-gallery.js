@@ -246,31 +246,4 @@
       eagerLoadPanel(panel);
     }
   });
-
-  /* —— Travel country sub-tabs —— */
-  function bindTabGroup(tabSelector, panelSelector, tabAttr, panelAttr) {
-    const tabs = document.querySelectorAll(tabSelector);
-    const panels = document.querySelectorAll(panelSelector);
-
-    tabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        const target = tab.getAttribute(tabAttr);
-
-        tabs.forEach((t) => {
-          const active = t === tab;
-          t.classList.toggle('is-active', active);
-          t.setAttribute('aria-selected', active ? 'true' : 'false');
-        });
-
-        panels.forEach((panel) => {
-          const active = panel.getAttribute(panelAttr) === target;
-          panel.classList.toggle('is-active', active);
-          panel.hidden = !active;
-          if (active) eagerLoadPanel(panel);
-        });
-      });
-    });
-  }
-
-  bindTabGroup('.aaron-subtab', '.aaron-subpanel', 'data-subtab', 'data-subpanel');
 })();

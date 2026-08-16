@@ -423,12 +423,6 @@ a.aaron-hero__hl:hover {
   gap: 10px;
 }
 
-.aaron-contact__title {
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--aaron-ink);
-}
-
 .aaron-contact__list {
   list-style: none;
   display: grid;

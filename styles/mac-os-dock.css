@@ -337,10 +337,6 @@
   user-select: none;
 }
 
-.mac-dock__icon--round img {
-  border-radius: 50%;
-}
-
 .mac-dock__indicator {
   position: absolute;
   bottom: -20px;

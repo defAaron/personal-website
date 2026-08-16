@@ -100,7 +100,7 @@
   shell.className = 'mac-dock-shell';
 
   const tabPanel = document.createElement('div');
-  tabPanel.className = 'mac-dock-tabs is-visible';
+  tabPanel.className = 'mac-dock-tabs';
   tabPanel.setAttribute('role', 'region');
   tabPanel.setAttribute('aria-label', 'Open tabs');
 
@@ -146,7 +146,6 @@
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'mac-dock__icon';
-    if (app.round) btn.classList.add('mac-dock__icon--round');
     btn.dataset.appId = app.id;
     btn.title = app.name;
     btn.setAttribute('aria-label', app.name);
