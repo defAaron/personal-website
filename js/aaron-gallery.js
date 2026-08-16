@@ -21,7 +21,15 @@
     italy: 'Italy',
     austria: 'Austria',
     switzerland: 'Switzerland',
-    netherlands: 'Netherlands',
+  };
+
+  const TRAVEL_FEATURES = {
+    canada: { src: 'assets/gallery/travel/nb.webp', alt: 'New Brunswick, Canada' },
+    spain: { src: 'assets/gallery/travel/spain1.webp', alt: 'Spain' },
+    france: { src: 'assets/gallery/travel/france1.webp', alt: 'France' },
+    italy: { src: 'assets/gallery/travel/italy1.webp', alt: 'Italy' },
+    austria: { src: 'assets/gallery/travel/aus1.webp', alt: 'Austria' },
+    switzerland: { src: 'assets/gallery/travel/swiss1.webp', alt: 'Switzerland' },
   };
 
   function initFades() {
@@ -74,6 +82,19 @@
     const travelCountries = travelAlbum
       ? Array.from(travelAlbum.querySelectorAll('.aaron-travel-country'))
       : [];
+    const travelFeature = document.getElementById('aaron-travel-feature');
+
+    function setTravelFeature(id) {
+      if (!travelFeature) return;
+      const feat = id && TRAVEL_FEATURES[id];
+      if (feat) {
+        travelFeature.src = feat.src;
+        travelFeature.alt = feat.alt;
+        return;
+      }
+      travelFeature.src = travelFeature.getAttribute('data-feature-default') || travelFeature.src;
+      travelFeature.alt = travelFeature.getAttribute('data-feature-alt') || 'Travel';
+    }
 
     function showTravelCalendar() {
       phone.classList.add('is-calendar');
@@ -84,6 +105,7 @@
       });
       if (backBtn) backBtn.hidden = true;
       if (heading) heading.textContent = ALBUM_LABELS.travel;
+      setTravelFeature(null);
     }
 
     function openTravelCountry(id) {
@@ -99,6 +121,7 @@
       });
       if (backBtn) backBtn.hidden = false;
       if (heading) heading.textContent = COUNTRY_LABELS[id] || id;
+      setTravelFeature(id);
     }
 
     if (travelAlbum) {
