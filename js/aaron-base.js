@@ -47,4 +47,36 @@
     if (isActive) item.setAttribute('aria-current', 'page');
     else item.removeAttribute('aria-current');
   });
+
+  /* Light / dark theme */
+  const THEME_KEY = 'aaron-theme';
+  const root = document.documentElement;
+  const themeToggle = document.querySelector('.aaron-theme-toggle');
+
+  function getTheme() {
+    return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  }
+
+  function syncThemeToggle(theme) {
+    if (!themeToggle) return;
+    const next = theme === 'dark' ? 'light' : 'dark';
+    themeToggle.setAttribute('aria-label', `Switch to ${next} mode`);
+    themeToggle.title = next === 'dark' ? 'Dark mode' : 'Light mode';
+  }
+
+  function setTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    try {
+      localStorage.setItem(THEME_KEY, theme);
+    } catch (e) { /* ignore quota / private mode */ }
+    syncThemeToggle(theme);
+  }
+
+  syncThemeToggle(getTheme());
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      setTheme(getTheme() === 'dark' ? 'light' : 'dark');
+    });
+  }
 })();

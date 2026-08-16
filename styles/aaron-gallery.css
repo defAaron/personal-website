@@ -53,7 +53,7 @@
   font-weight: 400;
   line-height: 1.35;
   letter-spacing: -0.5px;
-  color: #222;
+  color: var(--aaron-ink);
 }
 
 .aaron-split__feature {
@@ -63,7 +63,7 @@
   margin: 0;
   border-radius: 22px;
   overflow: hidden;
-  background: #ececef;
+  background: var(--aaron-tile);
 }
 
 .aaron-split__feature img {

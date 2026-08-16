@@ -12,7 +12,7 @@
   const PRESS_RULES = [
     { selector: '.mac-dock__icon', sound: SOUNDS.app },
     { selector: '.mac-dock-tab', sound: SOUNDS.tilda },
-    { selector: '.aaron-nav__item', sound: SOUNDS.nav },
+    { selector: '.aaron-nav__item, .aaron-theme-toggle', sound: SOUNDS.nav },
     { selector: '.aaron-projects__action, .aaron-projects__media', sound: SOUNDS.item },
     { selector: '.aaron-photos__dock-btn, .aaron-photos__back', sound: SOUNDS.tilda },
     { selector: '.aaron-fade, .aaron-gallery__img, .aaron-phone__event, .aaron-phone__slot', sound: SOUNDS.item },

@@ -123,9 +123,6 @@
   caretSvg.setAttribute('fill', 'none');
   const caretPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
   caretPath.setAttribute('d', 'M17 14L0 0h34L17 14z');
-  caretPath.setAttribute('fill', '#fff');
-  caretPath.setAttribute('stroke', '#cccccf');
-  caretPath.setAttribute('stroke-width', '1');
   caretSvg.appendChild(caretPath);
   tabCaret.appendChild(caretSvg);
 

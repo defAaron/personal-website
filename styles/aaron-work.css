@@ -127,13 +127,20 @@
 }
 
 .aaron-projects__action:hover {
-  background: #ececef;
+  background: color-mix(in srgb, var(--aaron-ink) 8%, var(--aaron-tile));
   transform: translateY(-1px);
 }
 
 .aaron-projects__action img {
   width: 18px;
   height: 18px;
+}
+
+html[data-theme="dark"] .aaron-projects__action img[src*="play.svg"],
+html[data-theme="dark"] .aaron-projects__action img[src*="youtube.svg"],
+html[data-theme="dark"] .aaron-projects__action img[src*="github.svg"],
+html[data-theme="dark"] .aaron-projects__action img[src*="devpost.svg"] {
+  filter: brightness(0) invert(1);
 }
 
 /* Responsive — stack on smaller screens */
