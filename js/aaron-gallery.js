@@ -24,12 +24,12 @@
   };
 
   const TRAVEL_FEATURES = {
-    canada: { src: 'assets/gallery/travel/nb.webp', alt: 'New Brunswick, Canada' },
-    spain: { src: 'assets/gallery/travel/spain1.webp', alt: 'Spain' },
-    france: { src: 'assets/gallery/travel/france1.webp', alt: 'France' },
-    italy: { src: 'assets/gallery/travel/italy1.webp', alt: 'Italy' },
-    austria: { src: 'assets/gallery/travel/aus1.webp', alt: 'Austria' },
-    switzerland: { src: 'assets/gallery/travel/swiss1.webp', alt: 'Switzerland' },
+    canada: { src: 'assets/gallery/travel/canada/nb.webp', alt: 'New Brunswick, Canada' },
+    spain: { src: 'assets/gallery/travel/spain/spain1.webp', alt: 'Spain' },
+    france: { src: 'assets/gallery/travel/france/france1.webp', alt: 'France' },
+    italy: { src: 'assets/gallery/travel/italy/italy1.webp', alt: 'Italy' },
+    austria: { src: 'assets/gallery/travel/austria/aus1.webp', alt: 'Austria' },
+    switzerland: { src: 'assets/gallery/travel/switzerland/swiss1.webp', alt: 'Switzerland' },
   };
 
   function initFades() {
