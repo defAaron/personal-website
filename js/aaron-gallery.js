@@ -24,7 +24,7 @@
   };
 
   const TRAVEL_FEATURES = {
-    canada: { src: 'assets/gallery/travel/canada/ban1.webp', alt: 'Banff, Canada' },
+    canada: { src: 'assets/gallery/travel/canada/ban16.webp', alt: 'Banff, Canada' },
     spain: { src: 'assets/gallery/travel/spain/spain1.webp', alt: 'Spain' },
     france: { src: 'assets/gallery/travel/france/france1.webp', alt: 'France' },
     italy: { src: 'assets/gallery/travel/italy/italy1.webp', alt: 'Italy' },
@@ -83,17 +83,51 @@
       ? Array.from(travelAlbum.querySelectorAll('.aaron-travel-country'))
       : [];
     const travelFeature = document.getElementById('aaron-travel-feature');
+    const travelFeatureImgs = travelFeature
+      ? Array.from(travelFeature.querySelectorAll('.aaron-travel-feature__img'))
+      : [];
+    let travelFeatureIndex = Math.max(
+      0,
+      travelFeatureImgs.findIndex((img) => img.classList.contains('is-active'))
+    );
+    let travelFeatureTimer = null;
+
+    function showTravelFeatureSlide(next) {
+      if (!travelFeatureImgs.length) return;
+      travelFeatureImgs[travelFeatureIndex].classList.remove('is-active');
+      travelFeatureIndex = (next + travelFeatureImgs.length) % travelFeatureImgs.length;
+      travelFeatureImgs[travelFeatureIndex].classList.add('is-active');
+    }
+
+    function showTravelFeatureByCountry(id) {
+      const index = travelFeatureImgs.findIndex((img) => img.getAttribute('data-country') === id);
+      if (index < 0) return;
+      travelFeatureImgs[travelFeatureIndex].classList.remove('is-active');
+      travelFeatureIndex = index;
+      travelFeatureImgs[travelFeatureIndex].classList.add('is-active');
+    }
+
+    function startTravelFeatureRotation() {
+      if (travelFeatureTimer || travelFeatureImgs.length < 2) return;
+      travelFeatureTimer = setInterval(() => {
+        showTravelFeatureSlide(travelFeatureIndex + 1);
+      }, 3000);
+    }
+
+    function stopTravelFeatureRotation() {
+      if (!travelFeatureTimer) return;
+      clearInterval(travelFeatureTimer);
+      travelFeatureTimer = null;
+    }
 
     function setTravelFeature(id) {
-      if (!travelFeature) return;
-      const feat = id && TRAVEL_FEATURES[id];
-      if (feat) {
-        travelFeature.src = feat.src;
-        travelFeature.alt = feat.alt;
+      if (!travelFeatureImgs.length) return;
+      if (id && TRAVEL_FEATURES[id]) {
+        stopTravelFeatureRotation();
+        showTravelFeatureByCountry(id);
         return;
       }
-      travelFeature.src = travelFeature.getAttribute('data-feature-default') || travelFeature.src;
-      travelFeature.alt = travelFeature.getAttribute('data-feature-alt') || 'Travel';
+      startTravelFeatureRotation();
     }
 
     function showTravelCalendar() {
@@ -178,6 +212,7 @@
       if (id === 'travel') {
         showTravelCalendar();
       } else {
+        stopTravelFeatureRotation();
         phone.classList.remove('is-calendar');
         if (backBtn) backBtn.hidden = true;
         if (heading) heading.textContent = ALBUM_LABELS[id] || '';
