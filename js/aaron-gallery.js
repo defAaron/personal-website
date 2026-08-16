@@ -24,7 +24,7 @@
   };
 
   const TRAVEL_FEATURES = {
-    canada: { src: 'assets/gallery/travel/canada/nb.webp', alt: 'New Brunswick, Canada' },
+    canada: { src: 'assets/gallery/travel/canada/ban1.webp', alt: 'Banff, Canada' },
     spain: { src: 'assets/gallery/travel/spain/spain1.webp', alt: 'Spain' },
     france: { src: 'assets/gallery/travel/france/france1.webp', alt: 'France' },
     italy: { src: 'assets/gallery/travel/italy/italy1.webp', alt: 'Italy' },
