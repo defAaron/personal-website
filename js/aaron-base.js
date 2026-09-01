@@ -5,13 +5,16 @@
   /* Preloader */
   const preloader = document.getElementById('aaron-preloader');
   if (preloader) {
-    const preloaderDelay = onHomePage ? 3200 : 2200;
-
     const hidePreloader = () => preloader.classList.add('is-hidden');
 
-    window.addEventListener('load', () => {
-      setTimeout(hidePreloader, preloaderDelay);
-    });
+    if (onHomePage) {
+      window.addEventListener('load', () => {
+        setTimeout(hidePreloader, 3200);
+      });
+    } else {
+      /* Work/gallery: don't wait for every image — this script is deferred, so the DOM is already ready. */
+      setTimeout(hidePreloader, 1300);
+    }
   }
 
   /* Hero statement cycle — rotating lines only */
