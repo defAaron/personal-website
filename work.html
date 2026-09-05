@@ -16,16 +16,16 @@
       }
     })();
   </script>
-  <script src="js/google-analytics.js"></script>
+  <script src="assets/js/google-analytics.js"></script>
   <title>Aaron's Work</title>
   <meta name="description" content="Projects and work by Aaron Dutta — software, math, and creative builds.">
   <link rel="canonical" href="https://aarondutta.com/work.html">
   <link rel="icon" href="favicon.png" type="image/png">
-  <link rel="stylesheet" href="styles/aaron-base.css">
-  <link rel="stylesheet" href="styles/aaron-work.css">
-  <script src="js/aaron-base.js" defer></script>
-  <script src="js/aaron-work.js" defer></script>
-  <script src="js/aaron-sounds.js" defer></script>
+  <link rel="stylesheet" href="assets/css/aaron-base.css">
+  <link rel="stylesheet" href="assets/css/aaron-work.css">
+  <script src="assets/js/aaron-base.js" defer></script>
+  <script src="assets/js/aaron-work.js" defer></script>
+  <script src="assets/js/aaron-sounds.js" defer></script>
 </head>
 <body>
   <div class="aaron-preloader" id="aaron-preloader" aria-hidden="true">
@@ -71,12 +71,12 @@
 
         <!-- Project 1 -->
         <article class="aaron-projects__card">
-          <a href="https://skyeye-one.vercel.app" target="_blank" rel="noopener noreferrer" class="aaron-projects__media" aria-label="View SkyEye">
+          <div class="aaron-projects__media">
             <img src="assets/projects/skyeye.jpg" alt="SkyEye landing page" class="aaron-projects__thumb">
-            <video class="aaron-projects__preview" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1">
-              <source src="assets/projects/skyeye.mp4" type="video/mp4">
-            </video>
-          </a>
+            <img src="assets/projects/skyeye-thumb.gif" alt="" class="aaron-projects__loop" aria-hidden="true">
+            <video class="aaron-projects__preview" src="assets/projects/skyeye.mp4" muted loop playsinline webkit-playsinline disablepictureinpicture preload="auto" aria-hidden="true" tabindex="-1"></video>
+            <a href="https://skyeye-one.vercel.app" target="_blank" rel="noopener noreferrer" class="aaron-projects__media-link" aria-label="View SkyEye"></a>
+          </div>
           <div class="aaron-projects__body">
             <div class="aaron-projects__row">
               <h2 class="aaron-projects__title">SkyEye</h2>

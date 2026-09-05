@@ -16,3 +16,7 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+
+# Scratch media dropped at repo root (keep optimized copies in assets/)
+/*.mp4
+/*.mov

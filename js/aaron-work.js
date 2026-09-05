@@ -1,42 +1,112 @@
 /**
- * Work page — swap project thumbnails for a looping preview on hover.
- * Videos stay unloaded until hover so the page stays light.
+ * Work page media:
+ * - idle thumbnail is an animated GIF
+ * - hover swaps in the app preview video
+ * - reduced motion keeps the still
  */
 (function () {
   const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!canHover || reduceMotion) return;
+  if (reduceMotion) return;
 
-  document.querySelectorAll('.aaron-projects__media').forEach((media) => {
-    const video = media.querySelector('.aaron-projects__preview');
+  function prepVideo(video) {
     if (!video) return;
+    video.controls = false;
+    video.defaultMuted = true;
+    video.muted = true;
+    video.volume = 0;
+    video.playsInline = true;
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', '');
+    video.setAttribute('muted', '');
+    video.removeAttribute('controls');
+  }
 
-    let playToken = 0;
+  function playVideo(video) {
+    if (!video) return Promise.resolve();
+    prepVideo(video);
+    const playPromise = video.play();
+    if (!playPromise || typeof playPromise.then !== 'function') return Promise.resolve();
+    return playPromise.catch(() => {});
+  }
 
-    const startPreview = () => {
-      const token = ++playToken;
-      const playPromise = video.play();
-      if (playPromise && typeof playPromise.then === 'function') {
-        playPromise
-          .then(() => {
-            if (token === playToken) media.classList.add('is-playing');
-          })
-          .catch(() => {});
-      }
-    };
-
-    const stopPreview = () => {
-      playToken += 1;
-      media.classList.remove('is-playing');
-      video.pause();
+  function pauseVideo(video, reset) {
+    if (!video) return;
+    video.pause();
+    if (reset) {
       try {
         video.currentTime = 0;
       } catch (e) { /* ignore seek before metadata */ }
+    }
+  }
+
+  function warmVideo(video) {
+    if (!video || video.readyState >= 3) return;
+    video.preload = 'auto';
+    if (video.readyState === 0) {
+      try {
+        video.load();
+      } catch (e) { /* ignore */ }
+    }
+  }
+
+  document.querySelectorAll('.aaron-projects__media').forEach((media) => {
+    const preview = media.querySelector('.aaron-projects__preview');
+    if (!preview || !canHover) return;
+
+    prepVideo(preview);
+
+    let hovering = false;
+    let playToken = 0;
+
+    const showPreview = () => {
+      if (!hovering) return;
+      media.classList.add('is-playing');
     };
 
-    media.addEventListener('mouseenter', startPreview);
-    media.addEventListener('mouseleave', stopPreview);
-    media.addEventListener('focus', startPreview);
-    media.addEventListener('blur', stopPreview);
+    const startPreview = () => {
+      hovering = true;
+      const token = ++playToken;
+      if (preview.readyState >= 2) showPreview();
+      playVideo(preview).then(() => {
+        if (token !== playToken) {
+          pauseVideo(preview, true);
+          media.classList.remove('is-playing');
+          return;
+        }
+        showPreview();
+      });
+    };
+
+    const stopPreview = () => {
+      hovering = false;
+      playToken += 1;
+      media.classList.remove('is-playing');
+      pauseVideo(preview, true);
+    };
+
+    preview.addEventListener('playing', showPreview);
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            warmVideo(preview);
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.15 }
+      );
+      observer.observe(media);
+    } else {
+      warmVideo(preview);
+    }
+
+    media.addEventListener('pointerenter', startPreview);
+    media.addEventListener('pointerleave', stopPreview);
+    media.addEventListener('focusin', startPreview);
+    media.addEventListener('focusout', (event) => {
+      if (!media.contains(event.relatedTarget)) stopPreview();
+    });
   });
 })();

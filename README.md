@@ -8,33 +8,39 @@ Static HTML/CSS/JS site deployed via [GitHub Pages](https://pages.github.com/) f
 
 ```
 .
-├── index.html          # Home
-├── work.html           # Projects & hackathons
-├── gallery.html        # Photo gallery
-├── CNAME               # Custom domain (GitHub Pages)
-├── assets/
-│   ├── gallery/        # Gallery images by section
-│   │   ├── auckland/
-│   │   ├── drawings/
-│   │   ├── piano/
-│   │   └── travel/
-│   ├── images/         # Site imagery (hero, etc.)
-│   ├── dock/           # macOS dock icons
-│   ├── icons/          # Shared UI icons (play, devpost, etc.)
-│   ├── sounds/         # UI sound effects
-│   ├── projects/       # Project thumbnails
-│   └── Resume.pdf
-├── js/
-│   ├── aaron-base.js           # Shared shell (preloader, nav, hero)
-│   ├── aaron-gallery.js        # Gallery tabs + lightbox
-│   ├── aaron-sounds.js         # Click sound effects
-│   ├── google-analytics.js     # GA4 loader
-│   └── mac-os-dock.js          # Home dock (home only)
-└── styles/
-    ├── aaron-base.css          # Shared design system
-    ├── aaron-work.css          # Work page
-    ├── aaron-gallery.css       # Gallery page
-    └── mac-os-dock.css         # Dock UI (home only)
+├── index.html              # Home
+├── work.html               # Projects & hackathons
+├── gallery.html            # Photo gallery
+├── favicon.png
+├── CNAME                   # Custom domain (GitHub Pages)
+├── robots.txt
+├── sitemap.xml
+└── assets/
+    ├── css/                # Stylesheets
+    │   ├── aaron-base.css          # Shared design system
+    │   ├── aaron-work.css          # Work page
+    │   ├── aaron-gallery.css       # Gallery page
+    │   └── mac-os-dock.css         # Dock UI (home only)
+    ├── js/                 # Scripts
+    │   ├── aaron-base.js           # Shared shell (preloader, nav, theme)
+    │   ├── aaron-work.js           # Project media hover
+    │   ├── aaron-gallery.js        # Gallery tabs + lightbox
+    │   ├── aaron-sounds.js         # Click sound effects
+    │   ├── google-analytics.js     # GA4 loader
+    │   └── mac-os-dock.js          # Home dock (home only)
+    ├── images/             # Site imagery (hero, etc.)
+    ├── icons/              # Shared UI icons
+    ├── dock/               # macOS dock icons
+    ├── phone/              # Gallery phone mockup
+    ├── projects/           # Project thumbnails & previews
+    ├── gallery/            # Gallery photos by section
+    │   ├── auckland/
+    │   ├── drawings/
+    │   ├── piano/
+    │   └── travel/
+    ├── sounds/             # UI sound effects
+    └── docs/
+        └── resume.pdf
 ```
 
 ## Branching
