@@ -32,23 +32,26 @@
   overflow: hidden;
   background: var(--aaron-tile);
   text-decoration: none;
-  transition: transform 0.2s ease;
 }
 
-.aaron-projects__media:hover {
-  transform: scale(1.01);
-}
-
-.aaron-projects__thumb {
+.aaron-projects__thumb,
+.aaron-projects__preview {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
 }
 
-.aaron-projects__media:hover .aaron-projects__thumb {
-  transform: scale(1.02);
+.aaron-projects__preview {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+
+.aaron-projects__media.is-playing .aaron-projects__preview {
+  opacity: 1;
 }
 
 .aaron-projects__body {
