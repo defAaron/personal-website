@@ -78,9 +78,9 @@
       { id: 'figma-4', title: 'Colour Palettes', subtitle: 'figma.com/colour-palettes', emoji: '🎨', href: '#', external: false },
     ],
     cursor: [
-      { id: 'cursor-1', title: 'FraudGen', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
-      { id: 'cursor-2', title: 'Surpluslink', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
-      { id: 'cursor-3', title: 'Honeydesk', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
+      { id: 'cursor-1', title: 'SkyEye', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
+      { id: 'cursor-2', title: 'SurplusLink', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
+      { id: 'cursor-3', title: 'HoneyDesk', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
       { id: 'cursor-4', title: 'TechniqueTitan', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
       { id: 'cursor-5', title: 'Personal Website', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
     ],
