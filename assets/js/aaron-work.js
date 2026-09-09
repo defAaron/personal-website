@@ -1,92 +1,151 @@
 /**
  * Work page media:
- * - idle thumbnail is an animated GIF
- * - hover fades in the full app preview video via CSS; JS starts playback
- * - reduced motion keeps the still
+ * GIF thumbnail by default; hover/touch swaps in a muted looping preview.
+ * Video sources are attached only on hover. Playback is never shown until
+ * the playing event fires, which avoids Safari's native play overlay.
  */
 (function () {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduceMotion) return;
 
+  const probe = document.createElement('video');
+  const canWebM = !!(
+    probe.canPlayType('video/webm; codecs="vp9"') ||
+    probe.canPlayType('video/webm; codecs="vp8"') ||
+    probe.canPlayType('video/webm')
+  );
+  const isSafari = /safari/i.test(navigator.userAgent) &&
+    !/chrome|crios|android/i.test(navigator.userAgent);
+
+  function pickSrc(media) {
+    const webm = media.getAttribute('data-preview-webm');
+    const mp4 = media.getAttribute('data-preview-mp4');
+    if (isSafari && canWebM && webm) return webm;
+    return mp4 || webm || '';
+  }
+
   function prepVideo(video) {
-    if (!video) return;
     video.controls = false;
     video.defaultMuted = true;
     video.muted = true;
     video.volume = 0;
     video.loop = true;
+    video.autoplay = true;
     video.playsInline = true;
+    video.preload = 'auto';
+    video.disablePictureInPicture = true;
+    video.setAttribute('muted', '');
+    video.setAttribute('autoplay', '');
+    video.setAttribute('loop', '');
     video.setAttribute('playsinline', '');
     video.setAttribute('webkit-playsinline', '');
-    video.setAttribute('muted', '');
+    video.setAttribute('disablepictureinpicture', '');
+    video.setAttribute('controlslist', 'nodownload nofullscreen noremoteplayback noplaybackrate');
     video.removeAttribute('controls');
+    if (video.controlsList) {
+      video.controlsList.add('nodownload');
+      video.controlsList.add('nofullscreen');
+      video.controlsList.add('noremoteplayback');
+    }
   }
 
-  function playVideo(video) {
-    if (!video) return Promise.resolve();
+  function createVideo() {
+    const video = document.createElement('video');
+    video.className = 'aaron-projects__preview';
+    video.setAttribute('aria-hidden', 'true');
+    video.tabIndex = -1;
     prepVideo(video);
-    const playPromise = video.play();
-    if (!playPromise || typeof playPromise.then !== 'function') return Promise.resolve();
-    return playPromise.catch(() => {});
+    return video;
   }
 
-  function pauseVideo(video, reset) {
-    if (!video) return;
+  function unloadVideo(video) {
     video.pause();
-    if (reset) {
-      try {
-        video.currentTime = 0;
-      } catch (e) { /* ignore seek before metadata */ }
-    }
+    try {
+      video.currentTime = 0;
+    } catch (e) { /* ignore seek before metadata */ }
+    video.removeAttribute('src');
+    video.removeAttribute('autoplay');
+    while (video.firstChild) video.removeChild(video.firstChild);
+    try {
+      video.load();
+    } catch (e) { /* ignore */ }
   }
 
-  function warmVideo(video) {
-    if (!video || video.readyState >= 3) return;
-    video.preload = 'auto';
-    if (video.readyState === 0) {
-      try {
-        video.load();
-      } catch (e) { /* ignore */ }
-    }
-  }
+  document.querySelectorAll('.aaron-projects__media[data-preview-mp4], .aaron-projects__media[data-preview-webm]').forEach((media) => {
+    const src = pickSrc(media);
+    if (!src) return;
 
-  document.querySelectorAll('.aaron-projects__media').forEach((media) => {
-    const preview = media.querySelector('.aaron-projects__preview');
-    if (!preview) return;
+    let video = null;
+    let generation = 0;
+    let hovering = false;
+    let leaveTimer = 0;
+    let attachedSrc = '';
 
-    prepVideo(preview);
-    warmVideo(preview);
+    const reveal = () => {
+      if (!hovering || !video || video.paused) return;
+      media.classList.add('is-playing');
+    };
+
+    const ensureVideo = () => {
+      if (video && video.isConnected) return video;
+      video = createVideo();
+      const link = media.querySelector('.aaron-projects__media-link');
+      media.insertBefore(video, link || null);
+      video.addEventListener('playing', reveal);
+      video.addEventListener('pause', () => {
+        if (!hovering) media.classList.remove('is-playing');
+      });
+      return video;
+    };
 
     const startPreview = () => {
-      media.classList.add('is-playing');
-      playVideo(preview);
+      hovering = true;
+      window.clearTimeout(leaveTimer);
+      const token = ++generation;
+      const el = ensureVideo();
+      prepVideo(el);
+
+      if (attachedSrc !== src) {
+        el.src = src;
+        attachedSrc = src;
+        el.load();
+      }
+
+      const playAttempt = el.play();
+      if (playAttempt && typeof playAttempt.then === 'function') {
+        playAttempt.then(() => {
+          if (token !== generation || !hovering) return;
+          reveal();
+        }).catch(() => {
+          /* play() interrupted by a later pause/unload */
+        });
+      }
     };
 
     const stopPreview = () => {
+      hovering = false;
+      generation += 1;
       media.classList.remove('is-playing');
-      pauseVideo(preview, true);
+      if (!video) return;
+      unloadVideo(video);
+      attachedSrc = '';
     };
 
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          if (entries.some((entry) => entry.isIntersecting)) {
-            warmVideo(preview);
-            observer.disconnect();
-          }
-        },
-        { threshold: 0.15 }
-      );
-      observer.observe(media);
-    }
+    const scheduleStop = () => {
+      window.clearTimeout(leaveTimer);
+      leaveTimer = window.setTimeout(stopPreview, 80);
+    };
 
-    media.addEventListener('pointerenter', startPreview);
-    media.addEventListener('pointerleave', stopPreview);
     media.addEventListener('mouseenter', startPreview);
-    media.addEventListener('mouseleave', stopPreview);
+    media.addEventListener('mouseleave', scheduleStop);
+    media.addEventListener('touchstart', startPreview, { passive: true });
     media.addEventListener('focusin', startPreview);
     media.addEventListener('focusout', (event) => {
-      if (!media.contains(event.relatedTarget)) stopPreview();
+      if (!media.contains(event.relatedTarget)) scheduleStop();
     });
+
+    document.addEventListener('touchstart', (event) => {
+      if (!media.contains(event.target)) scheduleStop();
+    }, { passive: true });
   });
 })();

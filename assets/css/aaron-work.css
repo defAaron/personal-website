@@ -34,7 +34,7 @@
 .aaron-projects__media-link {
   position: absolute;
   inset: 0;
-  z-index: 2;
+  z-index: 3;
   text-decoration: none;
 }
 
@@ -51,29 +51,49 @@
   pointer-events: none;
 }
 
-.aaron-projects__preview::-webkit-media-controls,
-.aaron-projects__preview::-webkit-media-controls-start-playback-button,
-.aaron-projects__preview::-webkit-media-controls-overlay-play-button {
-  display: none !important;
+.aaron-projects__thumb {
+  z-index: 0;
 }
 
 .aaron-projects__loop {
-  z-index: 0;
+  z-index: 2;
   opacity: 1;
+  transition: opacity 0.2s ease;
 }
 
 .aaron-projects__preview {
   z-index: 1;
   opacity: 0;
+  visibility: hidden;
   object-fit: contain;
   background: var(--aaron-tile);
   transition: opacity 0.2s ease;
+  -webkit-appearance: none;
 }
 
-.aaron-projects__media:hover .aaron-projects__preview,
-.aaron-projects__media:focus-within .aaron-projects__preview,
+.aaron-projects__media.is-playing .aaron-projects__loop {
+  opacity: 0;
+  z-index: 1;
+}
+
 .aaron-projects__media.is-playing .aaron-projects__preview {
+  z-index: 2;
   opacity: 1;
+  visibility: visible;
+}
+
+.aaron-projects__preview::-webkit-media-controls,
+.aaron-projects__preview::-webkit-media-controls-enclosure,
+.aaron-projects__preview::-webkit-media-controls-panel,
+.aaron-projects__preview::-webkit-media-controls-start-playback-button,
+.aaron-projects__preview::-webkit-media-controls-overlay-play-button,
+.aaron-projects__preview::-webkit-media-controls-play-button {
+  display: none !important;
+  -webkit-appearance: none;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  pointer-events: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
