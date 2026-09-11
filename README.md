@@ -32,7 +32,15 @@ Static HTML/CSS/JS site deployed via [GitHub Pages](https://pages.github.com/) f
     ├── icons/              # Shared UI icons
     ├── dock/               # macOS dock icons
     ├── phone/              # Gallery phone mockup
-    ├── projects/           # Project thumbnails & previews
+    ├── projects/           # One folder per project
+    │   ├── skyeye/         # thumb, loop, preview
+    │   ├── surpluslink/
+    │   ├── honeydesk/
+    │   ├── baio/
+    │   ├── techniquetitan/
+    │   ├── clipcoach/
+    │   ├── fraudgen/
+    │   └── mycellium/
     ├── gallery/            # Gallery photos by section
     │   ├── auckland/
     │   ├── drawings/
