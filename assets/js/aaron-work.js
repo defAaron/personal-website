@@ -1,151 +1,618 @@
 /**
- * Work page media:
- * GIF thumbnail by default; hover/touch swaps in a muted looping preview.
- * Video sources are attached only on hover. Playback is never shown until
- * the playing event fires, which avoids Safari's native play overlay.
+ * Hover-untilt for the Work page iPad — same pattern as the gallery phone.
+ * Rest pose is a CSS tilt; .is-hovering clears the transform.
  */
 (function () {
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduceMotion) return;
+  const tile = document.getElementById('aaron-ipad-tile');
+  if (!tile) return;
 
-  const probe = document.createElement('video');
-  const canWebM = !!(
-    probe.canPlayType('video/webm; codecs="vp9"') ||
-    probe.canPlayType('video/webm; codecs="vp8"') ||
-    probe.canPlayType('video/webm')
-  );
-  const isSafari = /safari/i.test(navigator.userAgent) &&
-    !/chrome|crios|android/i.test(navigator.userAgent);
+  tile.addEventListener('mouseenter', () => {
+    tile.classList.add('is-hovering');
+  });
+  tile.addEventListener('mouseleave', () => {
+    tile.classList.remove('is-hovering', 'is-cursor');
+  });
 
-  function pickSrc(media) {
-    const webm = media.getAttribute('data-preview-webm');
-    const mp4 = media.getAttribute('data-preview-mp4');
-    if (isSafari && canWebM && webm) return webm;
-    return mp4 || webm || '';
+  const ipad = document.getElementById('aaron-ipad');
+  const cursor = document.getElementById('aaron-ipad-cursor');
+  if (ipad && cursor) {
+    ipad.addEventListener('pointerenter', () => {
+      tile.classList.add('is-cursor');
+    });
+    ipad.addEventListener('pointerleave', () => {
+      tile.classList.remove('is-cursor');
+    });
+    ipad.addEventListener('pointermove', (e) => {
+      cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+    }, { passive: true });
   }
 
-  function prepVideo(video) {
-    video.controls = false;
-    video.defaultMuted = true;
-    video.muted = true;
-    video.volume = 0;
-    video.loop = true;
-    video.autoplay = true;
-    video.playsInline = true;
-    video.preload = 'auto';
-    video.disablePictureInPicture = true;
-    video.setAttribute('muted', '');
-    video.setAttribute('autoplay', '');
-    video.setAttribute('loop', '');
-    video.setAttribute('playsinline', '');
-    video.setAttribute('webkit-playsinline', '');
-    video.setAttribute('disablepictureinpicture', '');
-    video.setAttribute('controlslist', 'nodownload nofullscreen noremoteplayback noplaybackrate');
-    video.removeAttribute('controls');
-    if (video.controlsList) {
-      video.controlsList.add('nodownload');
-      video.controlsList.add('nofullscreen');
-      video.controlsList.add('noremoteplayback');
+  const timeEl = document.getElementById('aaron-ipad-time');
+  if (timeEl) {
+    const timeFmt = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/New_York',
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true,
+    });
+
+    function estTime() {
+      return timeFmt.format(new Date()).replace(/\s*[AP]M$/i, '');
+    }
+
+    function tick() {
+      const next = estTime();
+      if (timeEl.textContent !== next) timeEl.textContent = next;
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  }
+
+  const filesRoot = document.querySelector('.aaron-files');
+  const grid = document.getElementById('aaron-files-grid');
+  const titleEl = document.getElementById('aaron-files-title');
+  if (!filesRoot || !grid || !titleEl) return;
+
+  const sidebarToggle = document.getElementById('aaron-files-sidebar-toggle');
+  const sidebarOpen = document.getElementById('aaron-files-sidebar-open');
+  const backBtn = document.getElementById('aaron-files-back');
+  const forwardBtn = document.getElementById('aaron-files-forward');
+  const viewBtn = document.getElementById('aaron-files-view-btn');
+  const viewMenu = document.getElementById('aaron-files-view-menu');
+  const searchBtn = document.getElementById('aaron-files-search-btn');
+  const searchWrap = document.getElementById('aaron-files-search-wrap');
+  const searchInput = document.getElementById('aaron-files-search');
+
+  const PROJECTS = {
+    skyeye: {
+      name: 'SkyEye',
+      sortDate: 202608,
+      mp4: 'assets/projects/skyeye/preview.mp4',
+      desc: 'an AI-assisted missing person search tool that turns a free-text report into a Lost Person Behavior search ring, then scans drone photographs for ranked person-shaped candidates so rescue teams know where to look first.',
+      stack: ['Python', 'Flask', 'YOLOv8n', 'ONNX', 'Gemini API', 'Groq', 'Google Maps API', 'React', 'TypeScript', 'Vite', 'Three.js', 'Docker', 'Vercel', 'Render'],
+    },
+    surpluslink: {
+      name: 'SurplusLink',
+      sortDate: 202608,
+      youtube: 'eU8L9HmfpPg',
+      desc: 'an app that turns unused food from eateries into claimable pickups through computer vision and route optimization.',
+      stack: ['Next.js', 'TypeScript', 'Prisma', 'Supabase', 'Auth.js', 'Hugging Face Transformers', 'Leaflet', 'Vercel'],
+    },
+    honeydesk: {
+      name: 'HoneyDesk',
+      sortDate: 202608,
+      youtube: '8cGpsI5qa2U',
+      desc: 'educative application that traps student phishing attempts through live decoys, classifying the attack in real time, and turn it into a plain-English brief students can act on.',
+      stack: ['Next.js', 'TypeScript', 'FastAPI', 'Python', 'SQLite', 'shadcn/ui', 'Render'],
+    },
+    baio: {
+      name: 'baio',
+      sortDate: 202608,
+      mp4: 'assets/projects/baio/baio.mp4',
+      desc: 'magic paper with AI autocomplete for drawing: sketch a rough webpage, press enter, and real editable components bloom in like wet ink exactly where you drew them, then frame it into a working website.',
+      stack: ['Next.js', 'TypeScript', 'Gemini API', 'Anthropic API', 'FreeSolo', 'Qwen3.5-2B', 'perfect-freehand', 'framer-motion', 'Zod', 'Vercel', 'Base44'],
+    },
+    techniquetitan: {
+      name: 'TechTitan',
+      sortDate: 202609,
+      mp4: 'assets/projects/techniquetitan/techtitan.mp4',
+      desc: 'a real-time hand tracking and 21-landmark finger bone recognition computer vision application that evaluates hand piano posture through live camera feed, running a feedback engine for heuristic scoring.',
+      stack: ['Python', 'MediaPipe', 'OpenCV', 'NumPy', 'FastAPI', 'React', 'TypeScript', 'Tailwind', 'Streamlit', 'PyYAML', 'Vercel', 'Docker', 'Render', 'Github Actions + pytest'],
+    },
+    clipcoach: {
+      name: 'ClipCoach',
+      sortDate: 202607,
+      youtube: 'KKq0Axw3u-M',
+      desc: 'an AI post-game highlight editor that fuses audio energy and visual motion into one excitement curve to auto-cut raw game footage into a music-synced highlight reel, with a timeline editor for instant re-renders.',
+      stack: ['Python', 'FastAPI', 'Next.js', 'TypeScript', 'ffmpeg', 'librosa', 'OpenCV', 'Docker'],
+    },
+    fraudgen: {
+      name: 'FraudGen',
+      sortDate: 202603,
+      mp4: 'assets/projects/fraudgen/fraudgen.mp4',
+      desc: 'a multi-agent adversarial AI pipeline that synthesizes fraud transaction networks, closing the known-unknown gap in GNN-based fraud detection.',
+      stack: ['Python', 'Anthropic API', 'Streamlit', 'Next.js', 'FastAPI', 'Pandas', 'Pydantic', 'Matplotlib'],
+    },
+    mycellium: {
+      name: 'Mycellium',
+      sortDate: 202603,
+      youtube: 'x6as0gVqb7Y',
+      desc: 'an optimized multi-nodal network that coordinates crop production across a distributed network of farms using comparative advantage and integer linear programming.',
+      stack: ['Python', 'SciPy MILP', 'FastAPI', 'React.js', 'TypeScript', 'Google Maps API', 'Tailscale'],
+    },
+    personalwebsite: {
+      name: 'Personal Website',
+      sortDate: 202607,
+      desc: 'this website, built from scratch to tell you about me and what I\'ve been doing.',
+      stack: ['HTML', 'CSS', 'JavaScript', 'Creativity'],
+    },
+  };
+
+  const TABS = {
+    recents: {
+      title: 'Recents',
+      files: ['skyeye', 'surpluslink', 'honeydesk', 'techniquetitan', 'baio', 'fraudgen'],
+    },
+    certifications: {
+      title: 'Certifications',
+      files: [
+        { name: 'Essentials with Azure Fundamentals', place: 'Microsoft', date: '2026', href: 'https://www.coursera.org/account/accomplishments/verify/0ANYC7RFYAPJ?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course' },
+        { name: 'Google AI Essentials', place: 'Google', date: '2026', href: 'https://www.coursera.org/account/accomplishments/specialization/ZH9LB9F719BF' },
+        { name: 'Building with the Claude API', place: 'Anthropic', date: '2026', href: 'https://verify.skilljar.com/c/hqvg49o7skvd' },
+        { name: 'Level 10 Piano with Honours', place: 'RCM', date: '2026' },
+        { name: 'Level 10 Music History with Honours', place: 'RCM', date: '2024' },
+        { name: 'CS50x', place: 'Harvard University + edX', date: '2024', href: 'https://courses.edx.org/certificates/bd2444786c0e4af7918ea91f1ac2a968' },
+        { name: 'Standard First Aid with CPR-C', place: 'Lifesaving Society Canada', date: '2023' },
+        { name: 'Emergency First Aid with CPR-B', place: 'Lifesaving Society Canada', date: '2023' },
+        { name: 'Bronze Cross', place: 'Lifesaving Society Canada', date: '2023' },
+        { name: 'Bronze Medallion', place: 'Lifesaving Society Canada', date: '2023' },
+      ],
+    },
+    'social-good': {
+      title: 'Social Good',
+      files: ['skyeye', 'surpluslink', 'honeydesk'],
+    },
+    finance: {
+      title: 'Finance',
+      files: ['fraudgen', 'mycellium'],
+    },
+    design: {
+      title: 'Design',
+      files: ['baio', 'personalwebsite'],
+    },
+    'media-tools': {
+      title: 'Media Tools',
+      files: ['techniquetitan', 'clipcoach'],
+    },
+    hackathons: {
+      title: 'Hackathons',
+      files: ['skyeye', 'surpluslink', 'honeydesk', 'baio', 'clipcoach', 'fraudgen', 'mycellium'],
+    },
+    'personal-projects': {
+      title: 'Personal Projects',
+      files: ['personalwebsite', 'techniquetitan'],
+    },
+    'computer-vision': {
+      title: 'Computer Vision',
+      files: ['skyeye', 'surpluslink', 'techniquetitan', 'clipcoach'],
+    },
+    'generative-ai': {
+      title: 'Generative AI',
+      files: ['skyeye', 'baio', 'fraudgen', 'surpluslink'],
+    },
+    'classical-ml': {
+      title: 'Classical ML + Optimization',
+      files: ['fraudgen', 'mycellium'],
+    },
+    devops: {
+      title: 'Devops',
+      files: ['techniquetitan', 'skyeye'],
+    },
+  };
+
+  const FILE_THUMB = `
+    <svg viewBox="0 0 44 56" aria-hidden="true">
+      <rect width="44" height="56" rx="4.2" fill="#f4f4f7"/>
+      <path d="M31.4 0h8.4A4.2 4.2 0 0 1 44 4.2V13L31.4 0Z" fill="#e6e6eb"/>
+      <path d="M31.4 0v8.8A4.2 4.2 0 0 0 35.6 13H44" fill="none" stroke="#d2d2d8" stroke-width=".7"/>
+    </svg>`;
+
+  const FOLDER_THUMB = `
+    <svg viewBox="0 0 44 56" aria-hidden="true">
+      <path d="M4 16h13.2l3.6 3.6H38a3.6 3.6 0 0 1 3.6 3.6v24.8A3.6 3.6 0 0 1 38 52H6A3.6 3.6 0 0 1 2.4 48.4V16A3.6 3.6 0 0 1 6 12.4h2.4V16Z" fill="#69b3f7"/>
+      <path d="M4 16V13.6A3.6 3.6 0 0 1 7.6 10h9.6l3.6 3.6H38a3.6 3.6 0 0 1 3.6 3.6V16H4Z" fill="#4da3f5"/>
+    </svg>`;
+
+  const ISSUER_ICONS = {
+    Microsoft: 'assets/certs/microsoft.png',
+    Google: 'assets/certs/google.png',
+    Anthropic: 'assets/certs/anthropic.png',
+    RCM: 'assets/certs/rcm-favicon.png',
+    'Harvard University + edX': 'assets/certs/harvard.png',
+    'Lifesaving Society Canada': 'assets/certs/lifesaving.png',
+  };
+
+  function esc(value) {
+    return String(value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function resolveFiles(entries) {
+    return entries.map((entry) => (
+      typeof entry === 'string' ? { id: entry, ...PROJECTS[entry] } : entry
+    )).filter(Boolean);
+  }
+
+  function isCertification(file) {
+    return file.place != null;
+  }
+
+  function thumbForFile(file) {
+    if (isCertification(file)) {
+      const icon = ISSUER_ICONS[file.place];
+      const badge = icon
+        ? `<img class="aaron-files__badge" src="${esc(icon)}" alt="" aria-hidden="true" />`
+        : '';
+      return `<span class="aaron-files__thumb aaron-files__thumb--file">${FILE_THUMB}${badge}</span>`;
+    }
+    return `<span class="aaron-files__thumb aaron-files__thumb--folder">${FOLDER_THUMB}</span>`;
+  }
+
+  function fileSortDate(file) {
+    if (file.sortDate != null) return file.sortDate;
+    const year = parseInt(file.date, 10);
+    return Number.isFinite(year) ? year * 100 : 0;
+  }
+
+  let currentTab = 'recents';
+  let viewMode = 'icons';
+  let sortMode = null;
+  let query = '';
+  const tabHistory = ['recents'];
+  let historyIndex = 0;
+
+  function syncHistoryButtons() {
+    const atStart = historyIndex <= 0;
+    const atEnd = historyIndex >= tabHistory.length - 1;
+    if (backBtn) {
+      backBtn.classList.toggle('is-disabled', atStart);
+      backBtn.disabled = atStart;
+    }
+    if (forwardBtn) {
+      forwardBtn.classList.toggle('is-disabled', atEnd);
+      forwardBtn.disabled = atEnd;
     }
   }
 
-  function createVideo() {
-    const video = document.createElement('video');
-    video.className = 'aaron-projects__preview';
-    video.setAttribute('aria-hidden', 'true');
-    video.tabIndex = -1;
-    prepVideo(video);
-    return video;
-  }
-
-  function unloadVideo(video) {
-    video.pause();
-    try {
-      video.currentTime = 0;
-    } catch (e) { /* ignore seek before metadata */ }
-    video.removeAttribute('src');
-    video.removeAttribute('autoplay');
-    while (video.firstChild) video.removeChild(video.firstChild);
-    try {
-      video.load();
-    } catch (e) { /* ignore */ }
-  }
-
-  document.querySelectorAll('.aaron-projects__media[data-preview-mp4], .aaron-projects__media[data-preview-webm]').forEach((media) => {
-    const src = pickSrc(media);
-    if (!src) return;
-
-    let video = null;
-    let generation = 0;
-    let hovering = false;
-    let leaveTimer = 0;
-    let attachedSrc = '';
-
-    const reveal = () => {
-      if (!hovering || !video || video.paused) return;
-      media.classList.add('is-playing');
-    };
-
-    const ensureVideo = () => {
-      if (video && video.isConnected) return video;
-      video = createVideo();
-      const link = media.querySelector('.aaron-projects__media-link');
-      media.insertBefore(video, link || null);
-      video.addEventListener('playing', reveal);
-      video.addEventListener('pause', () => {
-        if (!hovering) media.classList.remove('is-playing');
-      });
-      return video;
-    };
-
-    const startPreview = () => {
-      hovering = true;
-      window.clearTimeout(leaveTimer);
-      const token = ++generation;
-      const el = ensureVideo();
-      prepVideo(el);
-
-      if (attachedSrc !== src) {
-        el.src = src;
-        attachedSrc = src;
-        el.load();
-      }
-
-      const playAttempt = el.play();
-      if (playAttempt && typeof playAttempt.then === 'function') {
-        playAttempt.then(() => {
-          if (token !== generation || !hovering) return;
-          reveal();
-        }).catch(() => {
-          /* play() interrupted by a later pause/unload */
-        });
-      }
-    };
-
-    const stopPreview = () => {
-      hovering = false;
-      generation += 1;
-      media.classList.remove('is-playing');
-      if (!video) return;
-      unloadVideo(video);
-      attachedSrc = '';
-    };
-
-    const scheduleStop = () => {
-      window.clearTimeout(leaveTimer);
-      leaveTimer = window.setTimeout(stopPreview, 80);
-    };
-
-    media.addEventListener('mouseenter', startPreview);
-    media.addEventListener('mouseleave', scheduleStop);
-    media.addEventListener('touchstart', startPreview, { passive: true });
-    media.addEventListener('focusin', startPreview);
-    media.addEventListener('focusout', (event) => {
-      if (!media.contains(event.relatedTarget)) scheduleStop();
+  function syncViewMenu() {
+    if (!viewMenu) return;
+    viewMenu.querySelectorAll('[data-view]').forEach((item) => {
+      const on = item.getAttribute('data-view') === viewMode;
+      item.classList.toggle('is-checked', on);
+      item.setAttribute('aria-checked', on ? 'true' : 'false');
     });
+    viewMenu.querySelectorAll('[data-sort]').forEach((item) => {
+      const on = item.getAttribute('data-sort') === sortMode;
+      item.classList.toggle('is-checked', on);
+      item.setAttribute('aria-checked', on ? 'true' : 'false');
+    });
+  }
 
-    document.addEventListener('touchstart', (event) => {
-      if (!media.contains(event.target)) scheduleStop();
-    }, { passive: true });
+  function setMenuOpen(open) {
+    if (!viewMenu || !viewBtn) return;
+    viewMenu.hidden = !open;
+    viewBtn.classList.toggle('is-active', open);
+    viewBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  function setSidebarHidden(hidden) {
+    filesRoot.classList.toggle('is-sidebar-hidden', hidden);
+    if (sidebarToggle) {
+      sidebarToggle.setAttribute('aria-expanded', hidden ? 'false' : 'true');
+      sidebarToggle.setAttribute('aria-label', hidden ? 'Show sidebar' : 'Hide sidebar');
+      sidebarToggle.title = hidden ? 'Show sidebar' : 'Hide sidebar';
+    }
+    if (sidebarOpen) sidebarOpen.hidden = !hidden;
+  }
+
+  function setSearchOpen(open) {
+    if (!searchWrap || !searchBtn) return;
+    searchWrap.classList.toggle('is-open', open);
+    searchBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (searchInput) searchInput.tabIndex = open ? 0 : -1;
+    if (open) {
+      searchInput?.focus();
+    } else if (query) {
+      query = '';
+      if (searchInput) searchInput.value = '';
+      renderTab(currentTab);
+    }
+  }
+
+  function visibleFiles(tab) {
+    let files = resolveFiles(tab.files);
+    const needle = query.trim().toLowerCase();
+    if (needle) {
+      files = files.filter((file) => {
+        const hay = [file.name, file.place, file.date].filter(Boolean).join(' ').toLowerCase();
+        return hay.includes(needle);
+      });
+    }
+    if (sortMode === 'name') {
+      files = files.slice().sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' }));
+    } else if (sortMode === 'date') {
+      files = files.slice().sort((a, b) => fileSortDate(b) - fileSortDate(a) || a.name.localeCompare(b.name));
+    }
+    return files;
+  }
+
+  function sectionLabel(section) {
+    return section.querySelector('span')?.textContent.trim() || 'section';
+  }
+
+  function setGroupCollapsed(section, collapsed) {
+    const group = section.closest('.aaron-files__group');
+    if (!group) return;
+    group.classList.toggle('is-collapsed', collapsed);
+    section.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+    const label = sectionLabel(section);
+    section.title = collapsed ? `Show ${label}` : `Hide ${label}`;
+  }
+
+  function expandGroupForTab(tabId) {
+    const row = filesRoot.querySelector(`.aaron-files__row[data-tab="${tabId}"]`);
+    const section = row?.closest('.aaron-files__group')?.querySelector('.aaron-files__section');
+    if (section) setGroupCollapsed(section, false);
+  }
+
+  function renderTab(tabId) {
+    const tab = TABS[tabId];
+    if (!tab) return;
+
+    currentTab = tabId;
+    titleEl.textContent = tab.title;
+    grid.classList.toggle('is-list', viewMode === 'list');
+    expandGroupForTab(tabId);
+
+    const files = visibleFiles(tab);
+    grid.innerHTML = files.length
+      ? files.map((file) => {
+          const inner = `
+            ${thumbForFile(file)}
+            <span class="aaron-files__meta">
+              <span class="aaron-files__name">${esc(file.name)}</span>
+              ${file.date ? `<span class="aaron-files__date">${esc(file.date)}</span>` : ''}
+              ${file.place ? `<span class="aaron-files__place">${esc(file.place)}</span>` : ''}
+            </span>
+          `;
+          if (file.href) {
+            return `
+              <a class="aaron-files__item" href="${esc(file.href)}" target="_blank" rel="noopener noreferrer" data-file="${esc(file.name)}" aria-label="Open ${esc(file.name)} certificate">
+                ${inner}
+              </a>
+            `;
+          }
+          const projectAttr = file.id ? ` data-project="${esc(file.id)}"` : '';
+          return `
+            <button type="button" class="aaron-files__item" data-file="${esc(file.name)}"${projectAttr}>
+              ${inner}
+            </button>
+          `;
+        }).join('')
+      : `<p class="aaron-files__empty">${query.trim() ? 'No Results' : 'No Files'}</p>`;
+
+    document.querySelectorAll('.aaron-files__row[data-tab]').forEach((row) => {
+      row.classList.toggle('is-active', row.getAttribute('data-tab') === tabId);
+    });
+    syncHistoryButtons();
+    syncViewMenu();
+  }
+
+  function openTab(tabId) {
+    if (!TABS[tabId] || tabId === currentTab) return;
+    tabHistory.splice(historyIndex + 1);
+    tabHistory.push(tabId);
+    historyIndex = tabHistory.length - 1;
+    renderTab(tabId);
+  }
+
+  function onRowActivate(row) {
+    const tabId = row.getAttribute('data-tab');
+    if (tabId) openTab(tabId);
+  }
+
+  document.querySelectorAll('.aaron-files__row[data-tab]').forEach((row) => {
+    row.addEventListener('click', () => onRowActivate(row));
+    row.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        onRowActivate(row);
+      }
+    });
   });
+
+  filesRoot.querySelectorAll('.aaron-files__section').forEach((section) => {
+    section.addEventListener('click', () => {
+      const collapsed = section.getAttribute('aria-expanded') !== 'false';
+      setGroupCollapsed(section, collapsed);
+    });
+  });
+
+  sidebarToggle?.addEventListener('click', () => {
+    setSidebarHidden(!filesRoot.classList.contains('is-sidebar-hidden'));
+  });
+
+  sidebarOpen?.addEventListener('click', () => {
+    setSidebarHidden(false);
+  });
+
+  backBtn?.addEventListener('click', () => {
+    if (historyIndex <= 0) return;
+    historyIndex -= 1;
+    renderTab(tabHistory[historyIndex]);
+  });
+
+  forwardBtn?.addEventListener('click', () => {
+    if (historyIndex >= tabHistory.length - 1) return;
+    historyIndex += 1;
+    renderTab(tabHistory[historyIndex]);
+  });
+
+  viewBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    setMenuOpen(viewMenu?.hidden !== false);
+  });
+
+  viewMenu?.addEventListener('click', (e) => {
+    const item = e.target.closest('[data-view], [data-sort]');
+    if (!item) return;
+    if (item.hasAttribute('data-view')) viewMode = item.getAttribute('data-view');
+    if (item.hasAttribute('data-sort')) sortMode = item.getAttribute('data-sort');
+    setMenuOpen(false);
+    renderTab(currentTab);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (viewMenu && !viewMenu.hidden && !e.target.closest('.aaron-files__view-wrap')) {
+      setMenuOpen(false);
+    }
+    if (searchWrap?.classList.contains('is-open') && !e.target.closest('.aaron-files__search')) {
+      setSearchOpen(false);
+    }
+  });
+
+  searchBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    setMenuOpen(false);
+    setSearchOpen(!searchWrap?.classList.contains('is-open'));
+  });
+
+  searchInput?.addEventListener('input', () => {
+    query = searchInput.value;
+    renderTab(currentTab);
+  });
+
+  searchInput?.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      setSearchOpen(false);
+    }
+  });
+
+  const pop = document.getElementById('aaron-ipad-pop');
+  const popTitle = document.getElementById('aaron-ipad-pop-title');
+  const popDesc = document.getElementById('aaron-ipad-pop-desc');
+  const popStack = document.getElementById('aaron-ipad-pop-stack');
+  const popDemo = document.getElementById('aaron-ipad-pop-demo');
+  const popClose = document.getElementById('aaron-ipad-pop-close');
+  const popBackdrop = document.getElementById('aaron-ipad-pop-backdrop');
+
+  function isPopOpen() {
+    return Boolean(pop && !pop.hidden);
+  }
+
+  function clearDemo() {
+    if (!popDemo) return;
+    popDemo.querySelectorAll('video').forEach((el) => {
+      el.pause();
+      el.removeAttribute('src');
+      try { el.load(); } catch (e) { /* ignore */ }
+      el.remove();
+    });
+    popDemo.querySelectorAll('iframe').forEach((el) => el.remove());
+    popDemo.classList.remove('has-video');
+    popDemo.style.removeProperty('background-image');
+  }
+
+  function closeProject() {
+    if (!pop) return;
+    clearDemo();
+    pop.hidden = true;
+  }
+
+  function openProject(id) {
+    const project = PROJECTS[id];
+    if (!project || !pop || !popTitle || !popDesc || !popStack) return;
+    popTitle.textContent = project.name;
+    popDesc.textContent = project.desc || '';
+    popStack.innerHTML = (project.stack || [])
+      .map((chip) => `<span class="aaron-ipad-pop__chip">${esc(chip)}</span>`)
+      .join('');
+
+    clearDemo();
+    if (popDemo && project.mp4) {
+      popDemo.classList.add('has-video');
+      const video = document.createElement('video');
+      video.className = 'aaron-ipad-pop__video';
+      video.src = project.mp4;
+      video.title = `${project.name} demo`;
+      video.muted = true;
+      video.defaultMuted = true;
+      video.autoplay = true;
+      video.loop = true;
+      video.playsInline = true;
+      video.controls = true;
+      video.setAttribute('muted', '');
+      video.setAttribute('autoplay', '');
+      video.setAttribute('loop', '');
+      video.setAttribute('playsinline', '');
+      video.setAttribute('webkit-playsinline', '');
+      popDemo.appendChild(video);
+      const playAttempt = video.play();
+      if (playAttempt && typeof playAttempt.catch === 'function') {
+        playAttempt.catch(() => {});
+      }
+    } else if (popDemo && project.youtube) {
+      popDemo.classList.add('has-video');
+      popDemo.style.backgroundImage = `url("https://i.ytimg.com/vi/${esc(project.youtube)}/hqdefault.jpg")`;
+      const iframe = document.createElement('iframe');
+      iframe.className = 'aaron-ipad-pop__video';
+      iframe.title = `${project.name} demo`;
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(project.youtube)}?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1`;
+      popDemo.appendChild(iframe);
+    }
+
+    pop.hidden = false;
+    setMenuOpen(false);
+    popClose?.focus();
+  }
+
+  let folderOpening = false;
+
+  function playFolderThenOpen(item, id) {
+    if (folderOpening || isPopOpen()) return;
+
+    const thumb = item.querySelector('.aaron-files__thumb--folder');
+    const skipMotion = !thumb || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (skipMotion) {
+      openProject(id);
+      return;
+    }
+
+    folderOpening = true;
+    item.classList.add('is-opening');
+
+    let done = false;
+    const finish = (e) => {
+      if (done) return;
+      if (e && e.animationName && e.animationName !== 'aaron-folder-flip') return;
+      done = true;
+      thumb.removeEventListener('animationend', finish);
+      window.clearTimeout(fallback);
+      item.classList.remove('is-opening');
+      folderOpening = false;
+      openProject(id);
+    };
+
+    const fallback = window.setTimeout(() => finish(), 560);
+    thumb.addEventListener('animationend', finish);
+  }
+
+  grid.addEventListener('click', (e) => {
+    const item = e.target.closest('[data-project]');
+    if (!item) return;
+    playFolderThenOpen(item, item.getAttribute('data-project'));
+  });
+
+  popClose?.addEventListener('click', closeProject);
+  popBackdrop?.addEventListener('click', closeProject);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    if (isPopOpen()) {
+      closeProject();
+      return;
+    }
+    if (viewMenu && !viewMenu.hidden) setMenuOpen(false);
+    if (searchWrap?.classList.contains('is-open')) setSearchOpen(false);
+  });
+
+  renderTab('recents');
 })();

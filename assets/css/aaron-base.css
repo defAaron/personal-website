@@ -2,6 +2,7 @@
 
 :root {
   --aaron-bg: #fff;
+  --aaron-bg-light: #fff;
   --aaron-tile: #f7f7f9;
   --aaron-ink: #000;
   --aaron-muted: #707070;
@@ -546,6 +547,7 @@ html[data-theme="dark"] .aaron-contact__item img[src*="email"] {
 .aaron-gallery-main {
   display: flex;
   flex-direction: column;
+  flex: 1;
   gap: var(--aaron-gap);
   position: relative;
   z-index: 2;
