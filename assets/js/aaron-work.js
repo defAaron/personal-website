@@ -13,18 +13,28 @@
     tile.classList.remove('is-hovering', 'is-cursor');
   });
 
-  const ipad = document.getElementById('aaron-ipad');
   const cursor = document.getElementById('aaron-ipad-cursor');
-  if (ipad && cursor) {
-    ipad.addEventListener('pointerenter', () => {
-      tile.classList.add('is-cursor');
+  if (cursor) {
+    let cursorX = 0;
+    let cursorY = 0;
+    let cursorRaf = 0;
+
+    const flushCursor = () => {
+      cursorRaf = 0;
+      cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+    };
+
+    // Same model as the gallery phone: track on the tile, show blob only
+    // over the device. rAF-coalesce so Files UI hover paint can't stall
+    // multiple transform writes in one frame.
+    tile.addEventListener('mousemove', (e) => {
+      const overIpad = !!e.target.closest('.aaron-ipad');
+      tile.classList.toggle('is-cursor', overIpad);
+      if (!overIpad) return;
+      cursorX = e.clientX;
+      cursorY = e.clientY;
+      if (!cursorRaf) cursorRaf = requestAnimationFrame(flushCursor);
     });
-    ipad.addEventListener('pointerleave', () => {
-      tile.classList.remove('is-cursor');
-    });
-    ipad.addEventListener('pointermove', (e) => {
-      cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-    }, { passive: true });
   }
 
   const timeEl = document.getElementById('aaron-ipad-time');

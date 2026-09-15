@@ -791,8 +791,9 @@
   transition: opacity 0.12s ease;
 }
 
-.aaron-split__ipad.is-cursor,
-.aaron-split__ipad.is-cursor * {
+/* Match gallery phone: hide only on the tile. Children with
+   cursor: pointer keep the system cursor so tracking feels instant. */
+.aaron-split__ipad.is-cursor {
   cursor: none;
 }
 
