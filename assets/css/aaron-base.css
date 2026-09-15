@@ -22,6 +22,7 @@
   --aaron-hl-blue: #2563eb;
   --aaron-hl-green: #16a34a;
   --aaron-hl-green-dark: #166534;
+  --aaron-hl-navy: #0a1628;
   --aaron-hl-purple: #9333ea;
   --aaron-tile-radius: 32px;
   --aaron-gap: 16px;
@@ -51,6 +52,7 @@ html[data-theme="dark"] {
   --aaron-hl-blue: #60a5fa;
   --aaron-hl-green: #4ade80;
   --aaron-hl-green-dark: #86efac;
+  --aaron-hl-navy: #9db0cc;
   --aaron-hl-purple: #c084fc;
 }
 
@@ -238,16 +240,18 @@ html[data-theme="dark"] .aaron-theme-toggle__sun {
 .aaron-grid__column {
   display: grid;
   gap: var(--aaron-gap);
-  align-content: start;
+  align-content: stretch;
+  align-self: stretch;
   min-width: 0;
+  min-height: 0;
 }
 
-.aaron-grid__column:first-child {
-  grid-template-rows: minmax(0, 1fr) auto auto;
+.aaron-grid__column--left {
+  grid-template-rows: auto minmax(520px, 1fr);
 }
 
-.aaron-grid__column:last-child {
-  grid-template-rows: minmax(0, auto) minmax(0, auto) minmax(0, auto);
+.aaron-grid__column--right {
+  grid-template-rows: auto minmax(360px, 1fr) auto;
 }
 
 /* —— Base tile —— */
@@ -336,12 +340,19 @@ html[data-theme="dark"] .aaron-theme-toggle__sun {
   margin-bottom: 1.25rem;
 }
 
+.aaron-hero__bio {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 0.35rem;
+}
+
 .aaron-hero__description {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
-  margin-top: 0.25rem;
+  gap: 0.4rem;
+  margin: 0;
 }
 
 .aaron-hero__description li {
@@ -358,6 +369,7 @@ html[data-theme="dark"] .aaron-theme-toggle__sun {
   font-weight: 500;
   color: var(--aaron-ink);
   padding-left: 0;
+  margin-bottom: 0.1rem;
 }
 
 .aaron-hero__description li.aaron-hero__description-lead::before {
@@ -426,59 +438,26 @@ a.aaron-hero__hl:hover {
   color: var(--aaron-hl-green-dark);
 }
 
+.aaron-hero__hl--navy {
+  color: var(--aaron-hl-navy);
+}
+
 .aaron-hero__hl--purple {
   color: var(--aaron-hl-purple);
 }
 
-/* —— Awards, Education & Certifications —— */
-.aaron-awards,
-.aaron-education,
-.aaron-certs {
+/* —— Awards —— */
+.aaron-awards {
   padding: 24px 28px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.aaron-awards__title,
-.aaron-education__title,
-.aaron-certs__title {
+.aaron-awards__title {
   font-size: 15px;
   font-weight: 500;
   color: var(--aaron-ink);
-}
-
-.aaron-education__list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-top: 0;
-}
-
-.aaron-education__row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--aaron-ink);
-  line-height: 1.4;
-}
-
-.aaron-education__date {
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--aaron-caption);
-  white-space: nowrap;
-}
-
-.aaron-education__detail {
-  margin-top: 4px;
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--aaron-muted);
 }
 
 .aaron-caption {
@@ -491,55 +470,299 @@ a.aaron-hero__hl:hover {
   padding-left: 0.5rem;
 }
 
-.aaron-awards .aaron-hero__description,
-.aaron-certs .aaron-hero__description {
+.aaron-awards .aaron-hero__description {
   margin-top: 0;
 }
 
-/* —— Contact —— */
-.aaron-contact {
-  padding: 24px 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+/* —— Home mini devices (iPad + phone) —— */
+.aaron-mini {
+  display: block;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  min-height: 0;
+  height: 100%;
+  position: relative;
 }
 
-.aaron-contact__list {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 2px;
-}
-
-.aaron-contact__item {
+.aaron-mini__stage {
+  container-type: size;
+  position: relative;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.aaron-mini__link {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 100px;
+  border: 2px solid #dedee0;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  pointer-events: none;
+}
+
+.aaron-mini__link--br {
+  left: auto;
+  right: 16px;
+}
+
+.aaron-mini__link img {
+  display: block;
+  width: 18px;
+  height: 18px;
+  opacity: 0.45;
+}
+
+.aaron-mini--ipad:hover .aaron-mini__link--br,
+.aaron-mini--phone:hover .aaron-mini__link--br {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+}
+
+html[data-theme="dark"] .aaron-mini__link {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(32, 32, 36, 0.55);
+}
+
+html[data-theme="dark"] .aaron-mini--ipad:hover .aaron-mini__link--br,
+html[data-theme="dark"] .aaron-mini--phone:hover .aaron-mini__link--br {
+  background: rgba(48, 48, 54, 0.75);
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] .aaron-mini__link img {
+  filter: invert(1);
+  opacity: 0.7;
+}
+
+/* —— Mini iPad —— */
+.aaron-mini--ipad {
+  min-height: 380px;
+}
+
+.aaron-mini-ipad {
+  display: block;
+  width: 92%;
+  max-width: 560px;
+  height: auto;
+  flex-shrink: 0;
+  transform: translate3d(0, 38%, 0) scale(1);
+  transform-origin: center center;
+  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.16));
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), filter 0.45s ease;
+  pointer-events: none;
+  user-select: none;
+}
+
+.aaron-mini--ipad:hover .aaron-mini-ipad,
+.aaron-mini--ipad:focus-visible .aaron-mini-ipad {
+  transform: translate3d(0, 16%, 0) scale(1.12);
+  filter: drop-shadow(0 22px 34px rgba(0, 0, 0, 0.22));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aaron-mini-ipad,
+  .aaron-mini-phone {
+    transition: none;
+  }
+}
+
+/* —— Mini phone —— */
+.aaron-mini--phone {
+  min-height: 520px;
+}
+
+.aaron-mini-phone {
+  --px: calc(100cqi * 0.52 / 278);
+  position: relative;
+  width: calc(278 * var(--px));
+  height: calc(565 * var(--px));
+  flex-shrink: 0;
+  border-radius: calc(50 * var(--px));
+  background: #111;
+  transform: translate3d(-2%, 28%, 0) rotate(10deg);
+  transform-origin: center center;
+  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.22));
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.35s ease;
+  pointer-events: none;
+  user-select: none;
+}
+
+.aaron-mini--phone:hover .aaron-mini-phone,
+.aaron-mini--phone:focus-visible .aaron-mini-phone {
+  transform: translate3d(0, 12%, 0) rotate(0deg);
+  filter: drop-shadow(0 22px 34px rgba(0, 0, 0, 0.28));
+}
+
+.aaron-mini-phone__shell {
+  display: block;
   width: 100%;
-  background: var(--aaron-contact-bg);
-  border-radius: 16px;
-  text-decoration: none;
-  color: inherit;
-  transition: box-shadow 0.15s ease, transform 0.15s ease;
+  height: calc(561 * var(--px));
+  position: relative;
+  z-index: 0;
 }
 
-.aaron-contact__item:hover {
-  box-shadow: var(--aaron-contact-hover-shadow);
-  transform: translateY(-1px);
+.aaron-mini-phone__screen {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  margin: calc(13 * var(--px)) calc(15 * var(--px)) calc(16 * var(--px)) calc(14 * var(--px));
+  border-radius: calc(34 * var(--px));
+  background: #111;
+  overflow: hidden;
 }
 
-html[data-theme="dark"] .aaron-contact__item img[src*="github"],
-html[data-theme="dark"] .aaron-contact__item img[src*="email"] {
+.aaron-mini-phone__status {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: calc(24 * var(--px));
+  padding: calc(16 * var(--px)) calc(22 * var(--px)) 0;
+}
+
+.aaron-mini-phone__time {
+  display: flex;
+  align-items: baseline;
+  gap: calc(4 * var(--px));
+  font-family: -apple-system, 'Inter', sans-serif;
+  font-size: calc(11 * var(--px));
+  font-weight: 600;
+  line-height: calc(20 * var(--px));
+  color: #fff;
+  white-space: nowrap;
+}
+
+.aaron-mini-phone__time span {
+  font-size: calc(7 * var(--px));
+  font-weight: 500;
+  opacity: 0.72;
+}
+
+.aaron-mini-phone__status-icons {
+  display: block;
+  width: calc(48 * var(--px));
+  height: auto;
   filter: invert(1);
 }
 
-.aaron-contact__item img {
+.aaron-mini-photos {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: calc(42 * var(--px)) calc(10 * var(--px)) calc(96 * var(--px));
+}
+
+.aaron-mini-photos__app {
+  position: absolute;
+  top: calc(40 * var(--px));
+  right: calc(12 * var(--px));
+  z-index: 5;
+  width: calc(32 * var(--px));
+  height: calc(32 * var(--px));
+  border-radius: calc(8 * var(--px));
+  object-fit: cover;
+  box-shadow: 0 calc(1 * var(--px)) calc(2 * var(--px)) rgba(0, 0, 0, 0.25);
+}
+
+.aaron-mini-photos__heading {
+  flex: 0 0 auto;
+  margin: 0 calc(4 * var(--px)) calc(10 * var(--px));
+  padding-right: calc(40 * var(--px));
+  font-size: calc(13 * var(--px));
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: calc(-0.2 * var(--px));
+  color: #fff;
+}
+
+.aaron-mini-photos__grid {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: calc(8 * var(--px));
+  overflow: hidden;
+}
+
+.aaron-mini-photos__grid img {
   display: block;
-  width: 32%;
-  height: 32%;
-  object-fit: contain;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: calc(16 * var(--px));
+  object-fit: cover;
+  background: #1c1c1e;
+}
+
+.aaron-mini-photos__dock {
+  position: absolute;
+  left: calc(18 * var(--px));
+  right: calc(18 * var(--px));
+  bottom: calc(18 * var(--px));
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: calc(42 * var(--px));
+  padding: 0 calc(4 * var(--px));
+  border-radius: calc(56 * var(--px));
+  background: rgba(255, 255, 255, 0.5);
+  border: calc(1.5 * var(--px)) solid rgba(255, 255, 255, 0.19);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.aaron-mini-photos__indicator {
+  position: absolute;
+  top: 50%;
+  left: 8%;
+  z-index: 0;
+  width: calc(48 * var(--px));
+  height: calc(32 * var(--px));
+  margin-top: calc(-16 * var(--px));
+  border-radius: 100px;
+  background: #fff;
+}
+
+.aaron-mini-photos__dock-btn {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aaron-mini-photos__dock-btn img {
+  display: block;
+  width: calc(18 * var(--px));
+  height: calc(18 * var(--px));
+  opacity: 0.55;
+}
+
+.aaron-mini-photos__dock-btn.is-active img {
+  opacity: 1;
 }
 
 /* —— Shared page layout (work / gallery) —— */
@@ -559,6 +782,12 @@ html[data-theme="dark"] .aaron-contact__item img[src*="email"] {
 .aaron-work-intro,
 .aaron-gallery-intro {
   padding: 28px 32px;
+}
+
+/* Match Work intro tile to the iPad card width */
+.aaron-work-intro {
+  max-width: 1000px;
+  margin-inline: auto;
 }
 
 .aaron-work-intro__title,
@@ -615,15 +844,22 @@ html[data-theme="dark"] .aaron-contact__item img[src*="email"] {
     max-width: 100%;
   }
 
-  .aaron-grid__column:first-child,
-  .aaron-grid__column:last-child {
+  .aaron-grid__column--left,
+  .aaron-grid__column--right {
     grid-template-rows: none;
   }
 
-  .aaron-awards,
-  .aaron-education,
-  .aaron-certs,
-  .aaron-contact {
+  .aaron-mini--phone,
+  .aaron-mini--ipad {
+    min-height: 420px;
+    height: 480px;
+  }
+
+  .aaron-mini-phone {
+    --px: calc(100cqi * 0.58 / 278);
+  }
+
+  .aaron-awards {
     padding: 20px;
   }
 
@@ -660,14 +896,6 @@ html[data-theme="dark"] .aaron-contact__item img[src*="email"] {
 
   .aaron-hero__statement {
     font-size: 16px;
-  }
-
-  .aaron-education__row {
-    font-size: 14px;
-  }
-
-  .aaron-education__detail {
-    font-size: 13px;
   }
 
   .aaron-hero__description li {

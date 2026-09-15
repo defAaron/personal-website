@@ -62,6 +62,7 @@
       { id: 'arc-2', title: 'LinkedIn', subtitle: 'linkedin.com/in/aaron-dutta', icon: 'assets/dock/linkedin.svg', href: 'https://linkedin.com/in/aaron-dutta', external: true, copy: true },
       { id: 'arc-3', title: 'GitHub', subtitle: 'github.com/defAaron', icon: 'assets/dock/github.svg', href: 'https://github.com/defAaron', external: true, copy: true },
       { id: 'arc-4', title: 'X', subtitle: 'x.com/theaar0ndutta', icon: 'assets/dock/x.svg', href: 'https://x.com/theaar0ndutta', external: true, copy: true },
+      { id: 'arc-mail', title: 'Email', subtitle: 'aaron.dutta22@uwaterloo.ca', icon: 'assets/dock/email.svg', href: 'mailto:aaron.dutta22@uwaterloo.ca', external: false, copy: true, copyValue: 'aaron.dutta22@uwaterloo.ca' },
       { id: 'arc-5', title: 'Devpost', subtitle: 'devpost.com/defAaron', icon: 'assets/dock/devpost.svg', href: 'https://devpost.com/defAaron', external: true, copy: true },
       { id: 'arc-6', title: 'YouTube', subtitle: 'youtube.com/@aaron_dutta', icon: 'assets/dock/youtube.svg', href: 'https://youtube.com/@aaron_dutta', external: true, copy: true },
     ],
@@ -281,8 +282,10 @@
     const copyBtn = document.createElement('button');
     copyBtn.type = 'button';
     copyBtn.className = 'mac-dock-tab__copy';
-    copyBtn.setAttribute('aria-label', `Copy ${label} link`);
-    copyBtn.title = 'Copy link';
+    const isEmail = String(url).includes('@') && !String(url).startsWith('http');
+    const copyNoun = isEmail ? 'address' : 'link';
+    copyBtn.setAttribute('aria-label', `Copy ${label} ${copyNoun}`);
+    copyBtn.title = isEmail ? 'Copy email' : 'Copy link';
 
     const img = document.createElement('img');
     img.src = 'assets/icons/copy.svg';
@@ -299,12 +302,12 @@
       const done = () => {
         copyBtn.classList.add('is-copied');
         copyBtn.title = 'Copied!';
-        copyBtn.setAttribute('aria-label', `Copied ${label} link`);
+        copyBtn.setAttribute('aria-label', `Copied ${label} ${copyNoun}`);
         window.clearTimeout(copyBtn._copyTimer);
         copyBtn._copyTimer = window.setTimeout(() => {
           copyBtn.classList.remove('is-copied');
-          copyBtn.title = 'Copy link';
-          copyBtn.setAttribute('aria-label', `Copy ${label} link`);
+          copyBtn.title = isEmail ? 'Copy email' : 'Copy link';
+          copyBtn.setAttribute('aria-label', `Copy ${label} ${copyNoun}`);
         }, 1500);
       };
 
@@ -377,7 +380,7 @@
       wrap.appendChild(card);
 
       if (tab.copy) {
-        wrap.appendChild(createCopyButton(tab.href, tab.title));
+        wrap.appendChild(createCopyButton(tab.copyValue || tab.href, tab.title));
       }
 
       tabRow.appendChild(wrap);

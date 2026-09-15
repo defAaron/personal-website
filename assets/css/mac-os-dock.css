@@ -403,7 +403,8 @@ html[data-theme="dark"] .mac-dock__ring {
 }
 
 html[data-theme="dark"] .mac-dock-tab__icon-img[src*="github"],
-html[data-theme="dark"] .mac-dock-tab__icon-img[src*="x.svg"] {
+html[data-theme="dark"] .mac-dock-tab__icon-img[src*="x.svg"],
+html[data-theme="dark"] .mac-dock-tab__icon-img[src*="email"] {
   filter: invert(1);
 }
 
