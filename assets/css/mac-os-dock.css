@@ -44,7 +44,7 @@ html[data-theme="dark"] {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  gap: 1rem;
+  gap: 0.875rem;
   padding: 4px 0 8px;
   overflow: visible;
 }
@@ -55,7 +55,7 @@ html[data-theme="dark"] {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 12px 12px 18px;
+  padding: 12px 14px 24px;
   background: var(--aaron-dock-panel);
   border: 1px solid var(--aaron-dock-panel-border);
   border-radius: 10px;
@@ -105,6 +105,8 @@ html[data-theme="dark"] {
   scrollbar-width: none;
   -ms-overflow-style: none;
   min-width: 0;
+  /* keep tab borders + shadows inside the scrollport */
+  padding: 3px 4px 10px;
 }
 
 .mac-dock-tabs__row::-webkit-scrollbar {
@@ -255,29 +257,32 @@ html[data-theme="dark"] .mac-dock-tab__copy.is-copied img {
   color: var(--aaron-dock-subtitle);
 }
 
-/* tilda-arrow caret */
+/* tilda-tail caret — curved valley pointing at the active dock app */
 .mac-dock-tabs__caret {
   position: absolute;
   bottom: -12px;
-  width: 34px;
-  height: 14px;
-  margin-left: -17px;
+  width: 42px;
+  height: 12.9px;
+  margin-left: -21px;
   pointer-events: none;
   z-index: 3;
+  overflow: visible;
   transition: left 0.25s ease;
-  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.06));
 }
 
 .mac-dock-tabs__caret svg {
   display: block;
   width: 100%;
   height: 100%;
+  overflow: visible;
 }
 
-.mac-dock-tabs__caret path {
+.mac-dock-tabs__caret-fill {
   fill: var(--aaron-dock-panel);
-  stroke: var(--aaron-dock-panel-border);
-  stroke-width: 1;
+}
+
+.mac-dock-tabs__caret-border {
+  fill: var(--aaron-dock-panel-border);
 }
 
 /* —— cmd-dock (icon strip) —— */
@@ -444,6 +449,6 @@ html[data-theme="dark"] .mac-dock-tab__icon-img[src*="email"] {
   }
 
   .mac-dock-tabs {
-    padding: 8px 8px 12px;
+    padding: 10px 10px 18px;
   }
 }

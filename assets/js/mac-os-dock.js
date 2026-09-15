@@ -118,13 +118,19 @@
   tabCaret.setAttribute('aria-hidden', 'true');
 
   const caretSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  caretSvg.setAttribute('width', '34');
-  caretSvg.setAttribute('height', '14');
-  caretSvg.setAttribute('viewBox', '0 0 34 14');
+  caretSvg.setAttribute('viewBox', '0 0 234 72');
   caretSvg.setAttribute('fill', 'none');
-  const caretPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-  caretPath.setAttribute('d', 'M17 14L0 0h34L17 14z');
-  caretSvg.appendChild(caretPath);
+  caretSvg.setAttribute('aria-hidden', 'true');
+
+  const caretFill = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  caretFill.setAttribute('class', 'mac-dock-tabs__caret-fill');
+  caretFill.setAttribute('d', 'M104.733 54.8038L81.1269 31.1977C69.6131 19.6839 63.8562 13.927 57.138 9.81008C51.1816 6.16001 44.6878 3.4702 37.8951 1.8394C30.2334 0 22.0919 0 5.80899 0H227.194C210.911 0 202.769 0 195.108 1.8394C188.315 3.4702 181.821 6.16001 175.865 9.81008C169.147 13.927 163.39 19.6839 151.876 31.1977L128.27 54.8038C121.77 61.3034 111.233 61.3033 104.733 54.8038Z');
+
+  const caretBorder = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  caretBorder.setAttribute('class', 'mac-dock-tabs__caret-border');
+  caretBorder.setAttribute('d', 'M227.194 8.32153C210.515 8.32153 203.532 8.37501 197.05 9.931C191.107 11.358 185.425 13.7115 180.213 16.9053C174.53 20.388 169.554 25.2881 157.76 37.0819L134.154 60.6881C124.405 70.4373 108.598 70.4373 98.8488 60.688L75.2427 37.0819C63.4488 25.288 58.4731 20.388 52.79 16.9053C47.5781 13.7115 41.8961 11.358 35.9524 9.931C29.4713 8.37501 22.488 8.32153 5.80899 8.32153H0V0H5.80899C22.0919 0 30.2334 0 37.8951 1.8394C44.6878 3.4702 51.1816 6.16001 57.138 9.81008C63.8562 13.927 69.6131 19.6839 81.1269 31.1977L104.733 54.8038C111.233 61.3033 121.77 61.3034 128.27 54.8038L151.876 31.1977C163.39 19.6839 169.147 13.927 175.865 9.81008C181.821 6.16001 188.315 3.4702 195.108 1.8394C202.769 0 210.911 0 227.194 0H233.003V8.32153H227.194Z');
+
+  caretSvg.append(caretFill, caretBorder);
   tabCaret.appendChild(caretSvg);
 
   tabPanel.append(tabHeader, tabRow, tabCaret);
