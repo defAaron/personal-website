@@ -3,10 +3,10 @@
  */
 (function () {
   const SOUNDS = {
-    nav: 'assets/sounds/nav-click.mp3',
-    app: 'assets/sounds/app-click.mp3',
-    tilda: 'assets/sounds/tilda-click.mp3',
-    item: 'assets/sounds/item-click.mp3',
+    nav: '/assets/sounds/nav-click.mp3',
+    app: '/assets/sounds/app-click.mp3',
+    tilda: '/assets/sounds/tilda-click.mp3',
+    item: '/assets/sounds/item-click.mp3',
   };
 
   const PRESS_RULES = [

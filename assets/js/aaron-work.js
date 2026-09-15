@@ -78,7 +78,7 @@
     skyeye: {
       name: 'SkyEye',
       sortDate: 202608,
-      mp4: 'assets/projects/skyeye/preview.mp4',
+      mp4: '/assets/projects/skyeye/preview.mp4',
       desc: 'an AI-assisted missing person search tool that turns a free-text report into a Lost Person Behavior search ring, then scans drone photographs for ranked person-shaped candidates so rescue teams know where to look first.',
       stack: ['Python', 'Flask', 'YOLOv8n', 'ONNX', 'Gemini API', 'Groq', 'Google Maps API', 'React', 'TypeScript', 'Vite', 'Three.js', 'Docker', 'Vercel', 'Render'],
       write: [
@@ -111,7 +111,7 @@
     baio: {
       name: 'baio',
       sortDate: 202608,
-      mp4: 'assets/projects/baio/baio.mp4',
+      mp4: '/assets/projects/baio/baio.mp4',
       desc: 'magic paper with AI autocomplete for drawing: sketch a rough webpage, press enter, and real editable components bloom in like wet ink exactly where you drew them, then frame it into a working website.',
       stack: ['Next.js', 'TypeScript', 'Gemini API', 'Anthropic API', 'FreeSolo', 'Qwen3.5-2B', 'perfect-freehand', 'framer-motion', 'Zod', 'Vercel', 'Base44'],
       write: [
@@ -122,7 +122,7 @@
     techniquetitan: {
       name: 'TechTitan',
       sortDate: 202609,
-      mp4: 'assets/projects/techniquetitan/techtitan.mp4',
+      mp4: '/assets/projects/techniquetitan/techtitan.mp4',
       desc: 'a real-time hand tracking and 21-landmark finger bone recognition computer vision application that evaluates hand piano posture through live camera feed, running a feedback engine for heuristic scoring.',
       stack: ['Python', 'MediaPipe', 'OpenCV', 'NumPy', 'FastAPI', 'React', 'TypeScript', 'Tailwind', 'Streamlit', 'PyYAML', 'Vercel', 'Docker', 'Render', 'Github Actions + pytest'],
       write: [
@@ -144,7 +144,7 @@
     fraudgen: {
       name: 'FraudGen',
       sortDate: 202603,
-      mp4: 'assets/projects/fraudgen/fraudgen.mp4',
+      mp4: '/assets/projects/fraudgen/fraudgen.mp4',
       desc: 'a multi-agent adversarial AI pipeline that synthesizes fraud transaction networks, closing the known-unknown gap in GNN-based fraud detection.',
       stack: ['Python', 'Anthropic API', 'Streamlit', 'Next.js', 'FastAPI', 'Pandas', 'Pydantic', 'Matplotlib'],
       write: [
@@ -251,12 +251,12 @@
     </svg>`;
 
   const ISSUER_ICONS = {
-    Microsoft: 'assets/certs/microsoft.png',
-    Google: 'assets/certs/google.png',
-    Anthropic: 'assets/certs/anthropic.png',
-    RCM: 'assets/certs/rcm-favicon.png',
-    'Harvard University + edX': 'assets/certs/harvard.png',
-    'Lifesaving Society Canada': 'assets/certs/lifesaving.png',
+    Microsoft: '/assets/certs/microsoft.png',
+    Google: '/assets/certs/google.png',
+    Anthropic: '/assets/certs/anthropic.png',
+    RCM: '/assets/certs/rcm-favicon.png',
+    'Harvard University + edX': '/assets/certs/harvard.png',
+    'Lifesaving Society Canada': '/assets/certs/lifesaving.png',
   };
 
   function esc(value) {

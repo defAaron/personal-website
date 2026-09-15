@@ -9,7 +9,7 @@
     {
       id: 'arc',
       name: 'Arc',
-      icon: 'assets/dock/arc.webp',
+      icon: '/assets/dock/arc.webp',
       accent: '#fc5c54',
       accentBg: '#ffe8e6',
       tabActiveBg: '#fff0ef',
@@ -17,7 +17,7 @@
     {
       id: 'notion',
       name: 'Notion',
-      icon: 'assets/dock/notion.webp',
+      icon: '/assets/dock/notion.webp',
       accent: '#6366f1',
       accentBg: '#dbddff',
       tabActiveBg: '#eff0ff',
@@ -25,7 +25,7 @@
     {
       id: 'cursor',
       name: 'Cursor',
-      icon: 'assets/dock/cursor.png',
+      icon: '/assets/dock/cursor.png',
       accent: '#6366f1',
       accentBg: '#e8eafc',
       tabActiveBg: '#eff0ff',
@@ -33,7 +33,7 @@
     {
       id: 'figma',
       name: 'Figma',
-      icon: 'assets/dock/figma.webp',
+      icon: '/assets/dock/figma.webp',
       accent: '#a259ff',
       accentBg: '#ede5ff',
       tabActiveBg: '#f5f0ff',
@@ -41,7 +41,7 @@
     {
       id: 'claude',
       name: 'Claude',
-      icon: 'assets/dock/claude.png',
+      icon: '/assets/dock/claude.png',
       accent: '#d97757',
       accentBg: '#fdeee8',
       tabActiveBg: '#fff5f0',
@@ -49,7 +49,7 @@
     {
       id: 'spotify',
       name: 'Spotify',
-      icon: 'assets/dock/spotify.svg',
+      icon: '/assets/dock/spotify.svg',
       accent: '#1ed760',
       accentBg: '#dcfce7',
       tabActiveBg: '#ecfdf3',
@@ -59,12 +59,12 @@
   const APP_TABS = {
     arc: [
       { id: 'arc-1', title: 'Aaron Dutta', subtitle: 'aarondutta.com', emoji: '👤', href: 'https://aarondutta.com', external: true, copy: true },
-      { id: 'arc-2', title: 'LinkedIn', subtitle: 'linkedin.com/in/aaron-dutta', icon: 'assets/dock/linkedin.svg', href: 'https://linkedin.com/in/aaron-dutta', external: true, copy: true },
-      { id: 'arc-3', title: 'GitHub', subtitle: 'github.com/defAaron', icon: 'assets/dock/github.svg', href: 'https://github.com/defAaron', external: true, copy: true },
-      { id: 'arc-4', title: 'X', subtitle: 'x.com/theaar0ndutta', icon: 'assets/dock/x.svg', href: 'https://x.com/theaar0ndutta', external: true, copy: true },
-      { id: 'arc-mail', title: 'Email', subtitle: 'aaron.dutta22@uwaterloo.ca', icon: 'assets/dock/email.svg', href: 'mailto:aaron.dutta22@uwaterloo.ca', external: false, copy: true, copyValue: 'aaron.dutta22@uwaterloo.ca' },
-      { id: 'arc-5', title: 'Devpost', subtitle: 'devpost.com/defAaron', icon: 'assets/dock/devpost.svg', href: 'https://devpost.com/defAaron', external: true, copy: true },
-      { id: 'arc-6', title: 'YouTube', subtitle: 'youtube.com/@aaron_dutta', icon: 'assets/dock/youtube.svg', href: 'https://youtube.com/@aaron_dutta', external: true, copy: true },
+      { id: 'arc-2', title: 'LinkedIn', subtitle: 'linkedin.com/in/aaron-dutta', icon: '/assets/dock/linkedin.svg', href: 'https://linkedin.com/in/aaron-dutta', external: true, copy: true },
+      { id: 'arc-3', title: 'GitHub', subtitle: 'github.com/defAaron', icon: '/assets/dock/github.svg', href: 'https://github.com/defAaron', external: true, copy: true },
+      { id: 'arc-4', title: 'X', subtitle: 'x.com/theaar0ndutta', icon: '/assets/dock/x.svg', href: 'https://x.com/theaar0ndutta', external: true, copy: true },
+      { id: 'arc-mail', title: 'Email', subtitle: 'aaron.dutta22@uwaterloo.ca', icon: '/assets/dock/email.svg', href: 'mailto:aaron.dutta22@uwaterloo.ca', external: false, copy: true, copyValue: 'aaron.dutta22@uwaterloo.ca' },
+      { id: 'arc-5', title: 'Devpost', subtitle: 'devpost.com/defAaron', icon: '/assets/dock/devpost.svg', href: 'https://devpost.com/defAaron', external: true, copy: true },
+      { id: 'arc-6', title: 'YouTube', subtitle: 'youtube.com/@aaron_dutta', icon: '/assets/dock/youtube.svg', href: 'https://youtube.com/@aaron_dutta', external: true, copy: true },
     ],
     notion: [
       { id: 'notion-1', title: 'TechniqueTitan Notes', subtitle: "Aaron's Workspace", emoji: '📝', href: '#', external: false },
@@ -91,7 +91,7 @@
       { id: 'spotify-3', title: 'Piano Concerto No. 2 in C Minor, Op. 18: II. Adagio sostenuto', subtitle: 'Sergei Rachmaninoff', emoji: '🎹', href: '#', external: false },
     ],
     claude: [
-      { id: 'claude-1', title: 'hey claude, print my resume', subtitle: 'Resume.pdf', emoji: '💬', href: 'assets/docs/resume.pdf', external: true },
+      { id: 'claude-1', title: 'hey claude, print my resume', subtitle: 'Resume.pdf', emoji: '💬', href: '/assets/docs/resume.pdf', external: true },
     ],
   };
 
@@ -288,7 +288,7 @@
     copyBtn.title = isEmail ? 'Copy email' : 'Copy link';
 
     const img = document.createElement('img');
-    img.src = 'assets/icons/copy.svg';
+    img.src = '/assets/icons/copy.svg';
     img.alt = '';
     img.width = 12;
     img.height = 12;

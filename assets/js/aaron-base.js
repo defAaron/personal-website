@@ -1,6 +1,11 @@
 (function () {
-  const path = window.location.pathname.split('/').pop() || 'index.html';
-  const onHomePage = path === '' || path === 'index.html';
+  function normalizePath(p) {
+    if (!p || p === '/' || p === './' || p === '#' || p === 'index.html' || p === '/index.html') return '/';
+    return p.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+  }
+
+  const currentPath = normalizePath(window.location.pathname);
+  const onHomePage = currentPath === '/';
 
   /* Preloader */
   const preloader = document.getElementById('aaron-preloader');
@@ -41,10 +46,7 @@
 
   navItems.forEach((item) => {
     const href = item.getAttribute('href') || '';
-    const isHomeLink = href === '#' || href === './' || href === '/' || href === 'index.html';
-    const isActive =
-      href === path ||
-      (onHomePage && isHomeLink && item.textContent.trim().toLowerCase() === 'home');
+    const isActive = normalizePath(href) === currentPath;
 
     item.classList.toggle('is-active', isActive);
     if (isActive) item.setAttribute('aria-current', 'page');

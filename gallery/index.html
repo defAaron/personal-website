@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('aaron-theme');
+        var theme = stored === 'dark' || stored === 'light'
+          ? stored
+          : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    })();
+  </script>
+  <script src="/assets/js/google-analytics.js"></script>
+  <title>Aaron's Gallery</title>
+  <meta name="description" content="Gallery of artwork and creative work by Aaron Dutta.">
+  <link rel="canonical" href="https://aarondutta.com/gallery">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="stylesheet" href="/assets/css/aaron-base.css">
+  <link rel="stylesheet" href="/assets/css/aaron-gallery.css?v=2">
+  <script src="/assets/js/aaron-base.js" defer></script>
+  <script src="/assets/js/aaron-gallery.js?v=2" defer></script>
+  <script src="/assets/js/aaron-sounds.js" defer></script>
+</head>
+<body>
+  <div class="aaron-preloader" id="aaron-preloader" aria-hidden="true">
+    <div class="aaron-preloader__dots">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <div class="aaron-page">
+    <header class="aaron-nav-fixed">
+      <nav class="aaron-nav" aria-label="Primary">
+        <a href="/" class="aaron-nav__item">Home</a>
+        <a href="/work" class="aaron-nav__item">Work</a>
+        <a href="/gallery" class="aaron-nav__item">Gallery</a>
+        <button type="button" class="aaron-theme-toggle" aria-label="Switch to dark mode" title="Dark mode">
+          <svg class="aaron-theme-toggle__moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+          </svg>
+          <svg class="aaron-theme-toggle__sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2"/>
+            <path d="M12 20v2"/>
+            <path d="m4.93 4.93 1.41 1.41"/>
+            <path d="m17.66 17.66 1.41 1.41"/>
+            <path d="M2 12h2"/>
+            <path d="M20 12h2"/>
+            <path d="m6.34 17.66-1.41 1.41"/>
+            <path d="m19.07 4.93-1.41 1.41"/>
+          </svg>
+        </button>
+      </nav>
+    </header>
+
+    <main class="aaron-gallery-main">
+      <div class="aaron-gallery-main__col">
+        <section class="aaron-tile aaron-gallery-intro">
+          <h1 class="aaron-gallery-intro__title">Gallery</h1>
+          <p class="aaron-gallery-intro__desc">a visual scrapbook of my passions and experiences.</p>
+          <p class="aaron-gallery-intro__desc">navigate through the phone to view photos.</p>
+        </section>
+
+        <section class="aaron-panel is-active" data-panel="auckland" role="tabpanel">
+          <div class="aaron-tile aaron-split__copy">
+            <p class="aaron-split__desc"><a href="https://uwaterloo.ca" class="aaron-hero__hl aaron-hero__hl--yellow" target="_blank" rel="noopener noreferrer">@uwaterloo</a> invited me to a week-long workshop for the top 70 math students in Canada. problem solving sessions, first-year level math and cs lectures, new friends, and meeting Waterloo students and math/cs professors.</p>
+            <figure class="aaron-split__feature">
+              <img src="/assets/gallery/auckland/group.webp" alt="Auckland workshop group">
+            </figure>
+          </div>
+        </section>
+
+        <section class="aaron-panel" data-panel="drawings" role="tabpanel" hidden>
+          <div class="aaron-tile aaron-split__copy">
+            <p class="aaron-split__desc">art I created from multiple tools: graphite, pastel, charcoal, color pencils, watercolors, and acrylics.</p>
+            <figure class="aaron-split__feature">
+              <img src="/assets/gallery/drawings/tiger.webp" alt="Tiger drawing" loading="lazy">
+            </figure>
+          </div>
+        </section>
+
+        <section class="aaron-panel" data-panel="piano" role="tabpanel" hidden>
+          <div class="aaron-tile aaron-split__copy">
+            <p class="aaron-split__desc">my favorite past-time activity since I was 3. currently working towards my ARCT diploma. check out my <a href="https://www.youtube.com/@aaron.dutta" class="aaron-hero__hl aaron-hero__hl--red" target="_blank" rel="noopener noreferrer">YouTube channel </a> for my performances.</p>
+            <figure class="aaron-split__feature">
+              <img src="/assets/gallery/piano/10.webp" alt="Piano performance" loading="lazy">
+            </figure>
+          </div>
+        </section>
+
+        <section class="aaron-panel" data-panel="travel" role="tabpanel" hidden>
+          <div class="aaron-tile aaron-split__copy">
+            <p class="aaron-split__desc">travelling the world and exploring the beauty it has to offer. click on different parts of the calendar to view where I've been.</p>
+            <figure class="aaron-split__feature" id="aaron-travel-feature">
+              <img class="aaron-fade__img is-active" data-country="canada" src="/assets/gallery/travel/canada/ban16.webp" alt="Banff, Canada">
+              <img class="aaron-fade__img" data-country="spain" src="/assets/gallery/travel/spain/spain1.webp" alt="Spain" loading="lazy">
+              <img class="aaron-fade__img" data-country="france" src="/assets/gallery/travel/france/france1.webp" alt="France" loading="lazy">
+              <img class="aaron-fade__img" data-country="italy" src="/assets/gallery/travel/italy/italy1.webp" alt="Italy" loading="lazy">
+              <img class="aaron-fade__img" data-country="austria" src="/assets/gallery/travel/austria/aus1.webp" alt="Austria" loading="lazy">
+              <img class="aaron-fade__img" data-country="switzerland" src="/assets/gallery/travel/switzerland/swiss1.webp" alt="Switzerland" loading="lazy">
+            </figure>
+          </div>
+        </section>
+      </div>
+
+      <div class="aaron-gallery-main__col aaron-gallery-main__col--phone">
+          <div class="aaron-tile aaron-split__phone" id="aaron-phone-tile">
+            <div class="aaron-phone-frame">
+              <div class="aaron-phone" id="aaron-phone">
+              <img class="aaron-phone__shell" src="/assets/phone/iphone.png" alt="" width="800" height="1616">
+
+              <div class="aaron-phone__screen">
+                <div class="aaron-phone__status">
+                  <span class="aaron-phone__time">
+                    <span id="aaron-phone-time">9:41</span>
+                    <span class="aaron-phone__tz">(live EST)</span>
+                  </span>
+                  <img class="aaron-phone__status-icons" src="/assets/phone/status-icons.svg" alt="">
+                </div>
+
+                <div class="aaron-photos" id="aaron-photos">
+                  <img class="aaron-photos__app" src="/assets/phone/photos-icon.webp" alt="" width="56" height="56">
+
+                  <div class="aaron-photos__heading-row">
+                    <button type="button" class="aaron-photos__back" id="aaron-photos-back" hidden aria-label="Back to calendar">‹</button>
+                    <div class="aaron-photos__heading" id="aaron-photos-heading">Auckland Workshop</div>
+                  </div>
+
+                  <div class="aaron-photos__stage">
+                    <div class="aaron-photos__album is-active" data-album="auckland">
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/auckland/bus.webp" alt="Bus to campus">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/auckland/hall.webp" alt="Residence hall">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/auckland/uwsign.webp" alt="University of Waterloo sign">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/auckland/uwshop.webp" alt="University of Waterloo shop">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/auckland/drip.webp" alt="Drip coffee">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/auckland/class1.webp" alt="Morning lecture">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/auckland/class2.webp" alt="Problem solving">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/auckland/class3.webp" alt="CS lecture">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/auckland/class4.webp" alt="Class session">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/auckland/table.webp" alt="Lunch">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/auckland/garden.webp" alt="Campus garden">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/auckland/geese.webp" alt="Geese">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/auckland/golf.webp" alt="Golf">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/auckland/group.webp" alt="Workshop group">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/auckland/participants.webp" alt="Workshop participants">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/auckland/aaronshane1.webp" alt="Aaron with certificate">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/auckland/pool1.webp" alt="Pool">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/auckland/pool2.webp" alt="Pool">
+                      </div>
+                    </div>
+
+                    <div class="aaron-photos__album" data-album="drawings" hidden>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/drawings/collage.webp" alt="Drawing collage" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/drawings/tiger.webp" alt="Tiger drawing" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/drawings/ganesh.webp" alt="Ganesh drawing" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/drawings/will.webp" alt="Portrait drawing" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/drawings/lips.webp" alt="Lips drawing" loading="lazy">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/drawings/eye1.webp" alt="Eye drawing" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/drawings/eye2.webp" alt="Eye drawing" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/drawings/foot.webp" alt="Foot drawing" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/drawings/bird.webp" alt="Bird drawing" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/drawings/chicken.webp" alt="Chicken drawing" loading="lazy">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/drawings/ladybug.webp" alt="Ladybug drawing" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/drawings/feather.webp" alt="Feather drawing" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/drawings/apple.webp" alt="Apple drawing" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/drawings/lemon.webp" alt="Lemon drawing" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/drawings/lemon_slices.webp" alt="Lemon slices drawing" loading="lazy">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/drawings/vase.webp" alt="Vase drawing" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/drawings/beach.webp" alt="Beach drawing" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/drawings/plains.webp" alt="Plains drawing" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/drawings/skyscraper.webp" alt="Skyscraper drawing" loading="lazy">
+                      </div>
+                    </div>
+                    <div class="aaron-photos__album" data-album="piano" hidden>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/piano/1.webp" alt="Piano moment" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/piano/2.webp" alt="Piano moment" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/piano/3.webp" alt="Piano moment" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/piano/4.webp" alt="Piano moment" loading="lazy">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/piano/5.webp" alt="Piano moment" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/piano/6.webp" alt="Piano moment" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/piano/7.webp" alt="Piano moment" loading="lazy">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/piano/8.webp" alt="Piano moment" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/piano/9.webp" alt="Piano moment" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/piano/10.webp" alt="Piano moment" loading="lazy">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/piano/11.webp" alt="Piano moment" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/piano/12.webp" alt="Piano moment" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/piano/13.webp" alt="Piano moment" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/piano/A.webp" alt="Piano moment" loading="lazy">
+                      </div>
+                    </div>
+                    <div class="aaron-photos__album" data-album="travel" hidden>
+                      <div class="aaron-travel-cal">
+                        <div class="aaron-phone__heading">
+                          <div class="aaron-phone__heading-inner">
+                            <div class="aaron-phone__cal-label">Calendar</div>
+                            <div class="aaron-phone__cal-date">Travel</div>
+                          </div>
+                          <div class="aaron-phone__rule"></div>
+                        </div>
+                        <div class="aaron-phone__hours">
+                      <div class="aaron-phone__hour" data-country="canada">
+                        <div class="aaron-phone__times"><span class="aaron-phone__tick">2026</span><span class="aaron-phone__tick">2024</span></div>
+                        <article class="aaron-phone__event is-purple" data-country="canada" role="button" tabindex="0" aria-label="Open Canada photos">
+                          <img class="aaron-phone__event-shot" src="/assets/gallery/travel/canada/ban16.webp" alt="" loading="lazy">
+                          <span class="aaron-phone__event-bar"></span>
+                          <div class="aaron-phone__event-body">
+                            <div>
+                              <div class="aaron-phone__event-title">Canada</div>
+                              <div class="aaron-phone__event-when">34 photos</div>
+                            </div>
+                            <div class="aaron-phone__event-cal"><img src="/assets/phone/google-logo.svg" alt=""><span>Banff, Canmore, Jasper</span></div>
+                          </div>
+                        </article>
+                        <div class="aaron-phone__slot">
+                          <img src="/assets/gallery/travel/canada/ban16.webp" alt="Canada" loading="lazy">
+                          <div class="aaron-phone__slot-meta"><span>34</span><span>photos</span></div>
+                        </div>
+                      </div>
+                      <div class="aaron-phone__hour" data-country="spain">
+                        <div class="aaron-phone__times"><span class="aaron-phone__tick is-hidden">2024</span><span class="aaron-phone__tick is-hidden"></span></div>
+                        <article class="aaron-phone__event is-yellow" data-country="spain" role="button" tabindex="0" aria-label="Open Spain photos">
+                          <img class="aaron-phone__event-shot" src="/assets/gallery/travel/spain/spain1.webp" alt="" loading="lazy">
+                          <span class="aaron-phone__event-bar"></span>
+                          <div class="aaron-phone__event-body">
+                            <div>
+                              <div class="aaron-phone__event-title">Spain</div>
+                              <div class="aaron-phone__event-when">34 photos</div>
+                            </div>
+                            <div class="aaron-phone__event-cal"><img src="/assets/phone/google-logo.svg" alt=""><span>Barcelona, Montserrat, Seville</span></div>
+                          </div>
+                        </article>
+                        <div class="aaron-phone__slot">
+                          <img src="/assets/gallery/travel/spain/spain1.webp" alt="Spain" loading="lazy">
+                          <div class="aaron-phone__slot-meta"><span>34</span><span>photos</span></div>
+                        </div>
+                      </div>
+                      <div class="aaron-phone__hour" data-country="france">
+                        <div class="aaron-phone__times"><span class="aaron-phone__tick is-hidden"></span><span class="aaron-phone__tick">2023</span></div>
+                        <article class="aaron-phone__event is-pink" data-country="france" role="button" tabindex="0" aria-label="Open France photos">
+                          <img class="aaron-phone__event-shot" src="/assets/gallery/travel/france/france1.webp" alt="" loading="lazy">
+                          <span class="aaron-phone__event-bar"></span>
+                          <div class="aaron-phone__event-body">
+                            <div>
+                              <div class="aaron-phone__event-title">France + Monaco</div>
+                              <div class="aaron-phone__event-when">13 photos</div>
+                            </div>
+                            <div class="aaron-phone__event-cal"><img src="/assets/phone/google-logo.svg" alt=""><span>Nice, Cannes, Eze</span></div>
+                          </div>
+                        </article>
+                        <div class="aaron-phone__slot">
+                          <img src="/assets/gallery/travel/france/france1.webp" alt="France" loading="lazy">
+                          <div class="aaron-phone__slot-meta"><span>13</span><span>photos</span></div>
+                        </div>
+                      </div>
+                      <div class="aaron-phone__hour" data-country="italy">
+                        <div class="aaron-phone__times"><span class="aaron-phone__tick is-hidden">2023</span><span class="aaron-phone__tick">2018</span></div>
+                        <article class="aaron-phone__event is-green" data-country="italy" role="button" tabindex="0" aria-label="Open Italy photos">
+                          <img class="aaron-phone__event-shot" src="/assets/gallery/travel/italy/italy1.webp" alt="" loading="lazy">
+                          <span class="aaron-phone__event-bar"></span>
+                          <div class="aaron-phone__event-body">
+                            <div>
+                              <div class="aaron-phone__event-title">Italy</div>
+                              <div class="aaron-phone__event-when">11 photos</div>
+                            </div>
+                            <div class="aaron-phone__event-cal"><img src="/assets/phone/google-logo.svg" alt=""><span>Venice, Florence, Rome, Milan, Pisa, Como, Brescia</span></div>
+                          </div>
+                        </article>
+                        <div class="aaron-phone__slot">
+                          <img src="/assets/gallery/travel/italy/italy1.webp" alt="Italy" loading="lazy">
+                          <div class="aaron-phone__slot-meta"><span>11</span><span>photos</span></div>
+                        </div>
+                      </div>
+                      <div class="aaron-phone__hour" data-country="austria">
+                        <div class="aaron-phone__times"><span class="aaron-phone__tick is-hidden">2018</span><span class="aaron-phone__tick">2017</span></div>
+                        <article class="aaron-phone__event" data-country="austria" role="button" tabindex="0" aria-label="Open Austria photos">
+                          <img class="aaron-phone__event-shot" src="/assets/gallery/travel/austria/aus1.webp" alt="" loading="lazy">
+                          <span class="aaron-phone__event-bar"></span>
+                          <div class="aaron-phone__event-body">
+                            <div>
+                              <div class="aaron-phone__event-title">Austria</div>
+                              <div class="aaron-phone__event-when">8 photos</div>
+                            </div>
+                            <div class="aaron-phone__event-cal"><img src="/assets/phone/google-logo.svg" alt=""><span>Vienna, Salzburg, Hallstatt</span></div>
+                          </div>
+                        </article>
+                        <div class="aaron-phone__slot">
+                          <img src="/assets/gallery/travel/austria/aus1.webp" alt="Austria" loading="lazy">
+                          <div class="aaron-phone__slot-meta"><span>8</span><span>photos</span></div>
+                        </div>
+                      </div>
+                      <div class="aaron-phone__hour" data-country="switzerland">
+                        <div class="aaron-phone__times"><span class="aaron-phone__tick is-hidden">2017</span><span class="aaron-phone__tick is-hidden"></span></div>
+                        <article class="aaron-phone__event is-purple" data-country="switzerland" role="button" tabindex="0" aria-label="Open Switzerland photos">
+                          <img class="aaron-phone__event-shot" src="/assets/gallery/travel/switzerland/swiss1.webp" alt="" loading="lazy">
+                          <span class="aaron-phone__event-bar"></span>
+                          <div class="aaron-phone__event-body">
+                            <div>
+                              <div class="aaron-phone__event-title">Switzerland</div>
+                              <div class="aaron-phone__event-when">9 photos</div>
+                            </div>
+                            <div class="aaron-phone__event-cal"><img src="/assets/phone/google-logo.svg" alt=""><span>Zermatt, Lauterbrunnen, Grindelwald, Interlaken, Zurich</span></div>
+                          </div>
+                        </article>
+                        <div class="aaron-phone__slot">
+                          <img src="/assets/gallery/travel/switzerland/swiss1.webp" alt="Switzerland" loading="lazy">
+                          <div class="aaron-phone__slot-meta"><span>9</span><span>photos</span></div>
+                        </div>
+                      </div>
+                        </div>
+                      </div>
+                    <div class="aaron-travel-country" data-country="canada" hidden>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/travel/canada/ban16.webp" alt="Banff, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/ban21.webp" alt="Banff, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/ban2.webp" alt="Banff, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/ban3.webp" alt="Banff, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/ban4.webp" alt="Banff, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/ban5.webp" alt="Banff, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/ban6.webp" alt="Banff, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/ban7.webp" alt="Banff, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/ban8.webp" alt="Banff, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/ban9.webp" alt="Banff, Canada" loading="lazy">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/travel/canada/ban10.webp" alt="Banff, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/ban11.webp" alt="Banff, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/ban12.webp" alt="Banff, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/ban13.webp" alt="Banff, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/ban14.webp" alt="Banff, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/ban15.webp" alt="Banff, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/ban1.webp" alt="Banff, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/ban17.webp" alt="Banff, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/ban18.webp" alt="Banff, Canada" loading="lazy">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/travel/canada/ban19.webp" alt="Banff, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/ban20.webp" alt="Banff, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/jas1.webp" alt="Jasper, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/jas2.webp" alt="Jasper, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/jas3.webp" alt="Jasper, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/jas4.webp" alt="Jasper, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/jas5.webp" alt="Jasper, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/jas6.webp" alt="Jasper, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/jas7.webp" alt="Jasper, Canada" loading="lazy">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/travel/canada/ani1.webp" alt="Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/ani2.webp" alt="Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/ani3.webp" alt="Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/ani4.webp" alt="Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/ani5.webp" alt="Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/canflight.webp" alt="Canmore, Canada" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/canada/bc.webp" alt="British Columbia, Canada" loading="lazy">
+                      </div>
+                    </div>
+                    <div class="aaron-travel-country" data-country="spain" hidden>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/travel/spain/spain1.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain2.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain3.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain4.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain5.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain6.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain7.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain8.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain9.webp" alt="Spain" loading="lazy">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/travel/spain/spain10.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain11.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain12.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain13.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain14.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain15.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain16.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain17.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain18.webp" alt="Spain" loading="lazy">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/travel/spain/spain19.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain20.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain21.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain22.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain23.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain24.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain25.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain26.webp" alt="Spain" loading="lazy">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/travel/spain/spain27.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain28.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain29.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain30.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain31.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain32.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain33.webp" alt="Spain" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/spain/spain34.webp" alt="Spain" loading="lazy">
+                      </div>
+                    </div>
+                    <div class="aaron-travel-country" data-country="france" hidden>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/travel/france/france1.webp" alt="France" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/france/france2.webp" alt="France" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/france/france3.webp" alt="France" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/france/france4.webp" alt="France" loading="lazy">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/travel/france/france5.webp" alt="France" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/france/france6.webp" alt="France" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/france/france7.webp" alt="France" loading="lazy">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/travel/france/france8.webp" alt="France" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/france/france9.webp" alt="France" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/france/france10.webp" alt="France" loading="lazy">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/travel/france/france11.webp" alt="France" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/france/france12.webp" alt="France" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/france/france13.webp" alt="France" loading="lazy">
+                      </div>
+                    </div>
+                    <div class="aaron-travel-country" data-country="italy" hidden>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/travel/italy/italy1.webp" alt="Italy" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/italy/italy2.webp" alt="Italy" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/italy/italy3.webp" alt="Italy" loading="lazy">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/travel/italy/italy4.webp" alt="Italy" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/italy/italy5.webp" alt="Italy" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/italy/italy6.webp" alt="Italy" loading="lazy">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/travel/italy/italy7.webp" alt="Italy" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/italy/italy8.webp" alt="Italy" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/italy/italy9.webp" alt="Italy" loading="lazy">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/travel/italy/italy10.webp" alt="Italy" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/italy/italy11.webp" alt="Italy" loading="lazy">
+                      </div>
+                    </div>
+                    <div class="aaron-travel-country" data-country="austria" hidden>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/travel/austria/aus1.webp" alt="Austria" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/austria/aus2.webp" alt="Austria" loading="lazy">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/travel/austria/aus3.webp" alt="Austria" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/austria/aus4.webp" alt="Austria" loading="lazy">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/travel/austria/aus5.webp" alt="Austria" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/austria/aus6.webp" alt="Austria" loading="lazy">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/travel/austria/aus7.webp" alt="Austria" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/austria/aus8.webp" alt="Austria" loading="lazy">
+                      </div>
+                    </div>
+                    <div class="aaron-travel-country" data-country="switzerland" hidden>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/travel/switzerland/swiss1.webp" alt="Switzerland" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/switzerland/swiss2.webp" alt="Switzerland" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/switzerland/swiss3.webp" alt="Switzerland" loading="lazy">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/travel/switzerland/swiss4.webp" alt="Switzerland" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/switzerland/swiss5.webp" alt="Switzerland" loading="lazy">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/travel/switzerland/swiss6.webp" alt="Switzerland" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/switzerland/swiss7.webp" alt="Switzerland" loading="lazy">
+                      </div>
+                      <div class="aaron-fade">
+                        <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/travel/switzerland/swiss8.webp" alt="Switzerland" loading="lazy">
+                        <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/travel/switzerland/swiss9.webp" alt="Switzerland" loading="lazy">
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+
+                  <nav class="aaron-photos__dock" id="aaron-photos-dock" aria-label="Albums">
+                    <span class="aaron-photos__indicator" id="aaron-photos-indicator"></span>
+                    <button type="button" class="aaron-photos__dock-btn is-active" data-album="auckland" aria-pressed="true" aria-label="Auckland Workshop">
+                      <img src="/assets/phone/icon-droplet.svg" alt="">
+                    </button>
+                    <button type="button" class="aaron-photos__dock-btn" data-album="drawings" aria-pressed="false" aria-label="Drawings">
+                      <img src="/assets/phone/icon-pencil.svg" alt="">
+                    </button>
+                    <button type="button" class="aaron-photos__dock-btn" data-album="piano" aria-pressed="false" aria-label="Piano">
+                      <img src="/assets/phone/icon-piano.svg" alt="">
+                    </button>
+                    <button type="button" class="aaron-photos__dock-btn" data-album="travel" aria-pressed="false" aria-label="Travel">
+                      <img src="/assets/phone/icon-map.svg" alt="">
+                    </button>
+                  </nav>
+                </div>
+              </div>
+            </div>
+            </div>
+            <div class="aaron-phone__cursor" id="aaron-phone-cursor"></div>
+          </div>
+      </div>
+    </main>
+
+    <p class="aaron-footer">
+      made by aaron dutta, inspired by <a href="https://www.marco.fyi" target="_blank" rel="noopener noreferrer">marco cornacchia</a>
+    </p>
+  </div>
+</body>
+</html>
