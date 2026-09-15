@@ -1,15 +1,13 @@
 /* —— Work iPad ——
-   Same sizing/tilt model as the gallery phone: laid out at on-screen
-   size (--s / --px). transform is only used for tilt — never scale().
-   Shorter --ipad-h + object-position crop the empty PNG padding under
-   the device. Card is light-mode page white in both themes.
-   Gap vars size the white card; negative --ipad-gap-x lets the iPad
-   overflow slightly when tilted (clipped by overflow: hidden). */
+   Laid out slightly larger than the card so hover (scale 1) reads big;
+   edges clip softly. Rest is a smaller centered scale. Shorter --ipad-h
+   + object-position crop empty PNG padding under the device. Card is
+   light-mode page white in both themes. */
 .aaron-split__ipad {
   --ipad-w: 640;
   --ipad-h: 455;
-  --ipad-gap-x: calc(1000px - 640px * 1.9078125);
-  --ipad-gap-y: calc(960px - 455px * 1.9078125);
+  --ipad-gap-x: -160px;
+  --ipad-gap-y: -72px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,10 +41,12 @@
   width: calc(var(--ipad-w) * var(--px));
   height: calc(var(--ipad-h) * var(--px));
   flex-shrink: 0;
-  overflow: hidden;
-  transform: translate3d(-48px, 8px, 0) rotate(10deg);
+  transform: scale(0.52);
   transform-origin: center center;
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.14));
+  transition:
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.45s ease;
   z-index: 1;
   user-select: none;
   -webkit-font-smoothing: antialiased;
@@ -54,8 +54,8 @@
 }
 
 .aaron-split__ipad.is-hovering .aaron-ipad {
-  transform: none;
-  transition: transform 0.25s ease;
+  transform: scale(1);
+  filter: drop-shadow(0 20px 32px rgba(0, 0, 0, 0.2));
 }
 
 .aaron-ipad__shell {
@@ -815,18 +815,25 @@
 .aaron-ipad-pop__card {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: 1.12fr 1fr;
-  gap: calc(12 * var(--px));
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: calc(10 * var(--px));
   width: 78%;
-  max-height: 68%;
+  max-height: 78%;
   padding: calc(11 * var(--px)) calc(12 * var(--px));
   border: calc(0.7 * var(--px)) solid #2c2c2e;
   border-radius: calc(14 * var(--px));
   background: #000;
   box-shadow: 0 calc(10 * var(--px)) calc(28 * var(--px)) rgba(0, 0, 0, 0.55);
-  overflow: hidden;
+  overflow: auto;
+}
+
+.aaron-ipad-pop__top {
+  display: grid;
+  grid-template-columns: 1.12fr 1fr;
+  gap: calc(12 * var(--px));
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .aaron-ipad-pop__close {
@@ -914,6 +921,25 @@
   padding-right: calc(10 * var(--px));
 }
 
+.aaron-ipad-pop__write {
+  min-width: 0;
+  padding-top: calc(2 * var(--px));
+  border-top: calc(0.6 * var(--px)) solid #2c2c2e;
+}
+
+.aaron-ipad-pop__write p {
+  margin: 0;
+  font-size: calc(7 * var(--px));
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.5;
+  color: #c7c7cc;
+}
+
+.aaron-ipad-pop__write p + p {
+  margin-top: calc(6 * var(--px));
+}
+
 .aaron-ipad-pop__title {
   font-size: calc(11 * var(--px));
   font-weight: 600;
@@ -949,15 +975,21 @@
 
 @media (max-width: 900px) {
   .aaron-ipad {
-    --s: calc((100cqw - 12px) / (var(--ipad-w) * 1px));
-    transform: translate3d(-24px, 8px, 0) rotate(8deg);
+    --s: calc((100cqw + 48px) / (var(--ipad-w) * 1px));
+    transform: scale(0.56);
   }
 
   .aaron-split__ipad.is-hovering .aaron-ipad {
-    transform: none;
+    transform: scale(1);
   }
 
   .aaron-ipad-frame::before {
-    height: calc((var(--ipad-h) * 1px) * ((100cqw - 12px) / (var(--ipad-w) * 1px)) + 56px);
+    height: calc((var(--ipad-h) * 1px) * ((100cqw + 48px) / (var(--ipad-w) * 1px)) - 24px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aaron-ipad {
+    transition: none;
   }
 }

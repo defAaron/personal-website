@@ -1,6 +1,6 @@
 /**
- * Hover-untilt for the Work page iPad — same pattern as the gallery phone.
- * Rest pose is a CSS tilt; .is-hovering clears the transform.
+ * Hover grow for the Work page iPad. Rest is a small centered scale;
+ * .is-hovering grows to full size (sized to fit the card, no crop).
  */
 (function () {
   const tile = document.getElementById('aaron-ipad-tile');
@@ -81,6 +81,10 @@
       mp4: 'assets/projects/skyeye/preview.mp4',
       desc: 'an AI-assisted missing person search tool that turns a free-text report into a Lost Person Behavior search ring, then scans drone photographs for ranked person-shaped candidates so rescue teams know where to look first.',
       stack: ['Python', 'Flask', 'YOLOv8n', 'ONNX', 'Gemini API', 'Groq', 'Google Maps API', 'React', 'TypeScript', 'Vite', 'Three.js', 'Docker', 'Vercel', 'Render'],
+      write: [
+        'Skyeye',
+        'More SkyEye notes: challenges, decisions, results — lorem ipsum placeholder for now.',
+      ],
     },
     surpluslink: {
       name: 'SurplusLink',
@@ -88,6 +92,10 @@
       youtube: 'eU8L9HmfpPg',
       desc: 'an app that turns unused food from eateries into claimable pickups through computer vision and route optimization.',
       stack: ['Next.js', 'TypeScript', 'Prisma', 'Supabase', 'Auth.js', 'Hugging Face Transformers', 'Leaflet', 'Vercel'],
+      write: [
+        'SurplusLink filler writing goes here. Replace this with how food waste detection and pickup routing came together.',
+        'More SurplusLink notes: vision model choices, logistics, and what we would ship next — placeholder for now.',
+      ],
     },
     honeydesk: {
       name: 'HoneyDesk',
@@ -95,6 +103,10 @@
       youtube: '8cGpsI5qa2U',
       desc: 'educative application that traps student phishing attempts through live decoys, classifying the attack in real time, and turn it into a plain-English brief students can act on.',
       stack: ['Next.js', 'TypeScript', 'FastAPI', 'Python', 'SQLite', 'shadcn/ui', 'Render'],
+      write: [
+        'HoneyDesk filler writing goes here. Replace this with the phishing decoy flow and how attack briefs are generated.',
+        'More HoneyDesk notes: classification, UX for students, and deployment lessons — placeholder for now.',
+      ],
     },
     baio: {
       name: 'baio',
@@ -102,6 +114,10 @@
       mp4: 'assets/projects/baio/baio.mp4',
       desc: 'magic paper with AI autocomplete for drawing: sketch a rough webpage, press enter, and real editable components bloom in like wet ink exactly where you drew them, then frame it into a working website.',
       stack: ['Next.js', 'TypeScript', 'Gemini API', 'Anthropic API', 'FreeSolo', 'Qwen3.5-2B', 'perfect-freehand', 'framer-motion', 'Zod', 'Vercel', 'Base44'],
+      write: [
+        'baio filler writing goes here. Replace this with how sketch-to-component autocomplete works and why ink-like placement mattered.',
+        'More baio notes: model routing, stroke handling, and framing into a live site — placeholder for now.',
+      ],
     },
     techniquetitan: {
       name: 'TechTitan',
@@ -109,6 +125,10 @@
       mp4: 'assets/projects/techniquetitan/techtitan.mp4',
       desc: 'a real-time hand tracking and 21-landmark finger bone recognition computer vision application that evaluates hand piano posture through live camera feed, running a feedback engine for heuristic scoring.',
       stack: ['Python', 'MediaPipe', 'OpenCV', 'NumPy', 'FastAPI', 'React', 'TypeScript', 'Tailwind', 'Streamlit', 'PyYAML', 'Vercel', 'Docker', 'Render', 'Github Actions + pytest'],
+      write: [
+        'Technique Titan is perhaps my most ambitious project yet. I have been longing for a software tool like this for as long as I can remember. Being a pianist ever since the age of 3, ',
+        'More TechTitan notes: landmark noise, scoring rules, and CI lessons — placeholder for now.',
+      ],
     },
     clipcoach: {
       name: 'ClipCoach',
@@ -116,6 +136,10 @@
       youtube: 'KKq0Axw3u-M',
       desc: 'an AI post-game highlight editor that fuses audio energy and visual motion into one excitement curve to auto-cut raw game footage into a music-synced highlight reel, with a timeline editor for instant re-renders.',
       stack: ['Python', 'FastAPI', 'Next.js', 'TypeScript', 'ffmpeg', 'librosa', 'OpenCV', 'Docker'],
+      write: [
+        'ClipCoach filler writing goes here. Replace this with how audio energy and motion fuse into one cut curve.',
+        'More ClipCoach notes: timeline editing, re-renders, and sync tricks — placeholder for now.',
+      ],
     },
     fraudgen: {
       name: 'FraudGen',
@@ -123,6 +147,10 @@
       mp4: 'assets/projects/fraudgen/fraudgen.mp4',
       desc: 'a multi-agent adversarial AI pipeline that synthesizes fraud transaction networks, closing the known-unknown gap in GNN-based fraud detection.',
       stack: ['Python', 'Anthropic API', 'Streamlit', 'Next.js', 'FastAPI', 'Pandas', 'Pydantic', 'Matplotlib'],
+      write: [
+        'FraudGen filler writing goes here. Replace this with the adversarial synthesis loop and why synthetic networks help GNN detection.',
+        'More FraudGen notes: agent roles, graph structure, and evaluation — placeholder for now.',
+      ],
     },
     mycellium: {
       name: 'Mycellium',
@@ -130,12 +158,20 @@
       youtube: 'x6as0gVqb7Y',
       desc: 'an optimized multi-nodal network that coordinates crop production across a distributed network of farms using comparative advantage and integer linear programming.',
       stack: ['Python', 'SciPy MILP', 'FastAPI', 'React.js', 'TypeScript', 'Google Maps API', 'Tailscale'],
+      write: [
+        'Mycellium filler writing goes here. Replace this with comparative advantage modeling and the MILP coordination layer.',
+        'More Mycellium notes: farm nodes, constraints, and network ops — placeholder for now.',
+      ],
     },
     personalwebsite: {
       name: 'Personal Website',
       sortDate: 202607,
       desc: 'this website, built from scratch to tell you about me and what I\'ve been doing.',
       stack: ['HTML', 'CSS', 'JavaScript', 'Creativity'],
+      write: [
+        'Personal Website filler writing goes here. Replace this with the design intent, iPad files UI, and what I wanted the site to feel like.',
+        'More personal site notes: interaction details and polish passes — placeholder for now.',
+      ],
     },
   };
 
@@ -497,6 +533,7 @@
   const popTitle = document.getElementById('aaron-ipad-pop-title');
   const popDesc = document.getElementById('aaron-ipad-pop-desc');
   const popStack = document.getElementById('aaron-ipad-pop-stack');
+  const popWrite = document.getElementById('aaron-ipad-pop-write');
   const popDemo = document.getElementById('aaron-ipad-pop-demo');
   const popClose = document.getElementById('aaron-ipad-pop-close');
   const popBackdrop = document.getElementById('aaron-ipad-pop-backdrop');
@@ -532,6 +569,15 @@
     popStack.innerHTML = (project.stack || [])
       .map((chip) => `<span class="aaron-ipad-pop__chip">${esc(chip)}</span>`)
       .join('');
+    if (popWrite) {
+      const paragraphs = Array.isArray(project.write)
+        ? project.write
+        : (project.write ? [project.write] : []);
+      popWrite.innerHTML = paragraphs
+        .map((para) => `<p>${esc(para)}</p>`)
+        .join('');
+      popWrite.hidden = paragraphs.length === 0;
+    }
 
     clearDemo();
     if (popDemo && project.mp4) {
