@@ -23,15 +23,6 @@
     switzerland: 'Switzerland',
   };
 
-  const TRAVEL_FEATURES = {
-    canada: { src: 'assets/gallery/travel/canada/ban16.webp', alt: 'Banff, Canada' },
-    spain: { src: 'assets/gallery/travel/spain/spain1.webp', alt: 'Spain' },
-    france: { src: 'assets/gallery/travel/france/france1.webp', alt: 'France' },
-    italy: { src: 'assets/gallery/travel/italy/italy1.webp', alt: 'Italy' },
-    austria: { src: 'assets/gallery/travel/austria/aus1.webp', alt: 'Austria' },
-    switzerland: { src: 'assets/gallery/travel/switzerland/swiss1.webp', alt: 'Switzerland' },
-  };
-
   function initFades() {
     const fades = Array.from(document.querySelectorAll('.aaron-fade'));
 
@@ -161,7 +152,7 @@
 
     function setTravelFeature(id) {
       if (!travelFeatureImgs.length) return;
-      if (id && TRAVEL_FEATURES[id]) {
+      if (id && COUNTRY_LABELS[id]) {
         stopTravelFeatureRotation();
         showTravelFeatureByCountry(id);
         return;

@@ -254,11 +254,6 @@
   color: #64d2ff;
 }
 
-.aaron-files__row-icon--drive svg {
-  width: calc(10 * var(--px));
-  height: calc(10 * var(--px));
-}
-
 .aaron-files__section {
   appearance: none;
   display: flex;
@@ -307,18 +302,10 @@
   border-radius: 50%;
 }
 
-.aaron-files__dot--red { background: #ff453a; }
 .aaron-files__dot--orange { background: #ff9f0a; }
-.aaron-files__dot--yellow { background: #ffd60a; }
 .aaron-files__dot--green { background: #30d158; }
 .aaron-files__dot--blue { background: #0a84ff; }
 .aaron-files__dot--purple { background: #bf5af2; }
-.aaron-files__dot--gray { background: #8e8e93; }
-
-.aaron-files__dot--hollow {
-  background: transparent;
-  border: calc(1.15 * var(--px)) solid #8e8e93;
-}
 
 .aaron-files__main {
   flex: 1 1 auto;
