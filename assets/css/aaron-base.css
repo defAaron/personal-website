@@ -28,6 +28,8 @@
   --aaron-gap: 16px;
   --aaron-unit: 328px;
   --aaron-font: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --aaron-link-highlight: #000;
+  --aaron-link-highlight-text: #fff;
 }
 
 html[data-theme="dark"] {
@@ -54,6 +56,8 @@ html[data-theme="dark"] {
   --aaron-hl-green-dark: #86efac;
   --aaron-hl-navy: #9db0cc;
   --aaron-hl-purple: #c084fc;
+  --aaron-link-highlight: #fff;
+  --aaron-link-highlight-text: #000;
 }
 
 *,
@@ -443,13 +447,31 @@ html[data-theme="dark"] .aaron-look-around__hint img {
   font-weight: 600;
 }
 
-a.aaron-hero__hl {
-  text-decoration: none;
-  cursor: pointer;
+.aaron-hero__org-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin: 0 0.2em 0 0;
+  vertical-align: -0.15em;
+  object-fit: contain;
+  border-radius: 0.2em;
 }
 
-a.aaron-hero__hl:hover {
-  text-decoration: underline;
+a.aaron-hero__hl {
+  display: inline;
+  text-decoration: none;
+  cursor: pointer;
+  background-image: linear-gradient(var(--aaron-link-highlight), var(--aaron-link-highlight));
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  background-position: left center;
+  border-radius: 0.14em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding: 0 0.06em;
+  transition:
+    background-size 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.25s ease 0.08s;
 }
 
 .aaron-hero__hl--yellow {
@@ -478,6 +500,12 @@ a.aaron-hero__hl:hover {
 
 .aaron-hero__hl--purple {
   color: var(--aaron-hl-purple);
+}
+
+a.aaron-hero__hl:hover,
+a.aaron-hero__hl:focus-visible {
+  background-size: 100% 100%;
+  color: var(--aaron-link-highlight-text);
 }
 
 /* —— Awards —— */

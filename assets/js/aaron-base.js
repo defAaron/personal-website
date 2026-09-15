@@ -24,15 +24,25 @@
 
   /* Hero statement cycle — rotating lines only */
   const statements = document.querySelectorAll('.aaron-hero__statements .aaron-hero__statement');
+  const STATEMENT_HOLD_MS = 3500;
+
+  function statementHoldMs(el) {
+    const extra = Number(el.getAttribute('data-hold-extra-ms'));
+    return STATEMENT_HOLD_MS + (Number.isFinite(extra) ? extra : 0);
+  }
+
   if (statements.length > 1) {
     let index = 0;
     statements[0].classList.add('is-active');
 
-    setInterval(() => {
+    const advanceStatement = () => {
       statements[index].classList.remove('is-active');
       index = (index + 1) % statements.length;
       statements[index].classList.add('is-active');
-    }, 3500);
+      setTimeout(advanceStatement, statementHoldMs(statements[index]));
+    };
+
+    setTimeout(advanceStatement, statementHoldMs(statements[0]));
   } else if (statements.length === 1) {
     statements[0].classList.add('is-active');
   }
