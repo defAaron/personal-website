@@ -226,6 +226,40 @@ html[data-theme="dark"] .aaron-theme-toggle__sun {
 }
 
 /* —— Home grid (bento) —— */
+.aaron-look-around {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  max-width: calc(var(--aaron-unit) * 4 + var(--aaron-gap) * 3);
+  padding: 0 1rem;
+  margin: 1rem 0 8px;
+  z-index: 2;
+}
+
+.aaron-look-around__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--aaron-caption);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  line-height: 1;
+}
+
+.aaron-look-around__hint img {
+  display: block;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+html[data-theme="dark"] .aaron-look-around__hint img {
+  filter: invert(1);
+  opacity: 0.55;
+}
+
 .aaron-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -837,6 +871,10 @@ html[data-theme="dark"] .aaron-mini__link img {
   .aaron-work-intro,
   .aaron-gallery-intro {
     padding: 20px;
+  }
+
+  .aaron-look-around {
+    max-width: 100%;
   }
 
   .aaron-grid {
