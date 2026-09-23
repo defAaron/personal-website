@@ -846,12 +846,6 @@ html[data-theme="dark"] .aaron-mini__link img {
   padding: 28px 32px;
 }
 
-/* Match Work intro tile to the iPad card width */
-.aaron-work-intro {
-  max-width: 1000px;
-  margin-inline: auto;
-}
-
 .aaron-work-intro__title,
 .aaron-gallery-intro__title {
   font-size: 31px;

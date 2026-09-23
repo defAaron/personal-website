@@ -1,3 +1,10 @@
+/* Work page: minimal side inset (~5% of default bento gutter) for more content width */
+.aaron-work-main {
+  max-width: none;
+  width: 100%;
+  padding-inline: 24px;
+}
+
 /* —— Work iPad ——
    Laid out slightly larger than the card so hover (scale 1) reads big;
    edges clip softly. Rest is a smaller centered scale. Shorter --ipad-h
@@ -6,16 +13,14 @@
 .aaron-split__ipad {
   --ipad-w: 640;
   --ipad-h: 455;
-  --ipad-gap-x: -160px;
-  --ipad-gap-y: -72px;
+  --ipad-gap-x: -220px;
+  --ipad-gap-y: -96px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   position: relative;
   width: 100%;
-  max-width: 1000px;
-  margin-inline: auto;
   background: var(--aaron-bg-light);
 }
 
@@ -84,6 +89,11 @@
   color: #f5f5f7;
   font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
+  transition: filter 0.4s ease;
+}
+
+.aaron-ipad:has(.aaron-ipad-pop:not([hidden])) .aaron-ipad__screen {
+  filter: blur(22px) brightness(0.72);
 }
 
 .aaron-ipad__status {
@@ -621,14 +631,39 @@
 
 .aaron-files__thumb {
   display: block;
-  width: calc(26 * var(--px));
-  height: calc(33.5 * var(--px));
+  width: calc(32 * var(--px));
+  height: calc(41 * var(--px));
   flex-shrink: 0;
   filter: drop-shadow(0 calc(0.6 * var(--px)) calc(1.1 * var(--px)) rgba(0, 0, 0, 0.45));
 }
 
 .aaron-files__thumb--folder {
+  position: relative;
   transform-origin: 10% 92%;
+}
+
+.aaron-files__thumb--folder.aaron-files__thumb--winning::after {
+  content: '';
+  position: absolute;
+  top: 14%;
+  right: -6%;
+  width: 62%;
+  height: calc(3.2 * var(--px));
+  background: linear-gradient(
+    90deg,
+    #e6b800 0%,
+    #ffd60a 35%,
+    #ffe566 65%,
+    #e6b800 100%
+  );
+  transform: rotate(-38deg);
+  transform-origin: center;
+  border-radius: calc(0.35 * var(--px));
+  box-shadow:
+    0 calc(0.35 * var(--px)) calc(0.8 * var(--px)) rgba(0, 0, 0, 0.35),
+    inset 0 calc(0.25 * var(--px)) 0 rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .aaron-files__item.is-opening {
@@ -666,8 +701,15 @@
 }
 
 .aaron-files__grid.is-list .aaron-files__thumb {
-  width: calc(14 * var(--px));
-  height: calc(18 * var(--px));
+  width: calc(17 * var(--px));
+  height: calc(22 * var(--px));
+}
+
+.aaron-files__grid.is-list .aaron-files__thumb--folder.aaron-files__thumb--winning::after {
+  top: 12%;
+  right: -8%;
+  width: 68%;
+  height: calc(2.4 * var(--px));
 }
 
 .aaron-files__meta {
@@ -791,12 +833,17 @@
 /* —— iPad project popup —— */
 .aaron-ipad-pop {
   position: absolute;
-  inset: 0;
+  left: calc(67.2 * var(--px));
+  top: calc(43.4 * var(--px));
+  width: calc(505.6 * var(--px));
+  height: calc(368 * var(--px));
   z-index: 8;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: calc(36 * var(--px)) calc(20 * var(--px)) calc(16 * var(--px));
+  padding: calc(14 * var(--px)) calc(16 * var(--px));
+  border-radius: calc(32 * var(--px));
+  overflow: hidden;
 }
 
 .aaron-ipad-pop[hidden] {
@@ -808,7 +855,9 @@
   inset: 0;
   border: 0;
   padding: 0;
-  background: rgba(0, 0, 0, 0.42);
+  background: rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(10px) saturate(1.05);
+  -webkit-backdrop-filter: blur(10px) saturate(1.05);
   cursor: pointer;
 }
 
@@ -991,5 +1040,13 @@
 @media (prefers-reduced-motion: reduce) {
   .aaron-ipad {
     transition: none;
+  }
+
+  .aaron-ipad__screen {
+    transition: none;
+  }
+
+  .aaron-ipad:has(.aaron-ipad-pop:not([hidden])) .aaron-ipad__screen {
+    filter: brightness(0.72);
   }
 }
