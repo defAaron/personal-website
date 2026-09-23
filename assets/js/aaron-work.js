@@ -77,7 +77,6 @@
   const PROJECTS = {
     skyeye: {
       name: 'SkyEye',
-      winning: true,
       sortDate: 202608,
       mp4: '/assets/projects/skyeye/preview.mp4',
       desc: 'an AI-assisted missing person search tool that turns a free-text report into a Lost Person Behavior search ring, then scans drone photographs for ranked person-shaped candidates so rescue teams know where to look first.',
@@ -89,7 +88,6 @@
     },
     surpluslink: {
       name: 'SurplusLink',
-      winning: true,
       sortDate: 202608,
       youtube: 'eU8L9HmfpPg',
       desc: 'an app that turns unused food from eateries into claimable pickups through computer vision and route optimization.',
@@ -101,7 +99,6 @@
     },
     honeydesk: {
       name: 'HoneyDesk',
-      winning: true,
       sortDate: 202608,
       youtube: '8cGpsI5qa2U',
       desc: 'educative application that traps student phishing attempts through live decoys, classifying the attack in real time, and turn it into a plain-English brief students can act on.',
@@ -288,8 +285,7 @@
         : '';
       return `<span class="aaron-files__thumb aaron-files__thumb--file">${FILE_THUMB}${badge}</span>`;
     }
-    const winningClass = file.winning ? ' aaron-files__thumb--winning' : '';
-    return `<span class="aaron-files__thumb aaron-files__thumb--folder${winningClass}">${FOLDER_THUMB}</span>`;
+    return `<span class="aaron-files__thumb aaron-files__thumb--folder">${FOLDER_THUMB}</span>`;
   }
 
   function fileSortDate(file) {
