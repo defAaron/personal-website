@@ -223,24 +223,27 @@
 
             <div class="aaron-ipad-pop" id="aaron-ipad-pop" hidden>
               <button type="button" class="aaron-ipad-pop__backdrop" id="aaron-ipad-pop-backdrop" aria-label="Close project"></button>
-              <div class="aaron-ipad-pop__card" role="dialog" aria-modal="true" aria-labelledby="aaron-ipad-pop-title">
+              <div class="aaron-ipad-pop__card aaron-ipad-pop__card--stacked" role="dialog" aria-modal="true" aria-labelledby="aaron-ipad-pop-title">
                 <button type="button" class="aaron-ipad-pop__close" id="aaron-ipad-pop-close" aria-label="Close">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
                 </button>
                 <div class="aaron-ipad-pop__top">
+                  <div class="aaron-ipad-pop__body">
+                    <h3 class="aaron-ipad-pop__title" id="aaron-ipad-pop-title"></h3>
+                    <p class="aaron-ipad-pop__desc aaron-ipad-pop__desc--tagline" id="aaron-ipad-pop-desc"></p>
+                  </div>
                   <div class="aaron-ipad-pop__media">
                     <div class="aaron-ipad-pop__demo" id="aaron-ipad-pop-demo">
                       <span class="aaron-ipad-pop__play"></span>
                       <span class="aaron-ipad-pop__demo-label">Demo</span>
                     </div>
                   </div>
-                  <div class="aaron-ipad-pop__body">
-                    <h3 class="aaron-ipad-pop__title" id="aaron-ipad-pop-title"></h3>
-                    <p class="aaron-ipad-pop__desc" id="aaron-ipad-pop-desc"></p>
+                  <div class="aaron-ipad-pop__stack-block" id="aaron-ipad-pop-stack-block">
+                    <p class="aaron-ipad-pop__stack-label">built with:</p>
                     <div class="aaron-ipad-pop__stack" id="aaron-ipad-pop-stack"></div>
                   </div>
                 </div>
-                <div class="aaron-ipad-pop__write" id="aaron-ipad-pop-write"></div>
+                <div class="aaron-ipad-pop__write aaron-ipad-pop__write--stacked-desc" id="aaron-ipad-pop-write"></div>
               </div>
             </div>
 

@@ -78,6 +78,7 @@
     skyeye: {
       name: 'SkyEye',
       sortDate: 202608,
+      tagline: 'AI-assisted missing person search from drone photos.',
       mp4: '/assets/projects/skyeye/preview.mp4',
       desc: 'an AI-assisted missing person search tool that turns a free-text report into a Lost Person Behavior search ring, then scans drone photographs for ranked person-shaped candidates so rescue teams know where to look first.',
       stack: ['Python', 'Flask', 'YOLOv8n', 'ONNX', 'Gemini API', 'Groq', 'Google Maps API', 'React', 'TypeScript', 'Vite', 'Three.js', 'Docker', 'Vercel', 'Render'],
@@ -89,6 +90,7 @@
     surpluslink: {
       name: 'SurplusLink',
       sortDate: 202608,
+      tagline: 'Unused eatery food, routed into claimable pickups.',
       youtube: 'eU8L9HmfpPg',
       desc: 'an app that turns unused food from eateries into claimable pickups through computer vision and route optimization.',
       stack: ['Next.js', 'TypeScript', 'Prisma', 'Supabase', 'Auth.js', 'Hugging Face Transformers', 'Leaflet', 'Vercel'],
@@ -100,6 +102,7 @@
     honeydesk: {
       name: 'HoneyDesk',
       sortDate: 202608,
+      tagline: 'Live phishing decoys that teach students in plain English.',
       youtube: '8cGpsI5qa2U',
       desc: 'educative application that traps student phishing attempts through live decoys, classifying the attack in real time, and turn it into a plain-English brief students can act on.',
       stack: ['Next.js', 'TypeScript', 'FastAPI', 'Python', 'SQLite', 'shadcn/ui', 'Render'],
@@ -111,6 +114,7 @@
     baio: {
       name: 'baio',
       sortDate: 202608,
+      tagline: 'Sketch a page; AI grows real components where you drew.',
       mp4: '/assets/projects/baio/baio.mp4',
       desc: 'magic paper with AI autocomplete for drawing: sketch a rough webpage, press enter, and real editable components bloom in like wet ink exactly where you drew them, then frame it into a working website.',
       stack: ['Next.js', 'TypeScript', 'Gemini API', 'Anthropic API', 'FreeSolo', 'Qwen3.5-2B', 'perfect-freehand', 'framer-motion', 'Zod', 'Vercel', 'Base44'],
@@ -122,6 +126,7 @@
     techniquetitan: {
       name: 'TechTitan',
       sortDate: 202609,
+      tagline: 'Live camera feedback on piano hand posture.',
       mp4: '/assets/projects/techniquetitan/techtitan.mp4',
       desc: 'a real-time hand tracking and 21-landmark finger bone recognition computer vision application that evaluates hand piano posture through live camera feed, running a feedback engine for heuristic scoring.',
       stack: ['Python', 'MediaPipe', 'OpenCV', 'NumPy', 'FastAPI', 'React', 'TypeScript', 'Tailwind', 'Streamlit', 'PyYAML', 'Vercel', 'Docker', 'Render', 'Github Actions + pytest'],
@@ -133,6 +138,7 @@
     clipcoach: {
       name: 'ClipCoach',
       sortDate: 202607,
+      tagline: 'Auto-cut game footage into music-synced highlight reels.',
       youtube: 'KKq0Axw3u-M',
       desc: 'an AI post-game highlight editor that fuses audio energy and visual motion into one excitement curve to auto-cut raw game footage into a music-synced highlight reel, with a timeline editor for instant re-renders.',
       stack: ['Python', 'FastAPI', 'Next.js', 'TypeScript', 'ffmpeg', 'librosa', 'OpenCV', 'Docker'],
@@ -144,6 +150,7 @@
     fraudgen: {
       name: 'FraudGen',
       sortDate: 202603,
+      tagline: 'Synthetic fraud networks for stronger GNN detection.',
       mp4: '/assets/projects/fraudgen/fraudgen.mp4',
       desc: 'a multi-agent adversarial AI pipeline that synthesizes fraud transaction networks, closing the known-unknown gap in GNN-based fraud detection.',
       stack: ['Python', 'Anthropic API', 'Streamlit', 'Next.js', 'FastAPI', 'Pandas', 'Pydantic', 'Matplotlib'],
@@ -155,6 +162,7 @@
     mycellium: {
       name: 'Mycellium',
       sortDate: 202603,
+      tagline: 'Distributed farms coordinated by comparative advantage and MILP.',
       youtube: 'x6as0gVqb7Y',
       desc: 'an optimized multi-nodal network that coordinates crop production across a distributed network of farms using comparative advantage and integer linear programming.',
       stack: ['Python', 'SciPy MILP', 'FastAPI', 'React.js', 'TypeScript', 'Google Maps API', 'Tailscale'],
@@ -166,6 +174,7 @@
     personalwebsite: {
       name: 'Personal Website',
       sortDate: 202607,
+      tagline: 'A from-scratch site about me and my work.',
       desc: 'this website, built from scratch to tell you about me and what I\'ve been doing.',
       stack: ['HTML', 'CSS', 'JavaScript', 'Creativity'],
       write: [
@@ -532,12 +541,12 @@
   const pop = document.getElementById('aaron-ipad-pop');
   const popTitle = document.getElementById('aaron-ipad-pop-title');
   const popDesc = document.getElementById('aaron-ipad-pop-desc');
+  const popStackBlock = document.getElementById('aaron-ipad-pop-stack-block');
   const popStack = document.getElementById('aaron-ipad-pop-stack');
   const popWrite = document.getElementById('aaron-ipad-pop-write');
   const popDemo = document.getElementById('aaron-ipad-pop-demo');
   const popClose = document.getElementById('aaron-ipad-pop-close');
   const popBackdrop = document.getElementById('aaron-ipad-pop-backdrop');
-
   function isPopOpen() {
     return Boolean(pop && !pop.hidden);
   }
@@ -564,19 +573,31 @@
   function openProject(id) {
     const project = PROJECTS[id];
     if (!project || !pop || !popTitle || !popDesc || !popStack) return;
+
     popTitle.textContent = project.name;
-    popDesc.textContent = project.desc || '';
-    popStack.innerHTML = (project.stack || [])
-      .map((chip) => `<span class="aaron-ipad-pop__chip">${esc(chip)}</span>`)
-      .join('');
+    popDesc.textContent = project.tagline || project.desc || '';
+
+    const stack = project.stack || [];
+    if (popStack) {
+      popStack.innerHTML = stack
+        .map((chip) => `<span class="aaron-ipad-pop__chip">${esc(chip)}</span>`)
+        .join('');
+    }
+    if (popStackBlock) {
+      popStackBlock.hidden = stack.length === 0;
+    }
+
     if (popWrite) {
       const paragraphs = Array.isArray(project.write)
         ? project.write
         : (project.write ? [project.write] : []);
-      popWrite.innerHTML = paragraphs
+      const descBlock = project.desc
+        ? `<p class="aaron-ipad-pop__write-lead">${esc(project.desc)}</p>`
+        : '';
+      popWrite.innerHTML = descBlock + paragraphs
         .map((para) => `<p>${esc(para)}</p>`)
         .join('');
-      popWrite.hidden = paragraphs.length === 0;
+      popWrite.hidden = !project.desc && paragraphs.length === 0;
     }
 
     clearDemo();
