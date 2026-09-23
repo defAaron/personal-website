@@ -951,29 +951,34 @@
   text-align: center;
 }
 
-.aaron-ipad-pop__write p {
+.aaron-ipad-pop__write-section {
+  max-width: calc(400 * var(--px));
+  margin-inline: auto;
+}
+
+.aaron-ipad-pop__write-section + .aaron-ipad-pop__write-section {
+  margin-top: calc(8 * var(--px));
+  padding-top: calc(8 * var(--px));
+  border-top: calc(0.5 * var(--px)) solid #2c2c2e;
+}
+
+.aaron-ipad-pop__write-heading {
+  margin: 0 0 calc(3 * var(--px));
+  font-size: calc(6.2 * var(--px));
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: #98989d;
+  text-transform: lowercase;
+}
+
+.aaron-ipad-pop__write-text {
   margin: 0;
   font-size: calc(7 * var(--px));
   font-weight: 400;
   letter-spacing: -0.015em;
   line-height: 1.5;
   color: #c7c7cc;
-}
-
-.aaron-ipad-pop__write p + p {
-  margin-top: calc(6 * var(--px));
-}
-
-.aaron-ipad-pop__write-lead {
-  max-width: calc(400 * var(--px));
-  margin-inline: auto;
-  font-size: calc(7.6 * var(--px));
-  line-height: 1.5;
-  color: #c7c7cc;
-}
-
-.aaron-ipad-pop__write-lead + p {
-  margin-top: calc(6 * var(--px));
 }
 
 .aaron-ipad-pop__title {
