@@ -95,6 +95,15 @@
     };
   }
 
+  const WRITE_WIP = projectWrite('Work in progress.');
+
+  function writeForProject(id) {
+    if (typeof AARON_WORK_WRITEUPS !== 'undefined' && AARON_WORK_WRITEUPS[id]) {
+      return { ...projectWrite('', {}), ...AARON_WORK_WRITEUPS[id] };
+    }
+    return WRITE_WIP;
+  }
+
   const PROJECTS = {
     skyeye: {
       name: 'SkyEye',
@@ -103,10 +112,7 @@
       mp4: '/assets/projects/skyeye/preview.mp4',
       desc: 'an AI-assisted missing person search tool that turns a free-text report into a Lost Person Behavior search ring, then scans drone photographs for ranked person-shaped candidates so rescue teams know where to look first.',
       stack: ['Python', 'Flask', 'YOLOv8n', 'ONNX', 'Gemini API', 'Groq', 'Google Maps API', 'React', 'TypeScript', 'Vite', 'Three.js', 'Docker', 'Vercel', 'Render'],
-      write: projectWrite(
-        'an AI-assisted missing person search tool that turns a free-text report into a Lost Person Behavior search ring, then scans drone photographs for ranked person-shaped candidates so rescue teams know where to look first.',
-        { learned: 'More SkyEye notes: challenges, decisions, results — placeholder for now.' },
-      ),
+      write: writeForProject('skyeye'),
     },
     surpluslink: {
       name: 'SurplusLink',
@@ -115,10 +121,7 @@
       youtube: 'eU8L9HmfpPg',
       desc: 'an app that turns unused food from eateries into claimable pickups through computer vision and route optimization.',
       stack: ['Next.js', 'TypeScript', 'Prisma', 'Supabase', 'Auth.js', 'Hugging Face Transformers', 'Leaflet', 'Vercel'],
-      write: projectWrite(
-        'an app that turns unused food from eateries into claimable pickups through computer vision and route optimization.',
-        { learned: 'More SurplusLink notes: vision model choices, logistics, and what we would ship next — placeholder for now.' },
-      ),
+      write: writeForProject('surpluslink'),
     },
     honeydesk: {
       name: 'HoneyDesk',
@@ -127,10 +130,7 @@
       youtube: '8cGpsI5qa2U',
       desc: 'educative application that traps student phishing attempts through live decoys, classifying the attack in real time, and turn it into a plain-English brief students can act on.',
       stack: ['Next.js', 'TypeScript', 'FastAPI', 'Python', 'SQLite', 'shadcn/ui', 'Render'],
-      write: projectWrite(
-        'educative application that traps student phishing attempts through live decoys, classifying the attack in real time, and turn it into a plain-English brief students can act on.',
-        { learned: 'More HoneyDesk notes: classification, UX for students, and deployment lessons — placeholder for now.' },
-      ),
+      write: writeForProject('honeydesk'),
     },
     baio: {
       name: 'baio',
@@ -139,10 +139,7 @@
       mp4: '/assets/projects/baio/baio.mp4',
       desc: 'magic paper with AI autocomplete for drawing: sketch a rough webpage, press enter, and real editable components bloom in like wet ink exactly where you drew them, then frame it into a working website.',
       stack: ['Next.js', 'TypeScript', 'Gemini API', 'Anthropic API', 'FreeSolo', 'Qwen3.5-2B', 'perfect-freehand', 'framer-motion', 'Zod', 'Vercel', 'Base44'],
-      write: projectWrite(
-        'magic paper with AI autocomplete for drawing: sketch a rough webpage, press enter, and real editable components bloom in like wet ink exactly where you drew them, then frame it into a working website.',
-        { learned: 'More baio notes: model routing, stroke handling, and framing into a live site — placeholder for now.' },
-      ),
+      write: writeForProject('baio'),
     },
     techniquetitan: {
       name: 'TechTitan',
@@ -151,10 +148,7 @@
       mp4: '/assets/projects/techniquetitan/techtitan.mp4',
       desc: 'a real-time hand tracking and 21-landmark finger bone recognition computer vision application that evaluates hand piano posture through live camera feed, running a feedback engine for heuristic scoring.',
       stack: ['Python', 'MediaPipe', 'OpenCV', 'NumPy', 'FastAPI', 'React', 'TypeScript', 'Tailwind', 'Streamlit', 'PyYAML', 'Vercel', 'Docker', 'Render', 'Github Actions + pytest'],
-      write: projectWrite(
-        'Technique Titan is perhaps my most ambitious project yet. I have been longing for a software tool like this for as long as I can remember. Being a pianist ever since the age of 3, ',
-        { learned: 'More TechTitan notes: landmark noise, scoring rules, and CI lessons — placeholder for now.' },
-      ),
+      write: writeForProject('techniquetitan'),
     },
     clipcoach: {
       name: 'ClipCoach',
@@ -163,10 +157,7 @@
       youtube: 'KKq0Axw3u-M',
       desc: 'an AI post-game highlight editor that fuses audio energy and visual motion into one excitement curve to auto-cut raw game footage into a music-synced highlight reel, with a timeline editor for instant re-renders.',
       stack: ['Python', 'FastAPI', 'Next.js', 'TypeScript', 'ffmpeg', 'librosa', 'OpenCV', 'Docker'],
-      write: projectWrite(
-        'an AI post-game highlight editor that fuses audio energy and visual motion into one excitement curve to auto-cut raw game footage into a music-synced highlight reel, with a timeline editor for instant re-renders.',
-        { learned: 'More ClipCoach notes: timeline editing, re-renders, and sync tricks — placeholder for now.' },
-      ),
+      write: writeForProject('clipcoach'),
     },
     fraudgen: {
       name: 'FraudGen',
@@ -175,10 +166,7 @@
       mp4: '/assets/projects/fraudgen/fraudgen.mp4',
       desc: 'a multi-agent adversarial AI pipeline that synthesizes fraud transaction networks, closing the known-unknown gap in GNN-based fraud detection.',
       stack: ['Python', 'Anthropic API', 'Streamlit', 'Next.js', 'FastAPI', 'Pandas', 'Pydantic', 'Matplotlib'],
-      write: projectWrite(
-        'a multi-agent adversarial AI pipeline that synthesizes fraud transaction networks, closing the known-unknown gap in GNN-based fraud detection.',
-        { learned: 'More FraudGen notes: agent roles, graph structure, and evaluation — placeholder for now.' },
-      ),
+      write: writeForProject('fraudgen'),
     },
     mycellium: {
       name: 'Mycellium',
@@ -187,10 +175,7 @@
       youtube: 'x6as0gVqb7Y',
       desc: 'an optimized multi-nodal network that coordinates crop production across a distributed network of farms using comparative advantage and integer linear programming.',
       stack: ['Python', 'SciPy MILP', 'FastAPI', 'React.js', 'TypeScript', 'Google Maps API', 'Tailscale'],
-      write: projectWrite(
-        'an optimized multi-nodal network that coordinates crop production across a distributed network of farms using comparative advantage and integer linear programming.',
-        { learned: 'More Mycellium notes: farm nodes, constraints, and network ops — placeholder for now.' },
-      ),
+      write: writeForProject('mycellium'),
     },
     personalwebsite: {
       name: 'Personal Website',
@@ -198,10 +183,7 @@
       tagline: 'A from-scratch site about me and my work.',
       desc: 'this website, built from scratch to tell you about me and what I\'ve been doing.',
       stack: ['HTML', 'CSS', 'JavaScript', 'Creativity'],
-      write: projectWrite(
-        'this website, built from scratch to tell you about me and what I\'ve been doing.',
-        { learned: 'More personal site notes: interaction details and polish passes — placeholder for now.' },
-      ),
+      write: writeForProject('personalwebsite'),
     },
   };
 
@@ -297,6 +279,52 @@
       .replace(/"/g, '&quot;');
   }
 
+  const WRITE_PATH_HIGHLIGHT_RE = new RegExp(
+    [
+      String.raw`\{[^{}]+\}(?:_\{[^{}]+\})+\.[\w]+`,
+      String.raw`(?:/?@?[\w.-]+/)+[\w*{}.-]+`,
+      String.raw`(?:GET|POST|PUT|PATCH|DELETE)\s+/[\w*{}./-]+`,
+      String.raw`\b[\w.-]+\.(?:md|py|tsx?|jsx?|onnx|json|sql|html|css|js|yaml|yml)\b`,
+    ].join('|'),
+    'gi',
+  );
+
+  function writeFileHighlight(value) {
+    return `<span class="aaron-ipad-pop__file">${esc(value)}</span>`;
+  }
+
+  function highlightWritePaths(plain) {
+    WRITE_PATH_HIGHLIGHT_RE.lastIndex = 0;
+    let result = '';
+    let last = 0;
+    let match = WRITE_PATH_HIGHLIGHT_RE.exec(plain);
+    while (match) {
+      result += esc(plain.slice(last, match.index));
+      result += writeFileHighlight(match[0]);
+      last = match.index + match[0].length;
+      match = WRITE_PATH_HIGHLIGHT_RE.exec(plain);
+    }
+    result += esc(plain.slice(last));
+    return result;
+  }
+
+  /** Backticks are optional; plain paths like api/geocode are highlighted too. */
+  function formatWriteBody(raw) {
+    const text = String(raw);
+    if (!text.includes('`')) return highlightWritePaths(text);
+
+    const parts = text.split('`');
+    let html = '';
+    for (let i = 0; i < parts.length; i += 1) {
+      if (i % 2 === 1) {
+        if (parts[i]) html += writeFileHighlight(parts[i]);
+        continue;
+      }
+      html += highlightWritePaths(parts[i]);
+    }
+    return html;
+  }
+
   function normalizeWrite(project) {
     const raw = project.write;
     if (raw && !Array.isArray(raw) && typeof raw === 'object') {
@@ -316,7 +344,7 @@
       return `
         <section class="aaron-ipad-pop__write-section">
           <h4 class="aaron-ipad-pop__write-heading">${esc(label)}</h4>
-          <p class="aaron-ipad-pop__write-text">${esc(body)}</p>
+          <p class="aaron-ipad-pop__write-text">${formatWriteBody(body)}</p>
         </section>
       `;
     }).join('');
