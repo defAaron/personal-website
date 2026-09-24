@@ -91,7 +91,7 @@
       { id: 'spotify-3', title: 'Piano Concerto No. 2 in C Minor, Op. 18: II. Adagio sostenuto', subtitle: 'Sergei Rachmaninoff', emoji: '🎹', href: '#', external: false },
     ],
     claude: [
-      { id: 'claude-1', title: 'hey claude, print my resume', subtitle: 'Resume.pdf', emoji: '💬', href: '/assets/docs/resume.pdf', external: true },
+      { id: 'claude-1', title: 'hey claude, print my resume', subtitle: 'click here to view', emoji: '💬', href: '/assets/docs/resume.pdf', external: true },
     ],
   };
 
