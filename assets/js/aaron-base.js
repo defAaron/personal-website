@@ -24,7 +24,7 @@
 
   /* Hero statement cycle — rotating lines only */
   const statements = document.querySelectorAll('.aaron-hero__statements .aaron-hero__statement');
-  const STATEMENT_HOLD_MS = 3500;
+  const STATEMENT_HOLD_MS = 3000;
 
   function statementHoldMs(el) {
     const extra = Number(el.getAttribute('data-hold-extra-ms'));
