@@ -1031,10 +1031,23 @@ html[data-theme="dark"] .aaron-mini__link img {
     grid-template-rows: none;
   }
 
-  .aaron-mini--phone,
-  .aaron-mini--ipad {
+  .aaron-mini--phone {
     min-height: 420px;
     height: 480px;
+  }
+
+  .aaron-mini--ipad {
+    min-height: 0;
+    height: clamp(300px, 72vw, 360px);
+  }
+
+  .aaron-mini--ipad .aaron-mini__ipad-scene {
+    width: 90%;
+    transform: translate3d(-50%, 22%, 0);
+  }
+
+  .aaron-mini--ipad .aaron-mini__label-wrap--projects {
+    top: clamp(20px, 5.5cqi, 34px);
   }
 
   .aaron-mini-phone {
