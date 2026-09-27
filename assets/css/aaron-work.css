@@ -7,14 +7,14 @@
 
 /* —— Work iPad ——
    Laid out slightly larger than the card so hover (scale 1) reads big;
-   edges clip softly. Rest is a smaller centered scale. Shorter --ipad-h
-   + object-position crop empty PNG padding under the device. Card is
-   light-mode page white in both themes. */
+   edges clip softly. Rest is a smaller centered scale. --ipad-h matches
+   shell aspect (1152/1365 × 640 ≈ 540) so cover does not crop the frame.
+   Card is light-mode page white in both themes. */
 .aaron-split__ipad {
   --ipad-w: 640;
-  --ipad-h: 455;
+  --ipad-h: 540;
   --ipad-gap-x: -220px;
-  --ipad-gap-y: -96px;
+  --ipad-gap-y: 0px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,6 +42,11 @@
 .aaron-ipad {
   --s: calc((100cqw - var(--ipad-gap-x)) / (var(--ipad-w) * 1px));
   --px: calc(1px * var(--s));
+  /* Screen inset on 640×540 stage; matched to assets/ipad/6.png (1365×1152) */
+  --screen-left: 67.6;
+  --screen-top: 91.9;
+  --screen-w: 505.4;
+  --screen-h: 367.8;
   position: relative;
   width: calc(var(--ipad-w) * var(--px));
   height: calc(var(--ipad-h) * var(--px));
@@ -74,15 +79,13 @@
   user-select: none;
 }
 
-/* Screen overlay sits on the black display of the PNG (1507×1272,
-   screen ≈ 159,104–1347,969). Cover + top-center crop maps that to
-   these --px boxes on the 640×455 stage. */
+/* Screen overlay on the shell PNG black display (see --screen-* on .aaron-ipad). */
 .aaron-ipad__screen {
   position: absolute;
-  left: calc(67.2 * var(--px));
-  top: calc(43.4 * var(--px));
-  width: calc(505.6 * var(--px));
-  height: calc(368 * var(--px));
+  left: calc(var(--screen-left) * var(--px));
+  top: calc(var(--screen-top) * var(--px));
+  width: calc(var(--screen-w) * var(--px));
+  height: calc(var(--screen-h) * var(--px));
   z-index: 2;
   border-radius: calc(32 * var(--px));
   background: #000;
@@ -99,9 +102,9 @@
 
 .aaron-ipad__status {
   position: absolute;
-  left: calc(67.5 * var(--px));
-  top: calc(58 * var(--px));
-  width: calc(505 * var(--px));
+  left: calc((var(--screen-left) + 0.3) * var(--px));
+  top: calc((var(--screen-top) + 14.6) * var(--px));
+  width: calc((var(--screen-w) - 0.6) * var(--px));
   z-index: 3;
   display: flex;
   align-items: center;
@@ -802,10 +805,10 @@
 /* —— iPad project popup —— */
 .aaron-ipad-pop {
   position: absolute;
-  left: calc(67.2 * var(--px));
-  top: calc(43.4 * var(--px));
-  width: calc(505.6 * var(--px));
-  height: calc(368 * var(--px));
+  left: calc(var(--screen-left) * var(--px));
+  top: calc(var(--screen-top) * var(--px));
+  width: calc(var(--screen-w) * var(--px));
+  height: calc(var(--screen-h) * var(--px));
   z-index: 8;
   display: flex;
   align-items: center;
@@ -1064,7 +1067,7 @@
   }
 
   .aaron-ipad-frame::before {
-    height: calc((var(--ipad-h) * 1px) * ((100cqw + 48px) / (var(--ipad-w) * 1px)) - 24px);
+    height: calc((var(--ipad-h) * 1px) * ((100cqw + 48px) / (var(--ipad-w) * 1px)) + var(--ipad-gap-y));
   }
 }
 
