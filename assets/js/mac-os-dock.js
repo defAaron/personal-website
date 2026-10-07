@@ -95,7 +95,7 @@
       { id: 'cursor-5', title: 'Personal Website', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
     ],
     spotify: [
-      { id: 'spotify-1', title: 'God Was Showing Off', subtitle: 'Bruno Mars', emoji: '🎵', href: '#', external: false },
+      { id: 'spotify-1', title: 'Toronto 2014', subtitle: 'Daniel Caesar', emoji: '🎵', href: '#', external: false },
       { id: 'spotify-2', title: 'Thinkin Bout You', subtitle: 'Frank Ocean', emoji: '🎵', href: '#', external: false },
       { id: 'spotify-3', title: 'Piano Concerto No. 2 in C Minor, Op. 18: II. Adagio sostenuto', subtitle: 'Sergei Rachmaninoff', emoji: '🎹', href: '#', external: false },
     ],
