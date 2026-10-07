@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="mirror-bg" x1="24" y1="8" x2="104" y2="120" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5BE07A"/>
+      <stop offset="1" stop-color="#28C04E"/>
+    </linearGradient>
+    <linearGradient id="mirror-screen" x1="58" y1="36" x2="78" y2="92" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#173322"/>
+      <stop offset="1" stop-color="#0E1F15"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#mirror-bg)"/>
+  <rect x="1.5" y="1.5" width="125" height="125" rx="26.5" stroke="#fff" stroke-opacity=".28"/>
+  <rect x="46" y="24" width="36" height="76" rx="8" fill="#fff"/>
+  <rect x="50" y="32" width="28" height="56" rx="3" fill="url(#mirror-screen)"/>
+  <circle cx="64" cy="93" r="2.4" fill="#163024"/>
+  <path d="M90 48c7 5.2 7 22.8 0 28" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+  <path d="M99 40c12 8.2 12 35.6 0 44" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-opacity=".82"/>
+</svg>

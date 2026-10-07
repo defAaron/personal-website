@@ -49,6 +49,10 @@ html[data-theme="dark"] {
   overflow: visible;
 }
 
+.mac-dock-shell--mirroring .mac-dock-tabs {
+  display: none;
+}
+
 /* —— tilda-bar (tab strip) —— */
 .mac-dock-tabs {
   position: relative;

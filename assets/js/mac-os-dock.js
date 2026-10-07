@@ -54,6 +54,15 @@
       accentBg: '#dcfce7',
       tabActiveBg: '#ecfdf3',
     },
+    {
+      id: 'mirroring',
+      name: 'iPhone Mirroring',
+      icon: '/assets/dock/iphone-mirroring.svg',
+      accent: '#34c759',
+      accentBg: '#e8f8ec',
+      tabActiveBg: '#ecfdf3',
+      overlay: true,
+    },
   ];
 
   const APP_TABS = {
@@ -93,6 +102,7 @@
     claude: [
       { id: 'claude-1', title: 'hey claude, print my resume', subtitle: 'click here to view', emoji: '💬', href: '/assets/docs/resume.pdf', external: true },
     ],
+    mirroring: [],
   };
 
   let activeAppId = 'arc';
@@ -177,8 +187,21 @@
     dot.className = 'mac-dock__indicator';
     dot.hidden = app.id !== activeAppId;
 
+    if (app.overlay) btn.setAttribute('aria-pressed', 'false');
+
     btn.append(ring, hover, img, dot);
-    btn.addEventListener('click', () => selectApp(app.id));
+    btn.addEventListener('click', () => {
+      if (app.overlay) {
+        if (activeAppId === 'mirroring' && window.AaronMirror?.isOpen()) {
+          window.AaronMirror.close();
+        } else {
+          selectApp('mirroring');
+          window.AaronMirror?.open();
+        }
+        return;
+      }
+      selectApp(app.id);
+    });
     iconStrip.appendChild(btn);
 
     return { btn, ring, app };
@@ -218,13 +241,22 @@
   }
 
   function updateActiveIconStyles() {
+    const mirrorOpen = Boolean(window.AaronMirror?.isOpen?.());
     iconEls.forEach((entry) => {
       const isActive = entry.app.id === activeAppId;
       entry.btn.classList.toggle('is-active', isActive);
       entry.ring.hidden = !isActive;
-      entry.btn.querySelector('.mac-dock__indicator').hidden = !isActive;
+      const running = entry.app.overlay ? mirrorOpen : isActive;
+      entry.btn.querySelector('.mac-dock__indicator').hidden = !running;
+      if (entry.app.overlay) {
+        entry.btn.setAttribute('aria-pressed', mirrorOpen ? 'true' : 'false');
+      }
     });
     updateCaretPosition();
+  }
+
+  function syncMirrorState() {
+    updateActiveIconStyles();
   }
 
   function updateAppHeader() {
@@ -399,14 +431,19 @@
   }
 
   function selectApp(appId) {
+    const leavingMirror = activeAppId === 'mirroring' && appId !== 'mirroring';
     activeAppId = appId;
-    const tabs = APP_TABS[appId];
-    if (tabs && !tabs.some((t) => t.id === activeTabId)) {
+    const tabs = APP_TABS[appId] || [];
+    if (tabs.length && !tabs.some((t) => t.id === activeTabId)) {
       activeTabId = tabs[0].id;
     }
+    shell.classList.toggle('mac-dock-shell--mirroring', appId === 'mirroring');
     renderTabPanel();
     updateActiveIconStyles();
+    if (leavingMirror) window.AaronMirror?.close();
   }
+
+  window.AaronDock = { syncMirrorState };
 
   window.addEventListener('resize', updateCaretPosition);
 
