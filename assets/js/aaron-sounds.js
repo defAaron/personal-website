@@ -56,4 +56,13 @@
     },
     true
   );
+
+  window.AaronSounds = {
+    playItem() {
+      play(SOUNDS.item);
+    },
+    playNav() {
+      play(SOUNDS.nav);
+    },
+  };
 })();

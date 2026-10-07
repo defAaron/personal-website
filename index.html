@@ -26,10 +26,14 @@
   <link rel="canonical" href="https://aarondutta.com/">
   <link rel="icon" href="favicon.png" type="image/png">
   <link rel="stylesheet" href="assets/css/aaron-base.css?v=20260924-19">
-  <link rel="stylesheet" href="assets/css/mac-os-dock.css">
+  <link rel="stylesheet" href="assets/css/aaron-gallery.css?v=20261006-1">
+  <link rel="stylesheet" href="assets/css/mac-os-dock.css?v=20261006-1">
+  <link rel="stylesheet" href="assets/css/aaron-mirror.css?v=20261007-5">
   <script src="assets/js/aaron-base.js" defer></script>
-  <script src="assets/js/mac-os-dock.js" defer></script>
-  <script src="assets/js/aaron-sounds.js" defer></script>
+  <script src="assets/js/mac-os-dock.js?v=20261006-1" defer></script>
+  <script src="assets/js/aaron-sounds.js?v=20261007-7" defer></script>
+  <script src="assets/js/aaron-brick-blast.js?v=20261007-10" defer></script>
+  <script src="assets/js/aaron-mirror.js?v=20261007-3" defer></script>
 </head>
 <body>
   <div class="aaron-preloader" id="aaron-preloader" aria-hidden="true">
@@ -191,6 +195,57 @@
     <p class="aaron-footer">
       made by aaron dutta, inspired by <a href="https://www.marco.fyi" target="_blank" rel="noopener noreferrer">marco cornacchia</a>
     </p>
+  </div>
+
+  <div class="aaron-mirror-pop" id="aaron-mirror-pop" hidden>
+    <button type="button" class="aaron-mirror-pop__backdrop" id="aaron-mirror-pop-backdrop" aria-label="Close iPhone Mirroring"></button>
+    <div class="aaron-mirror-pop__card" role="dialog" aria-modal="true" aria-labelledby="aaron-mirror-pop-title">
+      <h2 class="aaron-mirror-pop__title" id="aaron-mirror-pop-title">iPhone Mirroring</h2>
+      <button type="button" class="aaron-mirror-pop__close" id="aaron-mirror-pop-close" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <div class="aaron-mirror-pop__device">
+        <div class="aaron-phone-frame">
+          <div class="aaron-phone" id="aaron-mirror-phone">
+            <img class="aaron-phone__shell" src="assets/phone/iphone.png" alt="" width="800" height="1616">
+            <div class="aaron-phone__screen">
+              <div class="aaron-phone__status">
+                <span class="aaron-phone__time">
+                  <span id="aaron-mirror-time">9:41</span>
+                  <span class="aaron-phone__tz">(live EST)</span>
+                </span>
+                <img class="aaron-phone__status-icons" src="assets/phone/status-icons.svg" alt="">
+              </div>
+              <div class="aaron-brick-blast-toast" id="aaron-brick-blast-toast" hidden aria-live="polite">
+                <div class="aaron-brick-blast-toast__card">
+                  <div class="aaron-brick-blast-toast__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="24" height="24" rx="6" fill="#34C759"/>
+                      <path d="M12 5.5c-3.59 0-6.5 2.57-6.5 5.74 0 1.67.9 3.17 2.32 4.15-.1.92-.38 2.23-1.22 3.87 0 0 2.52-.52 4.18-1.54 1.02.3 2.1.46 3.22.46 3.59 0 6.5-2.57 6.5-5.74S15.59 5.5 12 5.5z" fill="#fff"/>
+                    </svg>
+                  </div>
+                  <div class="aaron-brick-blast-toast__body">
+                    <div class="aaron-brick-blast-toast__meta">
+                      <span class="aaron-brick-blast-toast__app">Messages</span>
+                      <span class="aaron-brick-blast-toast__when">now</span>
+                    </div>
+                    <p class="aaron-brick-blast-toast__sender">Aaron</p>
+                    <p class="aaron-brick-blast-toast__message">you just beat my high score of 75 seconds!</p>
+                  </div>
+                </div>
+              </div>
+              <div class="aaron-brick-blast-menu" id="aaron-brick-blast-menu" hidden>
+                <h3 class="aaron-brick-blast-menu__title">Aaron's Brick Blast</h3>
+                <p class="aaron-brick-blast-menu__subtitle">can you beat aaron's high score of 75 seconds?</p>
+                <button type="button" class="aaron-brick-blast-menu__play" id="aaron-brick-blast-play">Play</button>
+              </div>
+              <canvas id="aaron-brick-blast" class="aaron-brick-blast__canvas" aria-label="Brick Blast. Move the pointer to control the paddle."></canvas>
+              <p class="aaron-brick-blast__live" id="aaron-brick-blast-live" aria-live="polite"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 </html>
