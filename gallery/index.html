@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <script>
     (function () {
+      document.documentElement.classList.add('aaron-preloading');
       try {
         var stored = localStorage.getItem('aaron-theme');
         var theme = stored === 'dark' || stored === 'light'
@@ -14,6 +15,13 @@
       } catch (e) {
         document.documentElement.setAttribute('data-theme', 'light');
       }
+      function syncAaronVh() {
+        var h = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+        document.documentElement.style.setProperty('--aaron-vh', h + 'px');
+      }
+      syncAaronVh();
+      window.addEventListener('resize', syncAaronVh);
+      if (window.visualViewport) window.visualViewport.addEventListener('resize', syncAaronVh);
     })();
   </script>
   <script src="/assets/js/google-analytics.js"></script>
@@ -21,7 +29,7 @@
   <meta name="description" content="Gallery of artwork and creative work by Aaron Dutta.">
   <link rel="canonical" href="https://aarondutta.com/gallery/">
   <link rel="icon" href="/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/assets/css/aaron-base.css">
+  <link rel="stylesheet" href="/assets/css/aaron-base.css?v=20261008-1">
   <link rel="stylesheet" href="/assets/css/aaron-gallery.css?v=2">
   <script src="/assets/js/aaron-base.js" defer></script>
   <script src="/assets/js/aaron-gallery.js?v=2" defer></script>

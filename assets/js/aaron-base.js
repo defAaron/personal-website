@@ -1,4 +1,6 @@
 (function () {
+  const root = document.documentElement;
+
   function normalizePath(p) {
     if (!p || p === '/' || p === './' || p === '#' || p === 'index.html' || p === '/index.html') return '/';
     return p.replace(/\.html$/, '').replace(/\/$/, '') || '/';
@@ -10,7 +12,30 @@
   /* Preloader */
   const preloader = document.getElementById('aaron-preloader');
   if (preloader) {
-    const hidePreloader = () => preloader.classList.add('is-hidden');
+    root.classList.add('aaron-preloading');
+
+    const syncPreloaderHeight = () => {
+      const h = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+      root.style.setProperty('--aaron-vh', `${h}px`);
+    };
+
+    syncPreloaderHeight();
+    window.addEventListener('resize', syncPreloaderHeight);
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', syncPreloaderHeight);
+      window.visualViewport.addEventListener('scroll', syncPreloaderHeight);
+    }
+
+    const hidePreloader = () => {
+      preloader.classList.add('is-hidden');
+      root.classList.remove('aaron-preloading');
+      root.style.removeProperty('--aaron-vh');
+      window.removeEventListener('resize', syncPreloaderHeight);
+      if (window.visualViewport) {
+        window.visualViewport.removeEventListener('resize', syncPreloaderHeight);
+        window.visualViewport.removeEventListener('scroll', syncPreloaderHeight);
+      }
+    };
 
     if (onHomePage) {
       window.addEventListener('load', () => {
@@ -65,7 +90,6 @@
 
   /* Light / dark theme */
   const THEME_KEY = 'aaron-theme';
-  const root = document.documentElement;
   const themeToggle = document.querySelector('.aaron-theme-toggle');
 
   function getTheme() {
