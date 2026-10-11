@@ -88,11 +88,11 @@
       { id: 'figma-4', title: 'Colour Palettes', subtitle: 'figma.com/colour-palettes', emoji: '🎨', href: '#', external: false },
     ],
     cursor: [
-      { id: 'cursor-1', title: 'SkyEye', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
-      { id: 'cursor-2', title: 'SurplusLink', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
-      { id: 'cursor-3', title: 'HoneyDesk', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
+      { id: 'cursor-1', title: 'agents.md', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
+      { id: 'cursor-2', title: 'PRD.md', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
+      { id: 'cursor-3', title: 'Indago', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
       { id: 'cursor-4', title: 'TechniqueTitan', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
-      { id: 'cursor-5', title: 'Personal Website', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
+      { id: 'cursor-5', title: 'cs135.rkt', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
     ],
     spotify: [
       { id: 'spotify-1', title: 'Toronto 2014', subtitle: 'Daniel Caesar', emoji: '🎵', href: '#', external: false },
