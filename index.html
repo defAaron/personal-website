@@ -36,12 +36,13 @@
   <link rel="stylesheet" href="assets/css/aaron-base.css?v=20261008-1">
   <link rel="stylesheet" href="assets/css/aaron-gallery.css?v=20261006-1">
   <link rel="stylesheet" href="assets/css/mac-os-dock.css?v=20261006-1">
-  <link rel="stylesheet" href="assets/css/aaron-mirror.css?v=20261007-5">
+  <link rel="stylesheet" href="assets/css/aaron-mirror.css?v=20261011-1">
   <script src="assets/js/aaron-base.js" defer></script>
   <script src="assets/js/mac-os-dock.js?v=20261006-1" defer></script>
   <script src="assets/js/aaron-sounds.js?v=20261007-7" defer></script>
-  <script src="assets/js/aaron-brick-blast.js?v=20261007-10" defer></script>
-  <script src="assets/js/aaron-mirror.js?v=20261007-3" defer></script>
+  <script src="assets/js/aaron-brick-blast-leaderboard.js?v=20261011-1" defer></script>
+  <script src="assets/js/aaron-brick-blast.js?v=20261011-1" defer></script>
+  <script src="assets/js/aaron-mirror.js?v=20261011-1" defer></script>
 </head>
 <body>
   <div class="aaron-preloader" id="aaron-preloader" aria-hidden="true">
@@ -245,6 +246,21 @@
               <div class="aaron-brick-blast-menu" id="aaron-brick-blast-menu" hidden>
                 <h3 class="aaron-brick-blast-menu__title">Aaron's Brick Blast</h3>
                 <p class="aaron-brick-blast-menu__subtitle">can you beat aaron's high score of 75 seconds?</p>
+                <label class="aaron-brick-blast-menu__name-label" for="aaron-brick-blast-name">Your name (optional)</label>
+                <input
+                  type="text"
+                  class="aaron-brick-blast-menu__name"
+                  id="aaron-brick-blast-name"
+                  name="brick-blast-name"
+                  maxlength="24"
+                  autocomplete="nickname"
+                  placeholder="Anonymous"
+                  spellcheck="false"
+                >
+                <div class="aaron-brick-blast-menu__leaderboard" aria-labelledby="aaron-brick-blast-leaderboard-title">
+                  <h4 class="aaron-brick-blast-menu__leaderboard-title" id="aaron-brick-blast-leaderboard-title">Top 5</h4>
+                  <ol class="aaron-brick-blast-menu__leaderboard-list" id="aaron-brick-blast-leaderboard"></ol>
+                </div>
                 <button type="button" class="aaron-brick-blast-menu__play" id="aaron-brick-blast-play">Play</button>
               </div>
               <canvas id="aaron-brick-blast" class="aaron-brick-blast__canvas" aria-label="Brick Blast. Move the pointer to control the paddle."></canvas>

@@ -8,11 +8,14 @@
   const canvas = document.getElementById('aaron-brick-blast');
   const menu = document.getElementById('aaron-brick-blast-menu');
   const playBtn = document.getElementById('aaron-brick-blast-play');
+  const nameInput = document.getElementById('aaron-brick-blast-name');
+  const leaderboardList = document.getElementById('aaron-brick-blast-leaderboard');
   const timeEl = document.getElementById('aaron-mirror-time');
   if (!pop || !closeBtn || !backdrop) return;
 
   function showMenu() {
     if (menu) menu.hidden = false;
+    window.AaronBrickBlastLeaderboard?.refresh?.(leaderboardList);
   }
 
   function hideMenu() {
@@ -83,9 +86,17 @@
   });
 
   playBtn?.addEventListener('click', () => {
+    const name = nameInput?.value ?? '';
+    window.AaronBrickBlast?.setPlayerName?.(name);
     hideMenu();
     window.AaronBrickBlast?.play?.();
     canvas?.focus?.();
+  });
+
+  nameInput?.addEventListener('keydown', (event) => {
+    if (event.key !== 'Enter') return;
+    event.preventDefault();
+    playBtn?.click();
   });
 
   window.AaronMirror = { open, close, isOpen };

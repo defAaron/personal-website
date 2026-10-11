@@ -33,6 +33,7 @@
   let timerMs = 0;
   let timerPlayStart = 0;
   let beatToastTimer = 0;
+  let playerName = '';
 
   function baseSpeed() {
     return reduced ? 140 : 250;
@@ -283,6 +284,11 @@
       if (remaining() === 0) {
         pauseTimer();
         mode = 'win';
+        const winMs = elapsedMs();
+        const name = window.AaronBrickBlastLeaderboard?.sanitizeName?.(playerName) || '';
+        if (name) {
+          window.AaronBrickBlastLeaderboard?.submit?.(name, winMs)?.catch?.(() => {});
+        }
         if (beatAaron()) {
           clearBeatToastTimer();
           beatToastTimer = window.setTimeout(() => {
@@ -454,6 +460,10 @@
     paddleT = x / Math.max(1, width - w);
   }
 
+  function setPlayerName(name) {
+    playerName = typeof name === 'string' ? name : '';
+  }
+
   function play() {
     if (!running || mode !== 'menu') return;
     beginRound();
@@ -521,5 +531,5 @@
     raf = requestAnimationFrame(frame);
   }
 
-  window.AaronBrickBlast = { start, stop, play };
+  window.AaronBrickBlast = { start, stop, play, setPlayerName };
 })();
