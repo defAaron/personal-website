@@ -110,7 +110,6 @@
       sortDate: 202608,
       tagline: 'AI-assisted missing person search from drone photos.',
       mp4: '/assets/projects/skyeye/preview.mp4',
-      reel: '/assets/projects/skyeye/preview.mp4',
       poster: '/assets/projects/skyeye/reel.jpg',
       desc: 'an AI-assisted missing person search tool that turns a free-text report into a Lost Person Behavior search ring, then scans drone photographs for ranked person-shaped candidates so rescue teams know where to look first.',
       stack: ['Python', 'Flask', 'YOLOv8n', 'ONNX', 'Gemini API', 'Groq', 'Google Maps API', 'React', 'TypeScript', 'Vite', 'Three.js', 'Docker', 'Vercel', 'Render'],
@@ -144,7 +143,6 @@
       sortDate: 202608,
       tagline: 'Sketch a page; AI grows real components where you drew.',
       mp4: '/assets/projects/baio/reel.mp4?v=2',
-      reel: '/assets/projects/baio/reel.mp4?v=2',
       poster: '/assets/projects/baio/reel.jpg?v=2',
       desc: 'magic paper with AI autocomplete for drawing: sketch a rough webpage, press enter, and real editable components bloom in like wet ink exactly where you drew them, then frame it into a working website.',
       stack: ['Next.js', 'TypeScript', 'Gemini API', 'Anthropic API', 'FreeSolo', 'Qwen3.5-2B', 'perfect-freehand', 'framer-motion', 'Zod', 'Vercel', 'Base44'],
@@ -156,7 +154,6 @@
       sortDate: 202609,
       tagline: 'Live camera feedback on piano hand posture.',
       mp4: '/assets/projects/techniquetitan/reel.mp4?v=2',
-      reel: '/assets/projects/techniquetitan/reel.mp4?v=2',
       poster: '/assets/projects/techniquetitan/reel.jpg?v=2',
       desc: 'a real-time hand tracking and 21-landmark finger bone recognition computer vision application that evaluates hand piano posture through live camera feed, running a feedback engine for heuristic scoring.',
       stack: ['Python', 'MediaPipe', 'OpenCV', 'NumPy', 'FastAPI', 'React', 'TypeScript', 'Tailwind', 'Streamlit', 'PyYAML', 'Vercel', 'Docker', 'Render', 'Github Actions + pytest'],
@@ -178,7 +175,6 @@
       sortDate: 202603,
       tagline: 'Synthetic fraud networks for stronger GNN detection.',
       mp4: '/assets/projects/fraudgen/reel.mp4?v=2',
-      reel: '/assets/projects/fraudgen/reel.mp4?v=2',
       poster: '/assets/projects/fraudgen/reel.jpg?v=2',
       desc: 'a multi-agent adversarial AI pipeline that synthesizes fraud transaction networks, closing the known-unknown gap in GNN-based fraud detection.',
       stack: ['Python', 'Anthropic API', 'Streamlit', 'Next.js', 'FastAPI', 'Pandas', 'Pydantic', 'Matplotlib'],
@@ -429,7 +425,7 @@
   }
 
   function reelMedia(file) {
-    const src = file.reel || file.mp4;
+    const src = file.mp4;
     if (src) {
       const poster = file.poster ? ` poster="${esc(file.poster)}"` : '';
       return `<video class="aaron-reel__video" data-src="${esc(src)}"${poster} muted loop playsinline preload="none" disablepictureinpicture aria-hidden="true"></video>`;
@@ -583,7 +579,7 @@
     const files = visibleFiles(tab);
     const showcase = viewMode === 'icons' && files.length > 0 && files.every((file) => file.id && !isCertification(file));
     const shown = showcase
-      ? files.filter((file) => file.reel || file.mp4).concat(files.filter((file) => !(file.reel || file.mp4)))
+      ? files.filter((file) => file.mp4).concat(files.filter((file) => !file.mp4))
       : files;
     grid.classList.toggle('is-reels', showcase);
     grid.innerHTML = shown.length

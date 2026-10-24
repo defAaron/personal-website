@@ -97,10 +97,8 @@
   }
 
   window.AaronBrickBlastLeaderboard = {
-    fetchTop,
     submit,
     refresh,
-    formatTimeMs,
     sanitizeName,
   };
 })();

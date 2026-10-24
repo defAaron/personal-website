@@ -103,5 +103,4 @@
     playBtn?.click();
   });
 
-  window.AaronMirror = { open, close, isOpen };
 })();

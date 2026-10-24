@@ -18,7 +18,7 @@
     { selector: '.aaron-files__item', sound: SOUNDS.item },
     { selector: '.aaron-fade, .aaron-gallery__img, .aaron-phone__event, .aaron-phone__slot', sound: SOUNDS.item },
     {
-      selector: '.aaron-hero__link, .aaron-hero__hl, .aaron-footer a, .aaron-contact__item',
+      selector: '.aaron-hero__link, .aaron-hero__hl, .aaron-footer a',
       sound: SOUNDS.item,
     },
   ];
@@ -58,9 +58,6 @@
   );
 
   window.AaronSounds = {
-    playItem() {
-      play(SOUNDS.item);
-    },
     playNav() {
       play(SOUNDS.nav);
     },
