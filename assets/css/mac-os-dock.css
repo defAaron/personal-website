@@ -17,7 +17,7 @@
 }
 
 html[data-theme="dark"] {
-  --aaron-dock-panel: #1c1c20;
+  --aaron-dock-panel: #222226;
   --aaron-dock-panel-border: #3a3a40;
   --aaron-dock-panel-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
   --aaron-dock-tab: #25252a;
@@ -47,10 +47,6 @@ html[data-theme="dark"] {
   gap: 0.875rem;
   padding: 4px 0 8px;
   overflow: visible;
-}
-
-.mac-dock-shell--mirroring .mac-dock-tabs {
-  display: none;
 }
 
 /* —— tilda-bar (tab strip) —— */
@@ -225,6 +221,12 @@ html[data-theme="dark"] .mac-dock-tab__copy.is-copied img {
   font-size: 1rem;
   line-height: 1;
   flex-shrink: 0;
+}
+
+.mac-dock-tab__icon--index {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--aaron-dock-subtitle);
 }
 
 .mac-dock-tab__icon-img {
@@ -413,7 +415,8 @@ html[data-theme="dark"] .mac-dock__ring {
 
 html[data-theme="dark"] .mac-dock-tab__icon-img[src*="github"],
 html[data-theme="dark"] .mac-dock-tab__icon-img[src*="x.svg"],
-html[data-theme="dark"] .mac-dock-tab__icon-img[src*="email"] {
+html[data-theme="dark"] .mac-dock-tab__icon-img[src*="email"],
+html[data-theme="dark"] .mac-dock-tab__icon-img[src*="notion-page"] {
   filter: invert(1);
 }
 
@@ -454,5 +457,361 @@ html[data-theme="dark"] .mac-dock-tab__icon-img[src*="email"] {
 
   .mac-dock-tabs {
     padding: 10px 10px 18px;
+  }
+}
+
+/* Writing window — same blur treatment as iPhone Mirroring, Mac window shape. */
+.aaron-note {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.aaron-note[hidden] {
+  display: none;
+}
+
+.aaron-note__backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(10px) saturate(1.05);
+  -webkit-backdrop-filter: blur(10px) saturate(1.05);
+  cursor: pointer;
+}
+
+.aaron-note__window {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: min(820px, calc(100vw - 48px));
+  height: min(560px, calc(100dvh - 48px));
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+  font-family: var(--aaron-font);
+  color: var(--aaron-ink);
+}
+
+.aaron-note__window.is-resizing,
+.aaron-note__window.is-resizing * {
+  user-select: none;
+}
+
+.aaron-note__titlebar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  height: 44px;
+  padding: 0 48px;
+  background: #f3f3f5;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.aaron-note__titlebar.is-dragging {
+  cursor: grabbing;
+}
+
+.aaron-note__traffic {
+  position: absolute;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.aaron-note__light {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.18);
+}
+
+.aaron-note__light--close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: #ff5f57;
+  color: rgba(80, 0, 0, 0.72);
+  cursor: pointer;
+}
+
+.aaron-note__light--close svg {
+  width: 8px;
+  height: 8px;
+  opacity: 0;
+}
+
+.aaron-note__light--close:hover svg,
+.aaron-note__light--close:focus-visible svg {
+  opacity: 1;
+}
+
+.aaron-note__light--close:focus-visible {
+  outline: 2px solid var(--aaron-ink);
+  outline-offset: 2px;
+}
+
+.aaron-note__chrome-title {
+  max-width: 100%;
+  overflow: hidden;
+  font-family: var(--aaron-font);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: var(--aaron-ink);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.aaron-note__body {
+  flex: 1;
+  overflow: auto;
+  padding: 28px 32px 36px;
+  background: #fff;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  overflow-anchor: none;
+}
+
+.aaron-note__heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.aaron-note__title {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--aaron-font);
+  font-size: 31px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.4px;
+  color: var(--aaron-ink);
+}
+
+.aaron-note__byline {
+  flex-shrink: 0;
+  margin-left: auto;
+  text-align: right;
+  font-family: var(--aaron-font);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: var(--aaron-muted);
+}
+
+.aaron-note__byline span {
+  display: block;
+}
+
+.aaron-note__rule {
+  width: 100%;
+  height: 1.4px;
+  margin: 24px 0;
+  border: 0;
+  background: var(--aaron-hr);
+}
+
+.aaron-note__copy p {
+  font-family: var(--aaron-font);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: var(--aaron-muted);
+}
+
+.aaron-note__copy > * + * {
+  margin-top: 0.85rem;
+}
+
+.aaron-note__copy strong {
+  font-weight: 650;
+  color: var(--aaron-ink);
+}
+
+.aaron-note__copy u {
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+  text-decoration-thickness: 1px;
+}
+
+.aaron-note__resize {
+  position: absolute;
+  z-index: 5;
+  touch-action: none;
+}
+
+.aaron-note__resize--n,
+.aaron-note__resize--s {
+  height: 8px;
+  cursor: ns-resize;
+}
+
+.aaron-note__resize--n {
+  top: 0;
+  left: 48px;
+  right: 14px;
+}
+
+.aaron-note__resize--s {
+  bottom: 0;
+  left: 14px;
+  right: 14px;
+}
+
+.aaron-note__resize--e,
+.aaron-note__resize--w {
+  width: 8px;
+  cursor: ew-resize;
+}
+
+.aaron-note__resize--e {
+  top: 14px;
+  right: 0;
+  bottom: 14px;
+}
+
+.aaron-note__resize--w {
+  top: 14px;
+  left: 0;
+  bottom: 14px;
+}
+
+.aaron-note__resize--ne,
+.aaron-note__resize--nw,
+.aaron-note__resize--se,
+.aaron-note__resize--sw {
+  width: 14px;
+  height: 14px;
+  z-index: 6;
+}
+
+.aaron-note__resize--nw {
+  top: 0;
+  left: 0;
+  cursor: nwse-resize;
+}
+
+.aaron-note__resize--se {
+  right: 0;
+  bottom: 0;
+  cursor: nwse-resize;
+}
+
+.aaron-note__resize--ne {
+  top: 0;
+  right: 0;
+  cursor: nesw-resize;
+}
+
+.aaron-note__resize--sw {
+  bottom: 0;
+  left: 0;
+  cursor: nesw-resize;
+}
+
+.aaron-note__lead {
+  font-family: var(--aaron-font);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: var(--aaron-ink);
+}
+
+.aaron-note__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin: 0;
+}
+
+.aaron-note__list li {
+  position: relative;
+  padding-left: 1rem;
+  font-family: var(--aaron-font);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: var(--aaron-muted);
+}
+
+.aaron-note__list li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--aaron-caption);
+}
+
+html[data-theme="dark"] .aaron-note__window {
+  background: #1c1c20;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+html[data-theme="dark"] .aaron-note__titlebar {
+  background: #2a2a2e;
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark"] .aaron-note__body {
+  background: #1c1c20;
+}
+
+body.aaron-note-open {
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .aaron-note {
+    padding: 16px;
+  }
+
+  .aaron-note__body {
+    padding: 20px;
+  }
+
+  .aaron-note__title {
+    font-size: 24px;
+  }
+
+  .aaron-note__copy p,
+  .aaron-note__lead,
+  .aaron-note__list li,
+  .aaron-note__byline {
+    font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aaron-note__backdrop {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(0, 0, 0, 0.45);
   }
 }

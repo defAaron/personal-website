@@ -110,44 +110,57 @@
       sortDate: 202608,
       tagline: 'AI-assisted missing person search from drone photos.',
       mp4: '/assets/projects/skyeye/preview.mp4',
+      reel: '/assets/projects/skyeye/preview.mp4',
+      poster: '/assets/projects/skyeye/reel.jpg',
       desc: 'an AI-assisted missing person search tool that turns a free-text report into a Lost Person Behavior search ring, then scans drone photographs for ranked person-shaped candidates so rescue teams know where to look first.',
       stack: ['Python', 'Flask', 'YOLOv8n', 'ONNX', 'Gemini API', 'Groq', 'Google Maps API', 'React', 'TypeScript', 'Vite', 'Three.js', 'Docker', 'Vercel', 'Render'],
+      github: 'https://github.com/defAaron/skyeye',
       write: writeForProject('skyeye'),
     },
     surpluslink: {
       name: 'SurplusLink',
       sortDate: 202608,
       tagline: 'Unused eatery food, routed into claimable pickups.',
+      poster: '/assets/projects/surpluslink/thumbnail.png',
       youtube: 'eU8L9HmfpPg',
       desc: 'an app that turns unused food from eateries into claimable pickups through computer vision and route optimization.',
       stack: ['Next.js', 'TypeScript', 'Prisma', 'Supabase', 'Auth.js', 'Hugging Face Transformers', 'Leaflet', 'Vercel'],
+      github: 'https://github.com/defAaron/kyhacks',
       write: writeForProject('surpluslink'),
     },
     honeydesk: {
       name: 'HoneyDesk',
       sortDate: 202608,
       tagline: 'Live phishing decoys that teach students in plain English.',
+      poster: '/assets/projects/honeydesk/thumbnail.png',
       youtube: '8cGpsI5qa2U',
       desc: 'educative application that traps student phishing attempts through live decoys, classifying the attack in real time, and turn it into a plain-English brief students can act on.',
       stack: ['Next.js', 'TypeScript', 'FastAPI', 'Python', 'SQLite', 'shadcn/ui', 'Render'],
+      github: 'https://github.com/defAaron/STEMist-hacks',
       write: writeForProject('honeydesk'),
     },
     baio: {
       name: 'baio',
       sortDate: 202608,
       tagline: 'Sketch a page; AI grows real components where you drew.',
-      mp4: '/assets/projects/baio/baio.mp4',
+      mp4: '/assets/projects/baio/reel.mp4?v=2',
+      reel: '/assets/projects/baio/reel.mp4?v=2',
+      poster: '/assets/projects/baio/reel.jpg?v=2',
       desc: 'magic paper with AI autocomplete for drawing: sketch a rough webpage, press enter, and real editable components bloom in like wet ink exactly where you drew them, then frame it into a working website.',
       stack: ['Next.js', 'TypeScript', 'Gemini API', 'Anthropic API', 'FreeSolo', 'Qwen3.5-2B', 'perfect-freehand', 'framer-motion', 'Zod', 'Vercel', 'Base44'],
+      github: 'https://github.com/defAaron/ignitionhacks26',
       write: writeForProject('baio'),
     },
     techniquetitan: {
       name: 'TechTitan',
       sortDate: 202609,
       tagline: 'Live camera feedback on piano hand posture.',
-      mp4: '/assets/projects/techniquetitan/techtitan.mp4',
+      mp4: '/assets/projects/techniquetitan/reel.mp4?v=2',
+      reel: '/assets/projects/techniquetitan/reel.mp4?v=2',
+      poster: '/assets/projects/techniquetitan/reel.jpg?v=2',
       desc: 'a real-time hand tracking and 21-landmark finger bone recognition computer vision application that evaluates hand piano posture through live camera feed, running a feedback engine for heuristic scoring.',
       stack: ['Python', 'MediaPipe', 'OpenCV', 'NumPy', 'FastAPI', 'React', 'TypeScript', 'Tailwind', 'Streamlit', 'PyYAML', 'Vercel', 'Docker', 'Render', 'Github Actions + pytest'],
+      github: 'https://github.com/defAaron/TechniqueTitan',
       write: writeForProject('techniquetitan'),
     },
     clipcoach: {
@@ -157,24 +170,30 @@
       youtube: 'KKq0Axw3u-M',
       desc: 'an AI post-game highlight editor that fuses audio energy and visual motion into one excitement curve to auto-cut raw game footage into a music-synced highlight reel, with a timeline editor for instant re-renders.',
       stack: ['Python', 'FastAPI', 'Next.js', 'TypeScript', 'ffmpeg', 'librosa', 'OpenCV', 'Docker'],
+      github: 'https://github.com/defAaron/hack_united',
       write: writeForProject('clipcoach'),
     },
     fraudgen: {
       name: 'FraudGen',
       sortDate: 202603,
       tagline: 'Synthetic fraud networks for stronger GNN detection.',
-      mp4: '/assets/projects/fraudgen/fraudgen.mp4',
+      mp4: '/assets/projects/fraudgen/reel.mp4?v=2',
+      reel: '/assets/projects/fraudgen/reel.mp4?v=2',
+      poster: '/assets/projects/fraudgen/reel.jpg?v=2',
       desc: 'a multi-agent adversarial AI pipeline that synthesizes fraud transaction networks, closing the known-unknown gap in GNN-based fraud detection.',
       stack: ['Python', 'Anthropic API', 'Streamlit', 'Next.js', 'FastAPI', 'Pandas', 'Pydantic', 'Matplotlib'],
+      github: 'https://github.com/101011101/GenAi',
       write: writeForProject('fraudgen'),
     },
     mycellium: {
       name: 'Mycellium',
       sortDate: 202603,
       tagline: 'Distributed farms coordinated by comparative advantage and MILP.',
+      poster: '/assets/projects/mycellium/thumbnail.png',
       youtube: 'x6as0gVqb7Y',
       desc: 'an optimized multi-nodal network that coordinates crop production across a distributed network of farms using comparative advantage and integer linear programming.',
       stack: ['Python', 'SciPy MILP', 'FastAPI', 'React.js', 'TypeScript', 'Google Maps API', 'Tailscale'],
+      github: 'https://github.com/101011101/HackCanada',
       write: writeForProject('mycellium'),
     },
     personalwebsite: {
@@ -183,6 +202,7 @@
       tagline: 'A from-scratch site about me and my work.',
       desc: 'this website, built from scratch to tell you about me and what I\'ve been doing.',
       stack: ['HTML', 'CSS', 'JavaScript', 'Creativity'],
+      github: 'https://github.com/defAaron/personal-website',
       write: writeForProject('personalwebsite'),
     },
   };
@@ -368,6 +388,12 @@
     return file.place != null;
   }
 
+  function stillForProject(file) {
+    if (file.poster) return file.poster;
+    if (file.youtube) return `https://i.ytimg.com/vi/${encodeURIComponent(file.youtube)}/hqdefault.jpg`;
+    return '';
+  }
+
   function thumbForFile(file) {
     if (isCertification(file)) {
       const icon = ISSUER_ICONS[file.place];
@@ -376,7 +402,65 @@
         : '';
       return `<span class="aaron-files__thumb aaron-files__thumb--file">${FILE_THUMB}${badge}</span>`;
     }
+    const still = stillForProject(file);
+    if (still) {
+      return `<span class="aaron-files__thumb aaron-files__thumb--still"><img src="${esc(still)}" alt=""></span>`;
+    }
     return `<span class="aaron-files__thumb aaron-files__thumb--folder">${FOLDER_THUMB}</span>`;
+  }
+
+  const PROJECT_MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+  const GITHUB_ICON = `<svg class="aaron-reel__github-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>`;
+
+  function projectDateLabel(file) {
+    if (file.sortDate != null) {
+      const value = String(file.sortDate);
+      const year = value.slice(0, 4);
+      const month = PROJECT_MONTHS[parseInt(value.slice(4, 6), 10) - 1];
+      return month ? `${month} ${year}` : year;
+    }
+    return file.date || '';
+  }
+
+  function githubMark(file) {
+    if (!file.github) return '';
+    return `<a class="aaron-reel__github" href="${esc(file.github)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(file.name)} on GitHub">${GITHUB_ICON}</a>`;
+  }
+
+  function reelMedia(file) {
+    const src = file.reel || file.mp4;
+    if (src) {
+      const poster = file.poster ? ` poster="${esc(file.poster)}"` : '';
+      return `<video class="aaron-reel__video" data-src="${esc(src)}"${poster} muted loop playsinline preload="none" disablepictureinpicture aria-hidden="true"></video>`;
+    }
+    const still = stillForProject(file);
+    if (still) {
+      return `<img class="aaron-reel__video aaron-reel__video--still" src="${esc(still)}" alt="" aria-hidden="true">`;
+    }
+    return `<span class="aaron-reel__fallback" aria-hidden="true"></span>`;
+  }
+
+  function reelCard(file) {
+    const date = projectDateLabel(file);
+    const tagline = file.tagline || '';
+    const meta = (file.github || date)
+      ? `<span class="aaron-reel__meta">${githubMark(file)}${date ? `<span class="aaron-reel__year">${esc(date)}</span>` : ''}</span>`
+      : '';
+    return `
+      <div class="aaron-reel">
+        <button type="button" class="aaron-reel__open" data-file="${esc(file.name)}" data-project="${esc(file.id)}">
+          <span class="aaron-reel__media">${reelMedia(file)}</span>
+          <span class="aaron-reel__copy">
+            <span class="aaron-reel__head">
+              <span class="aaron-reel__name">${esc(file.name)}</span>
+            </span>
+            ${tagline ? `<span class="aaron-reel__tagline">${esc(tagline)}</span>` : ''}
+          </span>
+        </button>
+        ${meta}
+      </div>
+    `;
   }
 
   function fileSortDate(file) {
@@ -455,7 +539,7 @@
     const needle = query.trim().toLowerCase();
     if (needle) {
       files = files.filter((file) => {
-        const hay = [file.name, file.place, file.date].filter(Boolean).join(' ').toLowerCase();
+        const hay = [file.name, file.place, file.date, projectDateLabel(file)].filter(Boolean).join(' ').toLowerCase();
         return hay.includes(needle);
       });
     }
@@ -496,8 +580,14 @@
     expandGroupForTab(tabId);
 
     const files = visibleFiles(tab);
-    grid.innerHTML = files.length
-      ? files.map((file) => {
+    const showcase = viewMode === 'icons' && files.length > 0 && files.every((file) => file.id && !isCertification(file));
+    const shown = showcase
+      ? files.filter((file) => file.reel || file.mp4).concat(files.filter((file) => !(file.reel || file.mp4)))
+      : files;
+    grid.classList.toggle('is-reels', showcase);
+    grid.innerHTML = shown.length
+      ? shown.map((file) => {
+          if (showcase) return reelCard(file);
           const inner = `
             ${thumbForFile(file)}
             <span class="aaron-files__meta">
@@ -527,6 +617,84 @@
     });
     syncHistoryButtons();
     syncViewMenu();
+    bindReelPlayback();
+  }
+
+  let reelObserver = null;
+
+  function reduceReelMotion() {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  const MAX_REELS = 2;
+  const reelVisibility = new Map();
+
+  function releaseReel(video) {
+    video.pause();
+    if (!video.dataset.loaded) return;
+    video.removeAttribute('src');
+    video.load();
+    delete video.dataset.loaded;
+  }
+
+  function pauseReels() {
+    grid.querySelectorAll('video').forEach((video) => releaseReel(video));
+  }
+
+  function playReel(video) {
+    if (reduceReelMotion() || isPopOpen()) {
+      video.pause();
+      return;
+    }
+    if (!video.dataset.loaded && video.dataset.src) {
+      video.src = video.dataset.src;
+      video.dataset.loaded = '1';
+    }
+    video.muted = true;
+    video.defaultMuted = true;
+    const attempt = video.play();
+    if (attempt && typeof attempt.catch === 'function') attempt.catch(() => {});
+  }
+
+  function syncReelPlayback() {
+    if (reduceReelMotion() || isPopOpen()) {
+      grid.querySelectorAll('video').forEach((video) => video.pause());
+      return;
+    }
+    const ranked = [...reelVisibility.entries()]
+      .filter(([, ratio]) => ratio >= 0.55)
+      .sort((a, b) => b[1] - a[1]);
+    const keep = new Set(ranked.slice(0, MAX_REELS).map(([video]) => video));
+    reelVisibility.forEach((ratio, video) => {
+      if (!(video instanceof HTMLVideoElement) || !video.isConnected) {
+        reelVisibility.delete(video);
+        return;
+      }
+      if (keep.has(video)) playReel(video);
+      else if (ratio < 0.2) releaseReel(video);
+      else video.pause();
+    });
+  }
+
+  function bindReelPlayback() {
+    if (reelObserver) {
+      reelObserver.disconnect();
+      reelObserver = null;
+    }
+    reelVisibility.clear();
+    const videos = grid.querySelectorAll('video[data-src]');
+    if (!videos.length || reduceReelMotion()) return;
+
+    reelObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const video = entry.target;
+        if (!(video instanceof HTMLVideoElement)) return;
+        reelVisibility.set(video, entry.isIntersecting ? entry.intersectionRatio : 0);
+      });
+      syncReelPlayback();
+    }, { root: grid, threshold: [0, 0.2, 0.55, 0.8] });
+
+    videos.forEach((video) => reelObserver.observe(video));
   }
 
   function openTab(tabId) {
@@ -650,12 +818,14 @@
     if (!pop) return;
     clearDemo();
     pop.hidden = true;
+    bindReelPlayback();
   }
 
   function openProject(id) {
     const project = PROJECTS[id];
     if (!project || !pop || !popTitle || !popDesc || !popStack) return;
 
+    pauseReels();
     popTitle.textContent = project.name;
     popDesc.textContent = project.tagline || project.desc || '';
 
@@ -699,7 +869,8 @@
       }
     } else if (popDemo && project.youtube) {
       popDemo.classList.add('has-video');
-      popDemo.style.backgroundImage = `url("https://i.ytimg.com/vi/${esc(project.youtube)}/hqdefault.jpg")`;
+      const still = stillForProject(project);
+      if (still) popDemo.style.backgroundImage = `url("${esc(still)}")`;
       const iframe = document.createElement('iframe');
       iframe.className = 'aaron-ipad-pop__video';
       iframe.title = `${project.name} demo`;
@@ -765,5 +936,6 @@
     if (searchWrap?.classList.contains('is-open')) setSearchOpen(false);
   });
 
+  setSidebarHidden(true);
   renderTab('recents');
 })();

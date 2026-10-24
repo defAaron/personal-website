@@ -47,29 +47,34 @@
     }
   }
 
-  /* Hero statement cycle — rotating lines only */
+  /* Hero statement cycle — advance only when the cycle button is clicked */
   const statements = document.querySelectorAll('.aaron-hero__statements .aaron-hero__statement');
-  const STATEMENT_HOLD_MS = 3000;
+  const cycleBtn = document.querySelector('.aaron-hero__statements .aaron-hero__cycle');
 
-  function statementHoldMs(el) {
-    const extra = Number(el.getAttribute('data-hold-extra-ms'));
-    return STATEMENT_HOLD_MS + (Number.isFinite(extra) ? extra : 0);
+  function showStatement(index) {
+    statements.forEach((el, i) => {
+      const active = i === index;
+      el.classList.toggle('is-active', active);
+      if (active) el.removeAttribute('aria-hidden');
+      else el.setAttribute('aria-hidden', 'true');
+    });
+
+    if (!cycleBtn) return;
+    const current = statements[index];
+    const tail = current.querySelector('.aaron-hero__statement-tail');
+    (tail || current).appendChild(cycleBtn);
   }
 
-  if (statements.length > 1) {
+  if (statements.length) {
     let index = 0;
-    statements[0].classList.add('is-active');
+    showStatement(0);
 
-    const advanceStatement = () => {
-      statements[index].classList.remove('is-active');
-      index = (index + 1) % statements.length;
-      statements[index].classList.add('is-active');
-      setTimeout(advanceStatement, statementHoldMs(statements[index]));
-    };
-
-    setTimeout(advanceStatement, statementHoldMs(statements[0]));
-  } else if (statements.length === 1) {
-    statements[0].classList.add('is-active');
+    if (cycleBtn && statements.length > 1) {
+      cycleBtn.addEventListener('click', () => {
+        index = (index + 1) % statements.length;
+        showStatement(index);
+      });
+    }
   }
 
   /* Start at top on every page load (avoid browser scroll restoration) */

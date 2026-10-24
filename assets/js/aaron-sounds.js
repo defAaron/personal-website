@@ -10,7 +10,7 @@
   };
 
   const PRESS_RULES = [
-    { selector: '.mac-dock__icon', sound: SOUNDS.app },
+    { selector: '.mac-dock__icon, .aaron-mini__link--game', sound: SOUNDS.app },
     { selector: '.mac-dock-tab', sound: SOUNDS.tilda },
     { selector: '.aaron-nav__item, .aaron-theme-toggle', sound: SOUNDS.nav },
     { selector: '.aaron-photos__dock-btn, .aaron-photos__back', sound: SOUNDS.tilda },

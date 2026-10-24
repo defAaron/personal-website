@@ -175,12 +175,16 @@ a {
   width: 100%;
   padding: 0 1rem;
   margin-bottom: 4.5rem;
+  /* The bar is full-width, but only the pill should take the pointer.
+     Empty space beside it has to fall through to the iPad underneath. */
+  pointer-events: none;
 }
 
 .aaron-nav {
   display: flex;
   align-items: center;
   padding: 4px;
+  pointer-events: auto;
   background: var(--aaron-nav-bg);
   border: 1px solid var(--aaron-nav-border);
   border-radius: 56px;
@@ -477,6 +481,52 @@ html[data-theme="dark"] .aaron-look-around__hint img {
   pointer-events: auto;
 }
 
+.aaron-hero__statement-tail {
+  white-space: nowrap;
+}
+
+.aaron-hero__cycle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(0.92em * 20 / 23.4);
+  height: 0.92em;
+  margin: 0 0 0 0.34em;
+  padding: 0;
+  border: 0;
+  border-radius: 0.2em;
+  background: none;
+  font: inherit;
+  color: inherit;
+  vertical-align: -0.16em;
+  line-height: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.aaron-hero__cycle::after {
+  content: '';
+  position: absolute;
+  inset: -0.38em;
+}
+
+.aaron-hero__cycle svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.aaron-hero__cycle:hover,
+.aaron-hero__cycle:focus-visible {
+  color: var(--aaron-ink);
+}
+
+.aaron-hero__cycle:focus-visible {
+  outline: 2px solid var(--aaron-ink);
+  outline-offset: 3px;
+}
+
 .aaron-hero__hl {
   font-weight: 600;
 }
@@ -703,6 +753,16 @@ a.aaron-hero__hl:focus-visible {
   transform: translate(clamp(2.5px, 0.625cqi, 3.5px), clamp(3px, 0.75cqi, 4px));
 }
 
+.aaron-mini__open {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  border-radius: inherit;
+}
+
 .aaron-mini__link {
   position: absolute;
   left: 16px;
@@ -722,6 +782,16 @@ a.aaron-hero__hl:focus-visible {
   pointer-events: none;
 }
 
+.aaron-mini__link--game {
+  appearance: none;
+  -webkit-appearance: none;
+  pointer-events: auto;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
 .aaron-mini__link--br {
   left: auto;
   right: 16px;
@@ -735,7 +805,9 @@ a.aaron-hero__hl:focus-visible {
 }
 
 .aaron-mini--ipad:hover .aaron-mini__link--br,
-.aaron-mini--phone:hover .aaron-mini__link--br {
+.aaron-mini--phone:hover .aaron-mini__link--br,
+.aaron-mini__link--game:hover,
+.aaron-mini__link--game:focus-visible {
   background: rgba(255, 255, 255, 0.7);
   border-color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
@@ -747,7 +819,9 @@ html[data-theme="dark"] .aaron-mini__link {
 }
 
 html[data-theme="dark"] .aaron-mini--ipad:hover .aaron-mini__link--br,
-html[data-theme="dark"] .aaron-mini--phone:hover .aaron-mini__link--br {
+html[data-theme="dark"] .aaron-mini--phone:hover .aaron-mini__link--br,
+html[data-theme="dark"] .aaron-mini__link--game:hover,
+html[data-theme="dark"] .aaron-mini__link--game:focus-visible {
   background: rgba(48, 48, 54, 0.75);
   border-color: rgba(255, 255, 255, 0.28);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
@@ -819,7 +893,7 @@ html[data-theme="dark"] .aaron-mini__link img {
 }
 
 .aaron-mini--phone:hover .aaron-mini-phone,
-.aaron-mini--phone:focus-visible .aaron-mini-phone {
+.aaron-mini--phone:focus-within .aaron-mini-phone {
   transform: translate3d(0, 12%, 0) rotate(0deg);
   filter: drop-shadow(0 22px 34px rgba(0, 0, 0, 0.28));
 }

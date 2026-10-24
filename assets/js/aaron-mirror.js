@@ -79,6 +79,10 @@
   closeBtn.addEventListener('click', close);
   backdrop.addEventListener('click', close);
 
+  document.getElementById('aaron-open-brick-blast')?.addEventListener('click', () => {
+    open();
+  });
+
   document.addEventListener('keydown', (event) => {
     if (event.key !== 'Escape' || !isOpen()) return;
     event.preventDefault();

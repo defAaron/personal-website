@@ -33,16 +33,16 @@
   <meta name="description" content="Aaron Dutta — Honours Mathematics student at the University of Waterloo. Builder, artist, and musician exploring computational math and agentic AI.">
   <link rel="canonical" href="https://aarondutta.com/">
   <link rel="icon" href="favicon.png" type="image/png">
-  <link rel="stylesheet" href="assets/css/aaron-base.css?v=20261017-3">
+  <link rel="stylesheet" href="assets/css/aaron-base.css?v=20261023-7">
   <link rel="stylesheet" href="assets/css/aaron-gallery.css?v=20261006-1">
-  <link rel="stylesheet" href="assets/css/mac-os-dock.css?v=20261006-1">
+  <link rel="stylesheet" href="assets/css/mac-os-dock.css?v=20261024-4">
   <link rel="stylesheet" href="assets/css/aaron-mirror.css?v=20261011-1">
-  <script src="assets/js/aaron-base.js" defer></script>
-  <script src="assets/js/mac-os-dock.js?v=20261006-1" defer></script>
-  <script src="assets/js/aaron-sounds.js?v=20261007-7" defer></script>
+  <script src="assets/js/aaron-base.js?v=20261023-5" defer></script>
+  <script src="assets/js/mac-os-dock.js?v=20261024-4" defer></script>
+  <script src="assets/js/aaron-sounds.js?v=20261023-1" defer></script>
   <script src="assets/js/aaron-brick-blast-leaderboard.js?v=20261011-1" defer></script>
   <script src="assets/js/aaron-brick-blast.js?v=20261011-1" defer></script>
-  <script src="assets/js/aaron-mirror.js?v=20261011-1" defer></script>
+  <script src="assets/js/aaron-mirror.js?v=20261023-1" defer></script>
 </head>
 <body>
   <div class="aaron-preloader" id="aaron-preloader" aria-hidden="true">
@@ -96,10 +96,10 @@
           </p>
           <hr class="aaron-hero__hr">
           <div class="aaron-hero__statements">
-            <p class="aaron-hero__statement">4x hackathon winner</p>
-            <p class="aaron-hero__statement" data-hold-extra-ms="2000">studying math and cs <a href="https://uwaterloo.ca" class="aaron-hero__hl aaron-hero__hl--yellow" target="_blank" rel="noopener noreferrer">@ <img class="aaron-hero__org-icon" src="assets/icons/uwaterloo.svg" alt="" width="16" height="16" aria-hidden="true">uwaterloo</a></p>
-            <p class="aaron-hero__statement">avid builder, artist, and musician</p>
-            <p class="aaron-hero__statement">exploring computational math and agentic AI systems</p>
+            <p class="aaron-hero__statement is-active">studying math and cs <span class="aaron-hero__statement-tail"><a href="https://uwaterloo.ca" class="aaron-hero__hl aaron-hero__hl--yellow" target="_blank" rel="noopener noreferrer">@ <img class="aaron-hero__org-icon" src="assets/icons/uwaterloo.svg" alt="" width="16" height="16" aria-hidden="true">uwaterloo</a><button type="button" class="aaron-hero__cycle" aria-label="Show the next line"><svg xmlns="http://www.w3.org/2000/svg" viewBox="2 2.6 20 23.4" fill="none" aria-hidden="true"><path d="M3.8 9.6 7.6 4.4l3.8 5.2" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/><path d="M7.6 6.2v12q0 3.2 3.4 3.2" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/><path d="M20.2 18.4 16.4 23.6l-3.8-5.2" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/><path d="M16.4 21.8V9.8q0-3.2-3.4-3.2" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"/></svg></button></span></p>
+            <p class="aaron-hero__statement" aria-hidden="true">avid builder, artist, and musician</p>
+            <p class="aaron-hero__statement" aria-hidden="true">exploring computational math and agentic AI systems</p>
+            <p class="aaron-hero__statement" aria-hidden="true">4x hackathon winner</p>
           </div>
           <div class="aaron-hero__bio">
             <ul class="aaron-hero__description">
@@ -118,7 +118,8 @@
           </div>
         </section>
 
-        <a href="/gallery/" class="aaron-tile aaron-mini aaron-mini--phone" aria-label="Open Gallery">
+        <div class="aaron-tile aaron-mini aaron-mini--phone">
+          <a href="/gallery/" class="aaron-mini__open" aria-label="Open Gallery">
           <div class="aaron-mini__stage aaron-mini__stage--phone">
             <div class="aaron-mini__label-wrap aaron-mini__label-wrap--gallery" aria-hidden="true">
               <div class="aaron-mini__label aaron-mini__label--gallery">
@@ -155,10 +156,11 @@
               </div>
             </div>
           </div>
-          <span class="aaron-mini__link aaron-mini__link--br" aria-hidden="true">
+          </a>
+          <button type="button" class="aaron-mini__link aaron-mini__link--br aaron-mini__link--game" id="aaron-open-brick-blast" aria-label="Play Brick Blast">
             <img src="assets/icons/arrow-angle.svg" alt="">
-          </span>
-        </a>
+          </button>
+        </div>
       </div>
 
       <div class="aaron-grid__column aaron-grid__column--right">
