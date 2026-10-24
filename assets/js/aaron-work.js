@@ -449,7 +449,7 @@
       : '';
     return `
       <div class="aaron-reel">
-        <button type="button" class="aaron-reel__open" data-file="${esc(file.name)}" data-project="${esc(file.id)}">
+        <div class="aaron-reel__open" role="button" tabindex="0" data-file="${esc(file.name)}" data-project="${esc(file.id)}">
           <span class="aaron-reel__media">${reelMedia(file)}</span>
           <span class="aaron-reel__copy">
             <span class="aaron-reel__head">
@@ -457,7 +457,7 @@
             </span>
             ${tagline ? `<span class="aaron-reel__tagline">${esc(tagline)}</span>` : ''}
           </span>
-        </button>
+        </div>
         ${meta}
       </div>
     `;
@@ -579,6 +579,7 @@
     grid.classList.toggle('is-list', viewMode === 'list');
     expandGroupForTab(tabId);
 
+    releaseAllReels();
     const files = visibleFiles(tab);
     const showcase = viewMode === 'icons' && files.length > 0 && files.every((file) => file.id && !isCertification(file));
     const shown = showcase
@@ -620,81 +621,165 @@
     bindReelPlayback();
   }
 
-  let reelObserver = null;
-
   function reduceReelMotion() {
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
 
   const MAX_REELS = 2;
-  const reelVisibility = new Map();
+  const reelSources = new WeakMap();
 
-  function releaseReel(video) {
-    video.pause();
-    if (!video.dataset.loaded) return;
-    video.removeAttribute('src');
-    video.load();
-    delete video.dataset.loaded;
+  // GitHub Pages answers Range with 200. WebKit will not start an mp4 without 206,
+  // so those browsers play a blob they fetched themselves.
+  function needsBufferedReel() {
+    const ua = navigator.userAgent;
+    const webkit = /Safari\//.test(ua) && !/Chrome\/|Chromium\/|Edg\/|OPR\//.test(ua);
+    if (!webkit) return false;
+    const host = location.hostname;
+    return host === 'aarondutta.com' || host.endsWith('github.io');
   }
 
-  function pauseReels() {
+  function rectRatio(box, bounds) {
+    const width = Math.min(box.right, bounds.right) - Math.max(box.left, bounds.left);
+    const height = Math.min(box.bottom, bounds.bottom) - Math.max(box.top, bounds.top);
+    const area = box.width * box.height;
+    if (area <= 0 || width <= 0 || height <= 0) return 0;
+    return (width * height) / area;
+  }
+
+  function viewportBounds() {
+    return { left: 0, top: 0, right: window.innerWidth, bottom: window.innerHeight };
+  }
+
+  function releaseReel(video) {
+    video.dataset.wantsPlay = '';
+    video.pause();
+    const generation = String(Number(video.dataset.loadGen || 0) + 1);
+    video.dataset.loadGen = generation;
+    if (!video.dataset.loaded && !video.dataset.objectUrl) return;
+    const objectUrl = video.dataset.objectUrl;
+    video.removeAttribute('src');
+    try { video.load(); } catch (e) { /* ignore */ }
+    if (objectUrl) URL.revokeObjectURL(objectUrl);
+    delete video.dataset.objectUrl;
+    delete video.dataset.loaded;
+    reelSources.delete(video);
+  }
+
+  function releaseAllReels() {
     grid.querySelectorAll('video').forEach((video) => releaseReel(video));
   }
 
-  function playReel(video) {
-    if (reduceReelMotion() || isPopOpen()) {
-      video.pause();
-      return;
+  function pauseReels() {
+    releaseAllReels();
+  }
+
+  function attachPlayableSource(video, src) {
+    const existing = reelSources.get(video);
+    if (existing && video.dataset.loaded) return existing;
+
+    const generation = String(Number(video.dataset.loadGen || 0) + 1);
+    video.dataset.loadGen = generation;
+    video.dataset.loaded = '1';
+
+    if (!needsBufferedReel()) {
+      video.src = src;
+      const ready = Promise.resolve();
+      reelSources.set(video, ready);
+      return ready;
     }
-    if (!video.dataset.loaded && video.dataset.src) {
-      video.src = video.dataset.src;
-      video.dataset.loaded = '1';
-    }
+
+    const ready = fetch(src)
+      .then((res) => {
+        if (!res.ok) throw new Error(String(res.status));
+        return res.blob();
+      })
+      .then((blob) => {
+        if (!video.isConnected || video.dataset.loadGen !== generation) return;
+        const typed = blob.type ? blob : new Blob([blob], { type: 'video/mp4' });
+        const url = URL.createObjectURL(typed);
+        video.dataset.objectUrl = url;
+        video.src = url;
+      })
+      .catch(() => {
+        if (!video.isConnected || video.dataset.loadGen !== generation) return;
+        video.src = src;
+      });
+    reelSources.set(video, ready);
+    return ready;
+  }
+
+  function startPlayback(video) {
+    if (video.dataset.wantsPlay !== '1' || reduceReelMotion() || isPopOpen() || !video.isConnected) return;
     video.muted = true;
     video.defaultMuted = true;
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+    if (!video.paused && video.readyState >= 2) return;
     const attempt = video.play();
     if (attempt && typeof attempt.catch === 'function') attempt.catch(() => {});
   }
 
-  function syncReelPlayback() {
+  function playReel(video) {
     if (reduceReelMotion() || isPopOpen()) {
-      grid.querySelectorAll('video').forEach((video) => video.pause());
+      video.dataset.wantsPlay = '';
+      video.pause();
       return;
     }
-    const ranked = [...reelVisibility.entries()]
-      .filter(([, ratio]) => ratio >= 0.55)
-      .sort((a, b) => b[1] - a[1]);
-    const keep = new Set(ranked.slice(0, MAX_REELS).map(([video]) => video));
-    reelVisibility.forEach((ratio, video) => {
-      if (!(video instanceof HTMLVideoElement) || !video.isConnected) {
-        reelVisibility.delete(video);
-        return;
+    video.dataset.wantsPlay = '1';
+    if (!video.dataset.src) return;
+    attachPlayableSource(video, video.dataset.src).then(() => startPlayback(video));
+  }
+
+  function syncReelPlayback() {
+    const videos = [...grid.querySelectorAll('video[data-src]')];
+    if (reduceReelMotion() || isPopOpen()) {
+      videos.forEach((video) => {
+        video.dataset.wantsPlay = '';
+        video.pause();
+      });
+      return;
+    }
+    const gridBox = grid.getBoundingClientRect();
+    const viewBox = viewportBounds();
+    const ranked = videos
+      .map((video) => ({ video, gridRatio: rectRatio(video.getBoundingClientRect(), gridBox) }))
+      .filter((item) => item.gridRatio >= 0.55)
+      .sort((a, b) => b.gridRatio - a.gridRatio);
+    const keep = new Set(ranked.slice(0, MAX_REELS).map((item) => item.video));
+    videos.forEach((video) => {
+      const box = video.getBoundingClientRect();
+      const gridRatio = rectRatio(box, gridBox);
+      const viewRatio = rectRatio(box, viewBox);
+      if (keep.has(video) && viewRatio >= 0.45) playReel(video);
+      else if (!keep.has(video) && gridRatio < 0.2) releaseReel(video);
+      else {
+        video.dataset.wantsPlay = '';
+        video.pause();
       }
-      if (keep.has(video)) playReel(video);
-      else if (ratio < 0.2) releaseReel(video);
-      else video.pause();
+    });
+  }
+
+  let reelSyncQueued = false;
+  function scheduleReelSync() {
+    if (reelSyncQueued) return;
+    reelSyncQueued = true;
+    requestAnimationFrame(() => {
+      reelSyncQueued = false;
+      syncReelPlayback();
     });
   }
 
   function bindReelPlayback() {
-    if (reelObserver) {
-      reelObserver.disconnect();
-      reelObserver = null;
-    }
-    reelVisibility.clear();
     const videos = grid.querySelectorAll('video[data-src]');
     if (!videos.length || reduceReelMotion()) return;
-
-    reelObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        const video = entry.target;
-        if (!(video instanceof HTMLVideoElement)) return;
-        reelVisibility.set(video, entry.isIntersecting ? entry.intersectionRatio : 0);
-      });
-      syncReelPlayback();
-    }, { root: grid, threshold: [0, 0.2, 0.55, 0.8] });
-
-    videos.forEach((video) => reelObserver.observe(video));
+    videos.forEach((video) => {
+      if (video.dataset.reelBound) return;
+      video.dataset.reelBound = '1';
+      video.addEventListener('canplay', () => startPlayback(video));
+      video.addEventListener('loadeddata', () => startPlayback(video));
+    });
+    scheduleReelSync();
+    requestAnimationFrame(() => requestAnimationFrame(scheduleReelSync));
   }
 
   function openTab(tabId) {
@@ -805,8 +890,10 @@
     if (!popDemo) return;
     popDemo.querySelectorAll('video').forEach((el) => {
       el.pause();
+      const objectUrl = el.dataset.objectUrl;
       el.removeAttribute('src');
       try { el.load(); } catch (e) { /* ignore */ }
+      if (objectUrl) URL.revokeObjectURL(objectUrl);
       el.remove();
     });
     popDemo.querySelectorAll('iframe').forEach((el) => el.remove());
@@ -849,7 +936,6 @@
       popDemo.classList.add('has-video');
       const video = document.createElement('video');
       video.className = 'aaron-ipad-pop__video';
-      video.src = project.mp4;
       video.title = `${project.name} demo`;
       video.muted = true;
       video.defaultMuted = true;
@@ -863,10 +949,15 @@
       video.setAttribute('playsinline', '');
       video.setAttribute('webkit-playsinline', '');
       popDemo.appendChild(video);
-      const playAttempt = video.play();
-      if (playAttempt && typeof playAttempt.catch === 'function') {
-        playAttempt.catch(() => {});
-      }
+      const playDemo = () => {
+        if (!video.isConnected) return;
+        video.muted = true;
+        video.defaultMuted = true;
+        const playAttempt = video.play();
+        if (playAttempt && typeof playAttempt.catch === 'function') playAttempt.catch(() => {});
+      };
+      video.addEventListener('canplay', playDemo);
+      attachPlayableSource(video, project.mp4).then(playDemo);
     } else if (popDemo && project.youtube) {
       popDemo.classList.add('has-video');
       const still = stillForProject(project);
@@ -922,6 +1013,30 @@
     if (!item) return;
     playFolderThenOpen(item, item.getAttribute('data-project'));
   });
+
+  grid.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const item = e.target.closest('.aaron-reel__open[data-project]');
+    if (!item) return;
+    e.preventDefault();
+    playFolderThenOpen(item, item.getAttribute('data-project'));
+  });
+
+  grid.addEventListener('scroll', scheduleReelSync, { passive: true });
+  window.addEventListener('scroll', scheduleReelSync, { passive: true });
+  window.addEventListener('resize', scheduleReelSync);
+  window.addEventListener('pageshow', scheduleReelSync);
+
+  const preloaderEl = document.getElementById('aaron-preloader');
+  if (preloaderEl) {
+    const preloaderWatch = new MutationObserver(() => {
+      if (!preloaderEl.classList.contains('is-hidden')) return;
+      scheduleReelSync();
+      requestAnimationFrame(() => requestAnimationFrame(scheduleReelSync));
+      preloaderWatch.disconnect();
+    });
+    preloaderWatch.observe(preloaderEl, { attributes: true, attributeFilter: ['class'] });
+  }
 
   popClose?.addEventListener('click', closeProject);
   popBackdrop?.addEventListener('click', closeProject);
