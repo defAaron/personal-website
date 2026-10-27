@@ -114,6 +114,7 @@
       desc: 'an AI-assisted missing person search tool that turns a free-text report into a Lost Person Behavior search ring, then scans drone photographs for ranked person-shaped candidates so rescue teams know where to look first.',
       stack: ['Python', 'Flask', 'YOLOv8n', 'ONNX', 'Gemini API', 'Groq', 'Google Maps API', 'React', 'TypeScript', 'Vite', 'Three.js', 'Docker', 'Vercel', 'Render'],
       github: 'https://github.com/defAaron/skyeye',
+      live: 'https://skyeye-one.vercel.app',
       write: writeForProject('skyeye'),
     },
     surpluslink: {
@@ -125,6 +126,7 @@
       desc: 'an app that turns unused food from eateries into claimable pickups through computer vision and route optimization.',
       stack: ['Next.js', 'TypeScript', 'Prisma', 'Supabase', 'Auth.js', 'Hugging Face Transformers', 'Leaflet', 'Vercel'],
       github: 'https://github.com/defAaron/kyhacks',
+      live: 'https://kyhacks.vercel.app',
       write: writeForProject('surpluslink'),
     },
     honeydesk: {
@@ -136,6 +138,7 @@
       desc: 'educative application that traps student phishing attempts through live decoys, classifying the attack in real time, and turn it into a plain-English brief students can act on.',
       stack: ['Next.js', 'TypeScript', 'FastAPI', 'Python', 'SQLite', 'shadcn/ui', 'Render'],
       github: 'https://github.com/defAaron/STEMist-hacks',
+      live: 'https://honeydesk-web.onrender.com',
       write: writeForProject('honeydesk'),
     },
     baio: {
@@ -147,6 +150,7 @@
       desc: 'magic paper with AI autocomplete for drawing: sketch a rough webpage, press enter, and real editable components bloom in like wet ink exactly where you drew them, then frame it into a working website.',
       stack: ['Next.js', 'TypeScript', 'Gemini API', 'Anthropic API', 'FreeSolo', 'Qwen3.5-2B', 'perfect-freehand', 'framer-motion', 'Zod', 'Vercel', 'Base44'],
       github: 'https://github.com/defAaron/ignitionhacks26',
+      live: 'https://massive-prime-product-path.base44.app',
       write: writeForProject('baio'),
     },
     techniquetitan: {
@@ -158,6 +162,7 @@
       desc: 'a real-time hand tracking and 21-landmark finger bone recognition computer vision application that evaluates hand piano posture through live camera feed, running a feedback engine for heuristic scoring.',
       stack: ['Python', 'MediaPipe', 'OpenCV', 'NumPy', 'FastAPI', 'React', 'TypeScript', 'Tailwind', 'Streamlit', 'PyYAML', 'Vercel', 'Docker', 'Render', 'Github Actions + pytest'],
       github: 'https://github.com/defAaron/TechniqueTitan',
+      live: 'https://technique-titan.vercel.app',
       write: writeForProject('techniquetitan'),
     },
     clipcoach: {
@@ -168,6 +173,7 @@
       desc: 'an AI post-game highlight editor that fuses audio energy and visual motion into one excitement curve to auto-cut raw game footage into a music-synced highlight reel, with a timeline editor for instant re-renders.',
       stack: ['Python', 'FastAPI', 'Next.js', 'TypeScript', 'ffmpeg', 'librosa', 'OpenCV', 'Docker'],
       github: 'https://github.com/defAaron/hack_united',
+      live: 'https://clipcoach-aarondutta.vercel.app',
       write: writeForProject('clipcoach'),
     },
     fraudgen: {
@@ -179,6 +185,7 @@
       desc: 'a multi-agent adversarial AI pipeline that synthesizes fraud transaction networks, closing the known-unknown gap in GNN-based fraud detection.',
       stack: ['Python', 'Anthropic API', 'Streamlit', 'Next.js', 'FastAPI', 'Pandas', 'Pydantic', 'Matplotlib'],
       github: 'https://github.com/101011101/GenAi',
+      live: 'https://fraudgen.vercel.app',
       write: writeForProject('fraudgen'),
     },
     mycellium: {
@@ -199,6 +206,7 @@
       desc: 'this website, built from scratch to tell you about me and what I\'ve been doing.',
       stack: ['HTML', 'CSS', 'JavaScript', 'Creativity'],
       github: 'https://github.com/defAaron/personal-website',
+      live: 'https://aarondutta.com',
       write: writeForProject('personalwebsite'),
     },
   };
@@ -408,6 +416,7 @@
   const PROJECT_MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   const GITHUB_ICON = `<svg class="aaron-reel__github-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>`;
+  const LIVE_ICON = `<svg class="aaron-reel__live-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 4.5h4.5V9"/><path d="M19.5 4.5 10.2 13.8"/><path d="M17.2 13.2V18a1.6 1.6 0 0 1-1.6 1.6H6A1.6 1.6 0 0 1 4.4 18V8.4A1.6 1.6 0 0 1 6 6.8h4.8"/></svg>`;
 
   function projectDateLabel(file) {
     if (file.sortDate != null) {
@@ -422,6 +431,11 @@
   function githubMark(file) {
     if (!file.github) return '';
     return `<a class="aaron-reel__github" href="${esc(file.github)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(file.name)} on GitHub">${GITHUB_ICON}</a>`;
+  }
+
+  function liveMark(file) {
+    if (!file.live) return '';
+    return `<a class="aaron-reel__live" href="${esc(file.live)}" target="_blank" rel="noopener noreferrer" aria-label="Open ${esc(file.name)} live">${LIVE_ICON}</a>`;
   }
 
   function reelMedia(file) {
@@ -440,8 +454,8 @@
   function reelCard(file) {
     const date = projectDateLabel(file);
     const tagline = file.tagline || '';
-    const meta = (file.github || date)
-      ? `<span class="aaron-reel__meta">${githubMark(file)}${date ? `<span class="aaron-reel__year">${esc(date)}</span>` : ''}</span>`
+    const meta = (file.github || file.live || date)
+      ? `<span class="aaron-reel__meta">${githubMark(file)}${liveMark(file)}${date ? `<span class="aaron-reel__year">${esc(date)}</span>` : ''}</span>`
       : '';
     return `
       <div class="aaron-reel">

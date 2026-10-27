@@ -534,6 +534,12 @@ html[data-theme="dark"] .aaron-look-around__hint img {
   border-radius: 0.2em;
 }
 
+html[data-theme="dark"] .aaron-hero__org-icon[src*="uwarg"],
+html[data-theme="dark"] .aaron-hero__org-icon[src*="magic-hour"],
+html[data-theme="dark"] .aaron-hero__org-icon[src*="uw-cube"] {
+  filter: invert(1);
+}
+
 a.aaron-hero__hl {
   display: inline-flex;
   align-items: center;
