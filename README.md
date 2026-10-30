@@ -38,7 +38,6 @@ Static HTML/CSS/JS site deployed via [GitHub Pages](https://pages.github.com/) f
     │   ├── honeydesk/
     │   ├── baio/
     │   ├── techniquetitan/
-    │   ├── clipcoach/
     │   ├── fraudgen/
     │   └── mycellium/
     ├── gallery/            # Gallery photos by section

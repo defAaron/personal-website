@@ -61,8 +61,7 @@
 
   const filesRoot = document.querySelector('.aaron-files');
   const grid = document.getElementById('aaron-files-grid');
-  const titleEl = document.getElementById('aaron-files-title');
-  if (!filesRoot || !grid || !titleEl) return;
+  if (!filesRoot || !grid) return;
 
   const sidebarToggle = document.getElementById('aaron-files-sidebar-toggle');
   const sidebarOpen = document.getElementById('aaron-files-sidebar-open');
@@ -70,6 +69,7 @@
   const forwardBtn = document.getElementById('aaron-files-forward');
   const viewBtn = document.getElementById('aaron-files-view-btn');
   const viewMenu = document.getElementById('aaron-files-view-menu');
+  const viewMenuLayout = document.getElementById('aaron-files-menu-view');
   const searchBtn = document.getElementById('aaron-files-search-btn');
   const searchWrap = document.getElementById('aaron-files-search-wrap');
   const searchInput = document.getElementById('aaron-files-search');
@@ -104,11 +104,40 @@
     return WRITE_WIP;
   }
 
+  const WORK_IDS = ['magichour', 'uwcube', 'uwarg'];
+
   const PROJECTS = {
+    magichour: {
+      name: 'Software Engineering Intern at Magic Hour',
+      sortDate: 202609,
+      tagline: 'AI video startup backed by Y Combinator',
+      poster: '/assets/work/magichour.png',
+      desc: 'software engineering intern building product and internal tooling at Magic Hour, an AI video platform.',
+      live: 'https://magichour.ai',
+      write: WRITE_WIP,
+    },
+    uwcube: {
+      name: 'Design Engineer at UW Cube',
+      sortDate: 202608,
+      tagline: 'Designing software for real-world problems',
+      poster: '/assets/work/uw-cube.png',
+      desc: 'building internal tools at UW Cube, the University of Waterloo\'s student-run satellite and space hardware lab.',
+      live: 'https://www.linkedin.com/company/uwcube/posts/?feedView=all',
+      write: WRITE_WIP,
+    },
+    uwarg: {
+      name: 'Autonomy Software Engineer at UWARG',
+      sortDate: 202610,
+      tagline: 'Building and programming autonomous drones',
+      poster: '/assets/work/uwarg.png',
+      desc: 'writing software for autonomous drones with the University of Waterloo Aerospace Robotics Group.',
+      live: 'https://www.uwarg.com',
+      write: WRITE_WIP,
+    },
     skyeye: {
       name: 'SkyEye',
       sortDate: 202608,
-      tagline: 'AI-assisted missing person search from drone photos.',
+      tagline: 'AI-assisted missing person search from drone photos - won 1st at Rescue Hacks.',
       mp4: '/assets/projects/skyeye/preview.mp4',
       poster: '/assets/projects/skyeye/reel.jpg',
       desc: 'an AI-assisted missing person search tool that turns a free-text report into a Lost Person Behavior search ring, then scans drone photographs for ranked person-shaped candidates so rescue teams know where to look first.',
@@ -120,7 +149,7 @@
     surpluslink: {
       name: 'SurplusLink',
       sortDate: 202608,
-      tagline: 'Unused eatery food, routed into claimable pickups.',
+      tagline: 'Unused eatery food, routed into claimable pickups - won 2nd at KY Hacks.',
       poster: '/assets/projects/surpluslink/thumbnail.png',
       youtube: 'eU8L9HmfpPg',
       desc: 'an app that turns unused food from eateries into claimable pickups through computer vision and route optimization.',
@@ -132,7 +161,7 @@
     honeydesk: {
       name: 'HoneyDesk',
       sortDate: 202608,
-      tagline: 'Live phishing decoys that teach students in plain English.',
+      tagline: 'Live phishing decoys that teach students in plain English- won 3rd at STEMist Hacks.',
       poster: '/assets/projects/honeydesk/thumbnail.png',
       youtube: '8cGpsI5qa2U',
       desc: 'educative application that traps student phishing attempts through live decoys, classifying the attack in real time, and turn it into a plain-English brief students can act on.',
@@ -142,9 +171,9 @@
       write: writeForProject('honeydesk'),
     },
     baio: {
-      name: 'baio',
+      name: 'Baio',
       sortDate: 202608,
-      tagline: 'Sketch a page; AI grows real components where you drew.',
+      tagline: 'Magic paper with autocomplete for drawing - submitted to Ignition Hacks.',
       mp4: '/assets/projects/baio/reel.mp4?v=2',
       poster: '/assets/projects/baio/reel.jpg?v=2',
       desc: 'magic paper with AI autocomplete for drawing: sketch a rough webpage, press enter, and real editable components bloom in like wet ink exactly where you drew them, then frame it into a working website.',
@@ -156,7 +185,7 @@
     techniquetitan: {
       name: 'TechTitan',
       sortDate: 202609,
-      tagline: 'Live camera feedback on piano hand posture.',
+      tagline: 'Real-time finger bone recognition CV to evaluate piano hand posture',
       mp4: '/assets/projects/techniquetitan/reel.mp4?v=2',
       poster: '/assets/projects/techniquetitan/reel.jpg?v=2',
       desc: 'a real-time hand tracking and 21-landmark finger bone recognition computer vision application that evaluates hand piano posture through live camera feed, running a feedback engine for heuristic scoring.',
@@ -165,21 +194,10 @@
       live: 'https://technique-titan.vercel.app',
       write: writeForProject('techniquetitan'),
     },
-    clipcoach: {
-      name: 'ClipCoach',
-      sortDate: 202607,
-      tagline: 'Auto-cut game footage into music-synced highlight reels.',
-      youtube: 'KKq0Axw3u-M',
-      desc: 'an AI post-game highlight editor that fuses audio energy and visual motion into one excitement curve to auto-cut raw game footage into a music-synced highlight reel, with a timeline editor for instant re-renders.',
-      stack: ['Python', 'FastAPI', 'Next.js', 'TypeScript', 'ffmpeg', 'librosa', 'OpenCV', 'Docker'],
-      github: 'https://github.com/defAaron/hack_united',
-      live: 'https://clipcoach-aarondutta.vercel.app',
-      write: writeForProject('clipcoach'),
-    },
     fraudgen: {
       name: 'FraudGen',
       sortDate: 202603,
-      tagline: 'Synthetic fraud networks for stronger GNN detection.',
+      tagline: 'Synthetic fraud networks for stronger GNN detection - submitted to GenAI Genesis.',
       mp4: '/assets/projects/fraudgen/reel.mp4?v=2',
       poster: '/assets/projects/fraudgen/reel.jpg?v=2',
       desc: 'a multi-agent adversarial AI pipeline that synthesizes fraud transaction networks, closing the known-unknown gap in GNN-based fraud detection.',
@@ -191,7 +209,7 @@
     mycellium: {
       name: 'Mycellium',
       sortDate: 202603,
-      tagline: 'Distributed farms coordinated by comparative advantage and MILP.',
+      tagline: 'Distributed farms coordinated by comparative advantage and MILP - won 1st at STEMMINDS Hacks.',
       poster: '/assets/projects/mycellium/thumbnail.png',
       youtube: 'x6as0gVqb7Y',
       desc: 'an optimized multi-nodal network that coordinates crop production across a distributed network of farms using comparative advantage and integer linear programming.',
@@ -201,8 +219,9 @@
     },
     personalwebsite: {
       name: 'Personal Website',
-      sortDate: 202607,
-      tagline: 'A from-scratch site about me and my work.',
+      sortDate: 202601,
+      tagline: 'Built with HTML, CSS, Javascript, and love - inspired by marco.fyi',
+      poster: '/assets/personal-website.png',
       desc: 'this website, built from scratch to tell you about me and what I\'ve been doing.',
       stack: ['HTML', 'CSS', 'JavaScript', 'Creativity'],
       github: 'https://github.com/defAaron/personal-website',
@@ -211,10 +230,22 @@
     },
   };
 
+  const PROJECT_IDS = Object.keys(PROJECTS)
+    .filter((id) => !WORK_IDS.includes(id))
+    .sort((a, b) => (PROJECTS[b].sortDate || 0) - (PROJECTS[a].sortDate || 0));
+
   const TABS = {
-    recents: {
-      title: 'Recents',
-      files: ['skyeye', 'surpluslink', 'honeydesk', 'techniquetitan', 'baio', 'fraudgen'],
+    all: {
+      title: 'All',
+      files: [...WORK_IDS, ...PROJECT_IDS],
+    },
+    work: {
+      title: 'Work',
+      files: WORK_IDS,
+    },
+    projects: {
+      title: 'Projects',
+      files: PROJECT_IDS,
     },
     certifications: {
       title: 'Certifications',
@@ -231,45 +262,13 @@
         { name: 'Bronze Medallion', place: 'Lifesaving Society Canada', date: '2023' },
       ],
     },
-    'social-good': {
-      title: 'Social Good',
-      files: ['skyeye', 'surpluslink', 'honeydesk'],
-    },
-    finance: {
-      title: 'Finance',
-      files: ['fraudgen', 'mycellium'],
-    },
-    design: {
-      title: 'Design',
-      files: ['baio', 'personalwebsite'],
-    },
-    'media-tools': {
-      title: 'Media Tools',
-      files: ['techniquetitan', 'clipcoach'],
-    },
     hackathons: {
       title: 'Hackathons',
-      files: ['skyeye', 'surpluslink', 'honeydesk', 'baio', 'clipcoach', 'fraudgen', 'mycellium'],
+      files: ['skyeye', 'surpluslink', 'honeydesk', 'baio', 'fraudgen', 'mycellium'],
     },
     'personal-projects': {
       title: 'Personal Projects',
-      files: ['personalwebsite', 'techniquetitan'],
-    },
-    'computer-vision': {
-      title: 'Computer Vision',
-      files: ['skyeye', 'surpluslink', 'techniquetitan', 'clipcoach'],
-    },
-    'generative-ai': {
-      title: 'Generative AI',
-      files: ['skyeye', 'baio', 'fraudgen', 'surpluslink'],
-    },
-    'classical-ml': {
-      title: 'Classical ML + Optimization',
-      files: ['fraudgen', 'mycellium'],
-    },
-    devops: {
-      title: 'Devops',
-      files: ['techniquetitan', 'skyeye'],
+      files: ['techniquetitan', 'personalwebsite'],
     },
   };
 
@@ -392,6 +391,37 @@
     return file.place != null;
   }
 
+  function isWorkEntry(file) {
+    return file.id != null && WORK_IDS.includes(file.id);
+  }
+
+  function workProjectPartition(files) {
+    const workById = new Map(files.filter(isWorkEntry).map((f) => [f.id, f]));
+    const work = WORK_IDS.map((id) => workById.get(id)).filter(Boolean);
+    const projects = files.filter((f) => !isWorkEntry(f));
+    return { work, projects };
+  }
+
+  function orderProjectsByTab(projects) {
+    const rank = new Map(PROJECT_IDS.map((id, i) => [id, i]));
+    return projects.slice().sort((a, b) => (rank.get(a.id) ?? 999) - (rank.get(b.id) ?? 999));
+  }
+
+  function orderAllCategory(files, projectCompare) {
+    const { work, projects } = workProjectPartition(files);
+    const orderedProjects = projectCompare
+      ? projects.slice().sort(projectCompare)
+      : orderProjectsByTab(projects);
+    return work.concat(orderedProjects);
+  }
+
+  function orderShowcase(files, tabId) {
+    const byMedia = (list) => list.filter((file) => file.mp4).concat(list.filter((file) => !file.mp4));
+    if (tabId !== 'all') return byMedia(files);
+    const { work, projects } = workProjectPartition(files);
+    return byMedia(work).concat(byMedia(projects));
+  }
+
   function stillForProject(file) {
     if (file.poster) return file.poster;
     if (file.youtube) return `https://i.ytimg.com/vi/${encodeURIComponent(file.youtube)}/hqdefault.jpg`;
@@ -401,10 +431,10 @@
   function thumbForFile(file) {
     if (isCertification(file)) {
       const icon = ISSUER_ICONS[file.place];
-      const badge = icon
-        ? `<img class="aaron-files__badge" src="${esc(icon)}" alt="" aria-hidden="true" />`
-        : '';
-      return `<span class="aaron-files__thumb aaron-files__thumb--file">${FILE_THUMB}${badge}</span>`;
+      if (icon) {
+        return `<span class="aaron-files__thumb aaron-files__thumb--cert"><img src="${esc(icon)}" alt="" aria-hidden="true"></span>`;
+      }
+      return `<span class="aaron-files__thumb aaron-files__thumb--file">${FILE_THUMB}</span>`;
     }
     const still = stillForProject(file);
     if (still) {
@@ -457,9 +487,13 @@
     const meta = (file.github || file.live || date)
       ? `<span class="aaron-reel__meta">${githubMark(file)}${liveMark(file)}${date ? `<span class="aaron-reel__year">${esc(date)}</span>` : ''}</span>`
       : '';
+    const staticWork = isWorkEntry(file);
+    const openAttrs = staticWork
+      ? `class="aaron-reel__open aaron-reel__open--static" data-file="${esc(file.name)}"`
+      : `class="aaron-reel__open" role="button" tabindex="0" data-file="${esc(file.name)}" data-project="${esc(file.id)}"`;
     return `
-      <div class="aaron-reel">
-        <div class="aaron-reel__open" role="button" tabindex="0" data-file="${esc(file.name)}" data-project="${esc(file.id)}">
+      <div class="aaron-reel${staticWork ? ' aaron-reel--static' : ''}">
+        <div ${openAttrs}>
           <span class="aaron-reel__media">${reelMedia(file)}</span>
           <span class="aaron-reel__copy">
             <span class="aaron-reel__head">
@@ -479,11 +513,15 @@
     return Number.isFinite(year) ? year * 100 : 0;
   }
 
-  let currentTab = 'recents';
+  let currentTab = 'all';
   let viewMode = 'icons';
   let sortMode = null;
+
+  function layoutForTab(tabId) {
+    return tabId === 'certifications' ? 'list' : viewMode;
+  }
   let query = '';
-  const tabHistory = ['recents'];
+  const tabHistory = ['all'];
   let historyIndex = 0;
 
   function syncHistoryButtons() {
@@ -501,6 +539,16 @@
 
   function syncViewMenu() {
     if (!viewMenu) return;
+    const certListOnly = currentTab === 'certifications';
+    if (viewMenuLayout) viewMenuLayout.hidden = certListOnly;
+    if (viewBtn) {
+      const label = certListOnly ? 'Sort options' : 'View options';
+      viewBtn.setAttribute('aria-label', label);
+      viewBtn.title = label;
+    }
+    if (viewMenu) {
+      viewMenu.setAttribute('aria-label', certListOnly ? 'Sort options' : 'View options');
+    }
     viewMenu.querySelectorAll('[data-view]').forEach((item) => {
       const on = item.getAttribute('data-view') === viewMode;
       item.classList.toggle('is-checked', on);
@@ -544,7 +592,7 @@
     }
   }
 
-  function visibleFiles(tab) {
+  function visibleFiles(tab, tabId) {
     let files = resolveFiles(tab.files);
     const needle = query.trim().toLowerCase();
     if (needle) {
@@ -554,9 +602,13 @@
       });
     }
     if (sortMode === 'name') {
-      files = files.slice().sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' }));
+      const byName = (a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' });
+      files = tabId === 'all' ? orderAllCategory(files, byName) : files.slice().sort(byName);
     } else if (sortMode === 'date') {
-      files = files.slice().sort((a, b) => fileSortDate(b) - fileSortDate(a) || a.name.localeCompare(b.name));
+      const byDate = (a, b) => fileSortDate(b) - fileSortDate(a) || a.name.localeCompare(b.name);
+      files = tabId === 'all' ? orderAllCategory(files, byDate) : files.slice().sort(byDate);
+    } else if (tabId === 'all') {
+      files = orderAllCategory(files);
     }
     return files;
   }
@@ -585,16 +637,14 @@
     if (!tab) return;
 
     currentTab = tabId;
-    titleEl.textContent = tab.title;
-    grid.classList.toggle('is-list', viewMode === 'list');
+    const layout = layoutForTab(tabId);
+    grid.classList.toggle('is-list', layout === 'list');
     expandGroupForTab(tabId);
 
     releaseAllReels();
-    const files = visibleFiles(tab);
-    const showcase = viewMode === 'icons' && files.length > 0 && files.every((file) => file.id && !isCertification(file));
-    const shown = showcase
-      ? files.filter((file) => file.mp4).concat(files.filter((file) => !file.mp4))
-      : files;
+    const files = visibleFiles(tab, tabId);
+    const showcase = layout === 'icons' && files.length > 0 && files.every((file) => file.id && !isCertification(file));
+    const shown = showcase ? orderShowcase(files, tabId) : files;
     grid.classList.toggle('is-reels', showcase);
     grid.innerHTML = shown.length
       ? shown.map((file) => {
@@ -612,6 +662,13 @@
               <a class="aaron-files__item" href="${esc(file.href)}" target="_blank" rel="noopener noreferrer" data-file="${esc(file.name)}" aria-label="Open ${esc(file.name)} certificate">
                 ${inner}
               </a>
+            `;
+          }
+          if (isWorkEntry(file)) {
+            return `
+              <div class="aaron-files__item aaron-files__item--static" data-file="${esc(file.name)}">
+                ${inner}
+              </div>
             `;
           }
           const projectAttr = file.id ? ` data-project="${esc(file.id)}"` : '';
@@ -850,7 +907,10 @@
   viewMenu?.addEventListener('click', (e) => {
     const item = e.target.closest('[data-view], [data-sort]');
     if (!item) return;
-    if (item.hasAttribute('data-view')) viewMode = item.getAttribute('data-view');
+    if (item.hasAttribute('data-view')) {
+      if (currentTab === 'certifications') return;
+      viewMode = item.getAttribute('data-view');
+    }
     if (item.hasAttribute('data-sort')) sortMode = item.getAttribute('data-sort');
     setMenuOpen(false);
     renderTab(currentTab);
@@ -1062,5 +1122,5 @@
   });
 
   setSidebarHidden(true);
-  renderTab('recents');
+  renderTab('all');
 })();

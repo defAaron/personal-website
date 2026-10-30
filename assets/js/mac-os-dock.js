@@ -58,10 +58,9 @@
 
   const APP_TABS = {
     arc: [
-      { id: 'arc-1', title: 'Aaron Dutta', subtitle: 'aarondutta.com', emoji: '👤', href: 'https://aarondutta.com', external: true, copy: true },
       { id: 'arc-2', title: 'LinkedIn', subtitle: 'linkedin.com/in/aaron-dutta', icon: '/assets/dock/linkedin.svg', href: 'https://linkedin.com/in/aaron-dutta', external: true, copy: true },
-      { id: 'arc-3', title: 'GitHub', subtitle: 'github.com/defAaron', icon: '/assets/dock/github.svg', href: 'https://github.com/defAaron', external: true, copy: true },
       { id: 'arc-4', title: 'X', subtitle: 'x.com/theaar0ndutta', icon: '/assets/dock/x.svg', href: 'https://x.com/theaar0ndutta', external: true, copy: true },
+      { id: 'arc-3', title: 'GitHub', subtitle: 'github.com/defAaron', icon: '/assets/dock/github.svg', href: 'https://github.com/defAaron', external: true, copy: true },
       { id: 'arc-mail', title: 'Email', subtitle: 'aaron.dutta22@uwaterloo.ca', icon: '/assets/dock/email.svg', href: 'mailto:aaron.dutta22@uwaterloo.ca', external: false, copy: true, copyValue: 'aaron.dutta22@uwaterloo.ca' },
       { id: 'arc-6', title: 'Cal.com', subtitle: 'cal.com/aaron-dutta', icon: '/assets/dock/cal.svg', href: 'https://cal.com/aaron-dutta', external: true, copy: true },
     ],
