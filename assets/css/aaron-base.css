@@ -535,9 +535,13 @@ html[data-theme="dark"] .aaron-look-around__hint img {
 }
 
 html[data-theme="dark"] .aaron-hero__org-icon[src*="uwarg"],
-html[data-theme="dark"] .aaron-hero__org-icon[src*="magic-hour"],
 html[data-theme="dark"] .aaron-hero__org-icon[src*="uw-cube"] {
   filter: invert(1);
+}
+
+/* Navy inverts to yellow. Drop the hue, then lift the badge to white. */
+html[data-theme="dark"] .aaron-hero__org-icon[src*="magic-hour"] {
+  filter: invert(1) grayscale(1) brightness(1.2);
 }
 
 a.aaron-hero__hl {
