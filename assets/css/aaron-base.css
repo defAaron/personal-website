@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
   --aaron-bg: #fff;
@@ -23,6 +23,9 @@
   --aaron-hl-navy: #0a1628;
   --aaron-hl-purple: #9333ea;
   --aaron-hl-crimson: #991b1b;
+  --aaron-hl-dusty-purple: #7c3aed;
+  --aaron-hl-slate-blue: #2563eb;
+  --aaron-hl-muted-teal: #0f766e;
   --aaron-tile-radius: 32px;
   --aaron-gap: 16px;
   --aaron-unit: 328px;
@@ -56,6 +59,9 @@ html[data-theme="dark"] {
   --aaron-hl-navy: #9db0cc;
   --aaron-hl-purple: #c084fc;
   --aaron-hl-crimson: #f87171;
+  --aaron-hl-dusty-purple: #c4b5fd;
+  --aaron-hl-slate-blue: #93c5fd;
+  --aaron-hl-muted-teal: #5eead4;
 }
 
 *,
@@ -434,10 +440,20 @@ html[data-theme="dark"] .aaron-look-around__hint img {
 }
 
 .aaron-hero__description li.aaron-hero__description-lead {
-  font-weight: 500;
-  color: var(--aaron-ink);
+  font-family: var(--aaron-font);
+  font-size: 12px;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: uppercase;
+  color: #747474;
   padding-left: 0;
-  margin-bottom: 0.1rem;
+  margin-bottom: calc(16px - 0.4rem);
+}
+
+html[data-theme="dark"] .aaron-hero__description li.aaron-hero__description-lead {
+  color: #a3a3a8;
 }
 
 .aaron-hero__description li.aaron-hero__description-lead::before {
@@ -521,6 +537,26 @@ html[data-theme="dark"] .aaron-look-around__hint img {
 
 .aaron-hero__hl {
   font-weight: 600;
+}
+
+.aaron-hero__bio .aaron-hero__hl {
+  color: var(--aaron-ink);
+  font-weight: 500;
+}
+
+.aaron-hero__bio .aaron-hero__hl--dusty-purple {
+  color: var(--aaron-hl-dusty-purple);
+  font-weight: 700;
+}
+
+.aaron-hero__bio .aaron-hero__hl--slate-blue {
+  color: var(--aaron-hl-slate-blue);
+  font-weight: 700;
+}
+
+.aaron-hero__bio .aaron-hero__hl--muted-teal {
+  color: var(--aaron-hl-muted-teal);
+  font-weight: 700;
 }
 
 .aaron-hero__org-icon {
@@ -1023,6 +1059,10 @@ html[data-theme="dark"] .aaron-mini__link img {
   margin-top: calc(-16 * var(--px));
   border-radius: 100px;
   background: #fff;
+}
+
+.aaron-mini-photos__indicator--drawings {
+  left: 33%;
 }
 
 .aaron-mini-photos__dock-btn {

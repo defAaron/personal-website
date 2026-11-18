@@ -1,0 +1,148 @@
+- generic [ref=f4e7]:
+  - banner:
+    - navigation "Primary" [ref=f4e8]:
+      - link "Home" [ref=f4e9]:
+        - /url: /
+      - link "Work" [ref=f4e10]:
+        - /url: /work/
+      - link "Gallery" [ref=f4e11]:
+        - /url: /gallery/
+      - button "Switch to dark mode" [ref=f4e12] [cursor=pointer]
+  - paragraph [ref=f4e15]:
+    - generic [ref=f4e16]: Building, learning and exploring...
+  - main [ref=f4e18]:
+    - generic [ref=f4e19]:
+      - generic [ref=f4e20]:
+        - paragraph [ref=f4e21]:
+          - text: Hi, I'm
+          - generic [ref=f4e22]: Aaron
+          - text: .
+        - separator [ref=f4e23]
+        - generic [ref=f4e24]:
+          - paragraph [ref=f4e25]:
+            - text: studying math and cs
+            - generic [ref=f4e26]:
+              - link "@ uwaterloo" [ref=f4e27] [cursor=pointer]:
+                - /url: https://uwaterloo.ca
+              - button "Show the next line" [ref=f4e29] [cursor=pointer]
+          - paragraph [aria-hidden]: avid builder, artist, and musician
+          - paragraph [aria-hidden]: exploring computational math and agentic AI systems
+          - paragraph [aria-hidden]: 4x hackathon winner
+        - generic [ref=f4e35]:
+          - list [ref=f4e36]:
+            - listitem [ref=f4e37]: "what I'm doing:"
+            - listitem [ref=f4e38]:
+              - text: – software engineering intern
+              - link "@ Magic Hour" [ref=f4e39] [cursor=pointer]:
+                - /url: https://magichour.ai
+              - text: (YC W24)
+            - listitem [ref=f4e41]:
+              - text: – building internal tools
+              - link "@ UW Cube" [ref=f4e42] [cursor=pointer]:
+                - /url: https://www.linkedin.com/company/uwcube/posts/?feedView=all
+            - listitem [ref=f4e44]:
+              - text: – writing software for autonomous drones
+              - link "@ UWARG" [ref=f4e45] [cursor=pointer]:
+                - /url: https://www.uwarg.com
+            - listitem [ref=f4e47]:
+              - text: – fine-tuning
+              - link "AI models for pianists" [ref=f4e48] [cursor=pointer]:
+                - /url: https://github.com/defAaron/TechniqueTitan
+            - listitem [ref=f4e49]:
+              - text: –
+              - link "award-winning pianist" [ref=f4e50] [cursor=pointer]:
+                - /url: https://youtube.com/playlist?list=PLFIVVjvIsY4R6XkeJ_IkNMosSr4JlnT9o&si=xlLY974aTDnzU7FM
+              - text: with 14 years of experience
+          - list [ref=f4e51]:
+            - listitem [ref=f4e52]: "what I used to do:"
+            - listitem [ref=f4e53]:
+              - text: – went to a
+              - link "week-long workshop" [ref=f4e54] [cursor=pointer]:
+                - /url: https://cemc.uwaterloo.ca/workshops/student-workshops/auckland
+              - text: for the top 70 math students in Canada
+            - listitem [ref=f4e56]:
+              - text: –
+              - link "mathematics mentor" [ref=f4e57] [cursor=pointer]:
+                - /url: https://www.youtube.com/watch?v=dpGF6q9Rfy4&t=0s
+              - text: to 15+ students in rural India for 2.5 years
+            - listitem [ref=f4e58]:
+              - text: – part time swim coach
+              - link "@ Olympian Swimming" [ref=f4e59] [cursor=pointer]:
+                - /url: https://www.olympianswimming.com
+              - text: for 3 years
+      - generic [ref=f4e61]:
+        - link "Open Gallery" [ref=f4e62]:
+          - /url: /gallery/
+          - generic [ref=f4e63]:
+            - generic [aria-hidden]:
+              - generic:
+                - generic: Gallery
+                - generic: Gallery
+            - generic [ref=f4e64]:
+              - generic [aria-hidden]:
+                - generic:
+                  - generic:
+                    - generic:
+                      - text: 9:41
+                      - generic: (live EST)
+                  - generic: Drawings
+        - button "Play Brick Blast" [ref=f4e65] [cursor=pointer]
+    - generic [ref=f4e66]:
+      - generic [ref=f4e69]:
+        - region "Open tabs" [ref=f4e70]:
+          - generic [ref=f4e71]: connect with me
+          - tablist [ref=f4e73]:
+            - generic [ref=f4e74]:
+              - tab "LinkedIn linkedin.com/in/aaron-dutta" [selected] [ref=f4e75] [cursor=pointer]:
+                - generic [ref=f4e76]: LinkedIn
+                - generic [ref=f4e80]: linkedin.com/in/aaron-dutta
+              - button "Copy LinkedIn link" [ref=f4e82] [cursor=pointer]
+            - generic [ref=f4e83]:
+              - tab "X x.com/theaar0ndutta" [ref=f4e84] [cursor=pointer]:
+                - generic [ref=f4e85]: X
+                - generic [ref=f4e89]: x.com/theaar0ndutta
+              - button "Copy X link" [ref=f4e91] [cursor=pointer]
+            - generic [ref=f4e92]:
+              - tab "GitHub github.com/defAaron" [ref=f4e93] [cursor=pointer]:
+                - generic [ref=f4e94]: GitHub
+                - generic [ref=f4e98]: github.com/defAaron
+              - button "Copy GitHub link" [ref=f4e100] [cursor=pointer]
+            - generic [ref=f4e101]:
+              - tab "Email aaron.dutta22@uwaterloo.ca" [ref=f4e102] [cursor=pointer]:
+                - generic [ref=f4e103]: Email
+                - generic [ref=f4e107]: aaron.dutta22@uwaterloo.ca
+              - button "Copy Email address" [ref=f4e109] [cursor=pointer]
+            - generic [ref=f4e110]:
+              - tab "Cal.com cal.com/aaron-dutta" [ref=f4e111] [cursor=pointer]:
+                - generic [ref=f4e112]: Cal.com
+                - generic [ref=f4e116]: cal.com/aaron-dutta
+              - button "Copy Cal.com link" [ref=f4e118] [cursor=pointer]
+        - toolbar "Application dock" [ref=f4e119]:
+          - generic [ref=f4e120]:
+            - button "connect with me" [ref=f4e121] [cursor=pointer]
+            - button "resume" [ref=f4e122] [cursor=pointer]
+            - button "writing" [ref=f4e123] [cursor=pointer]
+            - button "awards" [ref=f4e124] [cursor=pointer]
+            - button "favorite songs" [ref=f4e125] [cursor=pointer]
+      - link "Open Work" [ref=f4e126]:
+        - /url: /work/
+        - generic [ref=f4e127]:
+          - generic [aria-hidden]:
+            - generic:
+              - generic: Projects
+              - generic: Projects
+      - generic [ref=f4e129]:
+        - heading "where I'm recognized:" [level=2] [ref=f4e130]
+        - list [ref=f4e131]:
+          - listitem [ref=f4e132]: – Winner, Rescue Hacks 2026
+          - listitem [ref=f4e133]: – 2nd Best Overall Hack, Katy Youth Hacks 2026
+          - listitem [ref=f4e134]: – 3rd Best Security/Privacy Hack, STEMist Hacks IV 2026
+          - listitem [ref=f4e135]: – Winner, STEM MINDS Hackathon 2026
+          - listitem [ref=f4e136]: – Top 1.25%, Fermat 2025
+          - listitem [ref=f4e137]: – Top 6.5%, Hypatia 2025
+          - listitem [ref=f4e138]: – Top 17%, Euclid, Chem13, Sir Isaac Newton 2025
+          - listitem [ref=f4e139]: – 2x Gold Winner, IMFC 2025
+  - paragraph [ref=f4e140]:
+    - text: made by aaron dutta, inspired by
+    - link "marco cornacchia" [ref=f4e141]:
+      - /url: https://www.marco.fyi

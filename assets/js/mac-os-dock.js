@@ -7,12 +7,12 @@
 
   const APPS = [
     {
-      id: 'arc',
+      id: 'dia',
       name: 'connect with me',
-      icon: '/assets/dock/arc.webp',
-      accent: '#fc5c54',
-      accentBg: '#ffe8e6',
-      tabActiveBg: '#fff0ef',
+      icon: '/assets/dock/dia.png',
+      accent: '#e6b325',
+      accentBg: '#fff1c7',
+      tabActiveBg: '#fff8e3',
     },
     {
       id: 'claude',
@@ -31,20 +31,12 @@
       tabActiveBg: '#eff0ff',
     },
     {
-      id: 'cursor',
-      name: 'projects',
-      icon: '/assets/dock/cursor.png',
-      accent: '#6366f1',
-      accentBg: '#e8eafc',
-      tabActiveBg: '#eff0ff',
-    },
-    {
-      id: 'figma',
-      name: 'design',
-      icon: '/assets/dock/figma.webp',
-      accent: '#a259ff',
-      accentBg: '#ede5ff',
-      tabActiveBg: '#f5f0ff',
+      id: 'notes',
+      name: 'awards',
+      icon: '/assets/dock/notes.png',
+      accent: '#f5c518',
+      accentBg: '#fff4c2',
+      tabActiveBg: '#fff9dc',
     },
     {
       id: 'spotify',
@@ -57,12 +49,12 @@
   ];
 
   const APP_TABS = {
-    arc: [
-      { id: 'arc-2', title: 'LinkedIn', subtitle: 'linkedin.com/in/aaron-dutta', icon: '/assets/dock/linkedin.svg', href: 'https://linkedin.com/in/aaron-dutta', external: true, copy: true },
-      { id: 'arc-4', title: 'X', subtitle: 'x.com/theaar0ndutta', icon: '/assets/dock/x.svg', href: 'https://x.com/theaar0ndutta', external: true, copy: true },
-      { id: 'arc-3', title: 'GitHub', subtitle: 'github.com/defAaron', icon: '/assets/dock/github.svg', href: 'https://github.com/defAaron', external: true, copy: true },
-      { id: 'arc-mail', title: 'Email', subtitle: 'aaron.dutta22@uwaterloo.ca', icon: '/assets/dock/email.svg', href: 'mailto:aaron.dutta22@uwaterloo.ca', external: false, copy: true, copyValue: 'aaron.dutta22@uwaterloo.ca' },
-      { id: 'arc-6', title: 'Cal.com', subtitle: 'cal.com/aaron-dutta', icon: '/assets/dock/cal.svg', href: 'https://cal.com/aaron-dutta', external: true, copy: true },
+    dia: [
+      { id: 'dia-2', title: 'LinkedIn', subtitle: 'linkedin.com/in/aaron-dutta', icon: '/assets/dock/linkedin.svg', href: 'https://linkedin.com/in/aaron-dutta', external: true, copy: true },
+      { id: 'dia-4', title: 'X', subtitle: 'x.com/theaar0ndutta', icon: '/assets/dock/x.svg', href: 'https://x.com/theaar0ndutta', external: true, copy: true },
+      { id: 'dia-3', title: 'GitHub', subtitle: 'github.com/defAaron', icon: '/assets/dock/github.svg', href: 'https://github.com/defAaron', external: true, copy: true },
+      { id: 'dia-mail', title: 'Email', subtitle: 'aaron.dutta22@uwaterloo.ca', icon: '/assets/dock/email.svg', href: 'mailto:aaron.dutta22@uwaterloo.ca', external: false, copy: true, copyValue: 'aaron.dutta22@uwaterloo.ca' },
+      { id: 'dia-6', title: 'Cal.com', subtitle: 'cal.com/aaron-dutta', icon: '/assets/dock/cal.svg', href: 'https://cal.com/aaron-dutta', external: true, copy: true },
     ],
     notion: [
       {
@@ -149,18 +141,15 @@
         ],
       },
     ],
-    figma: [
-      { id: 'figma-1', title: 'Personal Website', subtitle: 'figma.com/personal-website', emoji: '✦', href: '#', external: false },
-      { id: 'figma-2', title: 'Website Gallery Phone Mockup', subtitle: 'figma.com/website-gallery-phone-mockup', emoji: '✦', href: '#', external: false },
-      { id: 'figma-3', title: 'Design Sesh', subtitle: 'figma.com/design-sesh', emoji: '🎨', href: '#', external: false },
-      { id: 'figma-4', title: 'Colour Palettes', subtitle: 'figma.com/colour-palettes', emoji: '🎨', href: '#', external: false },
-    ],
-    cursor: [
-      { id: 'cursor-1', title: 'agents.md', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
-      { id: 'cursor-2', title: 'PRD.md', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
-      { id: 'cursor-3', title: 'Indago', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
-      { id: 'cursor-4', title: 'TechniqueTitan', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
-      { id: 'cursor-5', title: 'cs135.rkt', subtitle: 'defAaron', emoji: '📁', href: '#', external: false },
+    notes: [
+      { id: 'notes-1', title: 'Winner', subtitle: 'Rescue Hacks 2026', icon: '/assets/dock/notes-page.svg', href: '#', external: false },
+      { id: 'notes-2', title: '2nd Best Overall Hack', subtitle: 'Katy Youth Hacks 2026', icon: '/assets/dock/notes-page.svg', href: '#', external: false },
+      { id: 'notes-3', title: '3rd Best Security/Privacy Hack', subtitle: 'STEMist Hacks IV 2026', icon: '/assets/dock/notes-page.svg', href: '#', external: false },
+      { id: 'notes-4', title: 'Winner', subtitle: 'STEM MINDS Hackathon 2026', icon: '/assets/dock/notes-page.svg', href: '#', external: false },
+      { id: 'notes-5', title: 'Top 1.25%', subtitle: 'Fermat 2025', icon: '/assets/dock/notes-page.svg', href: '#', external: false },
+      { id: 'notes-6', title: 'Top 6.5%', subtitle: 'Hypatia 2025', icon: '/assets/dock/notes-page.svg', href: '#', external: false },
+      { id: 'notes-7', title: 'Top 17%', subtitle: 'Euclid, Chem13, Sir Isaac Newton 2025', icon: '/assets/dock/notes-page.svg', href: '#', external: false },
+      { id: 'notes-8', title: '2x Gold Winner', subtitle: 'IMFC 2025', icon: '/assets/dock/notes-page.svg', href: '#', external: false },
     ],
     spotify: [
       { id: 'spotify-1', title: 'Toronto 2014', subtitle: 'Daniel Caesar', emoji: '1', href: '#', external: false },
@@ -172,8 +161,8 @@
     ],
   };
 
-  let activeAppId = 'arc';
-  let activeTabId = APP_TABS.arc[0].id;
+  let activeAppId = 'dia';
+  let activeTabId = APP_TABS.dia[0].id;
 
   const shell = document.createElement('div');
   shell.className = 'mac-dock-shell';
@@ -849,5 +838,5 @@
     new ResizeObserver(updateCaretPosition).observe(shell);
   }
 
-  selectApp('arc');
+  selectApp('dia');
 })();
