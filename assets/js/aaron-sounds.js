@@ -5,12 +5,14 @@
   const SOUNDS = {
     nav: '/assets/sounds/nav-click.mp3',
     app: '/assets/sounds/app-click.mp3',
+    dock: '/assets/sounds/ios-app-switch.mp3',
     tilda: '/assets/sounds/tilda-click.mp3',
     item: '/assets/sounds/item-click.mp3',
   };
 
   const PRESS_RULES = [
-    { selector: '.mac-dock__icon, .aaron-mini__link--game', sound: SOUNDS.app },
+    { selector: '.mac-dock__icon', sound: SOUNDS.dock },
+    { selector: '.aaron-mini__link--game, .aaron-hero__cycle', sound: SOUNDS.app },
     { selector: '.mac-dock-tab', sound: SOUNDS.tilda },
     { selector: '.aaron-nav__item, .aaron-theme-toggle', sound: SOUNDS.nav },
     { selector: '.aaron-photos__dock-btn, .aaron-photos__back', sound: SOUNDS.tilda },
@@ -51,6 +53,7 @@
     'mousedown',
     (event) => {
       if (event.button !== 0) return;
+      if (event.target.closest('.mac-dock-tab[data-audio]')) return;
       const sound = findPressRule(event.target);
       if (sound) play(sound);
     },

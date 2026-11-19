@@ -23,20 +23,20 @@
       tabActiveBg: '#fff5f0',
     },
     {
-      id: 'notion',
-      name: 'writing',
-      icon: '/assets/dock/notion.webp',
-      accent: '#6366f1',
-      accentBg: '#dbddff',
-      tabActiveBg: '#eff0ff',
-    },
-    {
       id: 'notes',
       name: 'awards',
       icon: '/assets/dock/notes.png',
       accent: '#f5c518',
       accentBg: '#fff4c2',
       tabActiveBg: '#fff9dc',
+    },
+    {
+      id: 'notion',
+      name: 'writing',
+      icon: '/assets/dock/notion.webp',
+      accent: '#6366f1',
+      accentBg: '#dbddff',
+      tabActiveBg: '#eff0ff',
     },
     {
       id: 'spotify',
@@ -50,11 +50,11 @@
 
   const APP_TABS = {
     dia: [
-      { id: 'dia-2', title: 'LinkedIn', subtitle: 'linkedin.com/in/aaron-dutta', icon: '/assets/dock/linkedin.svg', href: 'https://linkedin.com/in/aaron-dutta', external: true, copy: true },
-      { id: 'dia-4', title: 'X', subtitle: 'x.com/theaar0ndutta', icon: '/assets/dock/x.svg', href: 'https://x.com/theaar0ndutta', external: true, copy: true },
-      { id: 'dia-3', title: 'GitHub', subtitle: 'github.com/defAaron', icon: '/assets/dock/github.svg', href: 'https://github.com/defAaron', external: true, copy: true },
-      { id: 'dia-mail', title: 'Email', subtitle: 'aaron.dutta22@uwaterloo.ca', icon: '/assets/dock/email.svg', href: 'mailto:aaron.dutta22@uwaterloo.ca', external: false, copy: true, copyValue: 'aaron.dutta22@uwaterloo.ca' },
-      { id: 'dia-6', title: 'Cal.com', subtitle: 'cal.com/aaron-dutta', icon: '/assets/dock/cal.svg', href: 'https://cal.com/aaron-dutta', external: true, copy: true },
+      { id: 'dia-2', title: 'LinkedIn', subtitle: '/in/aaron-dutta', icon: '/assets/dock/linkedin.svg', href: 'https://linkedin.com/in/aaron-dutta', external: true, copy: true },
+      { id: 'dia-4', title: 'X', subtitle: '/theaar0ndutta', icon: '/assets/dock/x.svg', href: 'https://x.com/theaar0ndutta', external: true, copy: true },
+      { id: 'dia-3', title: 'GitHub', subtitle: '/defAaron', icon: '/assets/dock/github.svg', href: 'https://github.com/defAaron', external: true, copy: true },
+      { id: 'dia-mail', title: 'Email', subtitle: 'aaron.dutta@uwaterloo.ca', icon: '/assets/dock/email.svg', href: 'mailto:aaron.dutta@uwaterloo.ca', external: false, copy: true, copyValue: 'aaron.dutta@uwaterloo.ca' },
+      { id: 'dia-6', title: 'Cal.com', subtitle: '/aaron-dutta', icon: '/assets/dock/cal.svg', href: 'https://cal.com/aaron-dutta', external: true, copy: true },
     ],
     notion: [
       {
@@ -79,30 +79,6 @@
               'sometimes the problem behind a motivation is obscured. sometimes you will not be able to concretely define what you wish to solve. as an engineer, this might be one of the most distrurbing thoughts you can have, because a key aspect of engineering is hyperfixating the workflow on that problem, and optimizing your process and build plan to be as efficient as possible. how are we to define a plan when we do not even know what it is for? of course, we know what it will do, but in an age where slop is getting more and more prevalent in the field of creativity, I feel a genuine fear of my creations leaning towards being in that pile of garbage. the solution for this is just to create, evaluate, and repeat. challenge the meaning of direction. a little analogy (that might only make sense in my head) could be the following. imagine your goal is to journey to the North. N 1˚ E still means you are moving North. It also means you are moving East. East may provide additional benefits, or may hinder your project. But it is better than moving South.',
             ],
           },
-        ],
-      },
-      {
-        id: 'notion-2',
-        title: 'navigation',
-        subtitle: 'oct 23, 2026',
-        icon: '/assets/dock/notion-page.svg',
-        href: '#',
-        external: false,
-        note: [
-          "Ever since I could remember, in elementary school and for most of high school, my parents always wanted me to go to the University of Toronto, an Ivy League school, or some kind of top (probably top five) school in the U.S. (whether it's Stanford or something). That mindset has always been there: that I'm capable of being there. The main reason behind this dream of theirs was mainly for the prestige.",
-          "Of course I'd be getting an amazing education there because obviously these universities are world-renowned for a reason. It's not just because of a name or because there's a bunch of rich kids over there. It's because they're also getting a high-quality education. It's been proven because the number of successful people that come out of these universities is far greater than at other universities that are not ranked as high.",
-          "Definitely it was very understandable that my parents wanted me to go to these universities and their dream also became my dream. I started also dreaming of going to the University of Toronto or maybe somewhere in the States, maybe even somewhere in the UK. That idea kind of fell off after I realized I wanted to stay a little closer to home. I didn't want to go too far because I was just a little bit scared of being on my own that far.",
-          "I've always been kind of a home guy. I've never really ventured out on my own because I like being with my family. To make a sudden shift from always being at home, or within the city, or always being with my parents or my friends, to going to a completely different country halfway across the world (where I have no one, almost no one) is a big shift. Who knows how many friends I would have going there? Having not only no support but no way to physically interact with anyone at the start, and also the fact that for emergencies it would be a real problem.",
-          "This was one of the main reasons why I was so committed to UofT, ever since maybe grade 4 or grade 5. Before that university would essentially just be a buzzword that I never would think about. Of course at that age I didn't know any kid who was thinking about university that early. When high school hit, specifically grade 10, I think that is when my mind changed.",
-          "In grade 7 I wrote a math contest called Gauss by the University of Waterloo and I didn't think too much of it. I thought it was just a random contest. I didn't think it had much prestige and I did decent in it. I didn't do really, really well. I did fairly decent but it turned out to be such a huge contest with so many people.",
-          "It turned out that Waterloo just doesn't have the Gauss contest. It has so many other math contests and computer science contests like Beaver and CCC. It even has physics contests like Sir Isaac Newton and chemistry contests, like is Chem 13 News. I ended up writing all of these contests throughout my high school journey.",
-          "That's the one thing that introduced me to how great the University of Waterloo is: its commitment to the field of mathematics, computer science, and engineering, and just STEM in general. You could say that those fields are so prominent at the University of Waterloo and they take it really seriously.",
-          "Now another reason is their co-op program. When I first heard about this co-op program, this idea was so abstract to my parents and me. For my parents especially, the idea of university is just to study, do exams, do quizzes, and live a very academically focused life. The idea of co-op sounded cool but it was very hard to grasp, understand, and imagine what that would actually play out like and look like in university. I wasn't able to compare a full academic university life to this co-op program that Waterloo has until I actually saw people connected with this co-op program. It wasn't around maybe until late grade 10 or grade 11, especially in grade 12 when I was doing university applications.",
-          "So eventually I did commit to the University of Waterloo and it's honestly been such a really good decision. It turned out to be such a good decision that I made. It's because I feel like there's a certain amount of steps you need to take in life that are extremely large. You end up undergoing a paradigm shift where your view of so many things just completely rotates and shifts, mainly due to the people that are surrounding you.",
-          "I feel like I just keep ending up being around smarter people with every step. Going from high school, where obviously people were locked in and it was an IB program so there was a fair amount of studying going on, to shifting from just being focused on academics to actually learning, building, creating, and creating it. It's created a culture from a long time ago but I've just recently been introduced to this amazing culture of sharing this knowledge, cherishing it, and continuing to improve this environment.",
-          "That's the thing I think that's amazing about Waterloo: everyone is doing something here and they're all sharing. If you're gatekeeping you're not making it. You're not going to make it. GMI.",
-          "Obviously a lot of people simultaneously undergo imposter syndrome because everyone is so focused on being so successful at Waterloo. It's okay to feel imposter syndrome. It's normal. I know a lot of people who do and at some point, definitely, I've felt some imposter syndrome too. It's the idea of taking the fear of not being successful (because everyone around you is successful and you feel like you're being left behind) and transforming that fear into inspiration.",
-          "When you see all these people doing amazing things, you should say to yourself: I'm in Waterloo. I'm in one of the top schools in Canada, if not the best school, and Waterloo is recognized worldwide now for so many different things. They have an amazing tech culture, an amazing co-op program, and amazing students who are doing so many amazing things. There are so many different projects happening that are genuinely advancing the world, and not just being built for the purpose of being built (see my note on creation in 2026). It might be a robotic arm learning to play the guitar or a humanoid using a toaster. It might be insanely complicated complex research that I don't even understand the title for. These can literally be first years writing these papers with different professors, not just from Waterloo but from around the world. Some of them even submit them contests and whatnot, and they get accepted into these conferences, which is absolutely amazing and so inspiring to see. I'm in Waterloo and if I want to stop this imposter syndrome, I need to embody that standard of a Waterloo student. I can also be great like everyone else. **I can create and accomplish good shit too.**",
         ],
       },
       {
@@ -142,19 +118,19 @@
       },
     ],
     notes: [
-      { id: 'notes-1', title: 'Winner', subtitle: 'Rescue Hacks 2026', icon: '/assets/dock/notes-page.svg', href: '#', external: false },
-      { id: 'notes-2', title: '2nd Best Overall Hack', subtitle: 'Katy Youth Hacks 2026', icon: '/assets/dock/notes-page.svg', href: '#', external: false },
-      { id: 'notes-3', title: '3rd Best Security/Privacy Hack', subtitle: 'STEMist Hacks IV 2026', icon: '/assets/dock/notes-page.svg', href: '#', external: false },
-      { id: 'notes-4', title: 'Winner', subtitle: 'STEM MINDS Hackathon 2026', icon: '/assets/dock/notes-page.svg', href: '#', external: false },
-      { id: 'notes-5', title: 'Top 1.25%', subtitle: 'Fermat 2025', icon: '/assets/dock/notes-page.svg', href: '#', external: false },
-      { id: 'notes-6', title: 'Top 6.5%', subtitle: 'Hypatia 2025', icon: '/assets/dock/notes-page.svg', href: '#', external: false },
+      { id: 'notes-1', title: 'Winner', subtitle: 'RescueHacks 2026', icon: '/assets/dock/notes-page.svg', href: '#', external: false },
+      { id: 'notes-2', title: '2nd Place', subtitle: 'KYHacks 2026', icon: '/assets/dock/notes-page.svg', href: '#', external: false },
+      { id: 'notes-3', title: '3rd Best Security Hack', subtitle: 'STEMist Hacks 2026', icon: '/assets/dock/notes-page.svg', href: '#', external: false },
+      { id: 'notes-4', title: '1st Place', subtitle: 'STEMMINDS Hacks 2026', icon: '/assets/dock/notes-page.svg', href: '#', external: false },
+      { id: 'notes-5', title: 'Top 70/16,000', subtitle: 'Fermat 2025', icon: '/assets/dock/notes-page.svg', href: '#', external: false },
+      { id: 'notes-6', title: 'Top 400/6,150', subtitle: 'Hypatia 2025', icon: '/assets/dock/notes-page.svg', href: '#', external: false },
       { id: 'notes-7', title: 'Top 17%', subtitle: 'Euclid, Chem13, Sir Isaac Newton 2025', icon: '/assets/dock/notes-page.svg', href: '#', external: false },
       { id: 'notes-8', title: '2x Gold Winner', subtitle: 'IMFC 2025', icon: '/assets/dock/notes-page.svg', href: '#', external: false },
     ],
     spotify: [
-      { id: 'spotify-1', title: 'Toronto 2014', subtitle: 'Daniel Caesar', emoji: '1', href: '#', external: false },
-      { id: 'spotify-2', title: 'Who Knows', subtitle: 'Daniel Caesar', emoji: '2', href: '#', external: false },
-      { id: 'spotify-3', title: 'Piano Concerto No. 2 in C Minor, Op. 18: II. Adagio sostenuto', subtitle: 'Sergei Rachmaninoff', emoji: '3', href: '#', external: false },
+      { id: 'spotify-1', title: 'Toronto 2014', subtitle: 'Daniel Caesar', emoji: '1', href: '#', external: false, audio: '/assets/music/toronto2014.mp3', backgroundArt: '/assets/images/toronto-2014.png' },
+      { id: 'spotify-2', title: 'Who Knows', subtitle: 'Daniel Caesar', emoji: '2', href: '#', external: false, audio: '/assets/music/who-knows.mp3', backgroundArt: '/assets/images/who-knows.png' },
+      { id: 'spotify-3', title: 'Piano Concerto No. 2 in C Minor, Op. 18: II. Adagio sostenuto', subtitle: 'Sergei Rachmaninoff', emoji: '3', href: '#', external: false, audio: '/assets/music/rach.mp3', backgroundArt: '/assets/images/adagio-sostenuto.png' },
     ],
     claude: [
       { id: 'claude-1', title: 'hey claude, print my resume', subtitle: 'click here to view', emoji: '💬', href: '/assets/docs/resume.pdf', external: true },
@@ -210,8 +186,517 @@
   iconStrip.className = 'mac-dock__icons';
   dock.appendChild(iconStrip);
 
-  shell.append(tabPanel, dock);
+  const trackAudio = document.createElement('audio');
+  const musicVolume = 0.7;
+  trackAudio.className = 'mac-dock-player';
+  trackAudio.preload = 'auto';
+  trackAudio.volume = musicVolume;
+  trackAudio.hidden = true;
+  trackAudio.setAttribute('aria-hidden', 'true');
+  let musicAudioContext;
+  let activeSpotifyTab = APP_TABS.spotify[0];
+  let playingTabId = null;
+  let playRequest;
+  let loadedAudioPath;
+  let seekableAudioUrl;
+  let seekDownload;
+  let seekPreview = null;
+  let pendingSeek = null;
+  let currentArtwork = '';
+
+  const playerEl = document.createElement('div');
+  playerEl.className = 'mac-dock-now';
+  playerEl.hidden = true;
+  playerEl.setAttribute('role', 'group');
+  playerEl.setAttribute('aria-label', 'Now playing');
+
+  const artworkCanvas = document.createElement('canvas');
+  artworkCanvas.className = 'mac-dock-now__distortion';
+  artworkCanvas.setAttribute('aria-hidden', 'true');
+  const artworkContext = artworkCanvas.getContext('2d');
+  const artworkImage = new Image();
+  const artworkReducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const artworkTrailDelay = 110;
+  const artworkTrailLifetime = 320;
+  const artworkSparkleLifetime = 240;
+  let artworkTrail = [];
+  let artworkSparkles = [];
+  let previousArtworkPointer = null;
+  let lastArtworkSparkle = -Infinity;
+  let artworkFrame = 0;
+
+  const playerBody = document.createElement('div');
+  playerBody.className = 'mac-dock-now__body';
+
+  const playerTitle = document.createElement('p');
+  playerTitle.className = 'mac-dock-now__title';
+
+  const playerArtist = document.createElement('p');
+  playerArtist.className = 'mac-dock-now__artist';
+
+  const playerProgress = document.createElement('input');
+  playerProgress.type = 'range';
+  playerProgress.className = 'mac-dock-now__progress';
+  playerProgress.setAttribute('aria-label', 'Playback progress');
+  playerProgress.min = '0';
+  playerProgress.max = '0';
+  playerProgress.step = 'any';
+  playerProgress.value = '0';
+  playerProgress.disabled = true;
+
+  const playerTrack = document.createElement('span');
+  playerTrack.className = 'mac-dock-now__track';
+  const playerFill = document.createElement('span');
+  playerFill.className = 'mac-dock-now__fill';
+  playerTrack.setAttribute('aria-hidden', 'true');
+  playerTrack.appendChild(playerFill);
+
+  const playerTimeline = document.createElement('div');
+  playerTimeline.className = 'mac-dock-now__timeline';
+  playerTimeline.append(playerTrack, playerProgress);
+
+  const playerTimes = document.createElement('div');
+  playerTimes.className = 'mac-dock-now__times';
+  const playerElapsed = document.createElement('span');
+  playerElapsed.textContent = '0:00';
+  const playerDuration = document.createElement('span');
+  playerDuration.textContent = '—';
+  playerTimes.append(playerElapsed, playerDuration);
+
+  const playerStatus = document.createElement('p');
+  playerStatus.className = 'mac-dock-now__status';
+  playerStatus.setAttribute('role', 'status');
+
+  function formatTime(sec) {
+    if (!Number.isFinite(sec) || sec < 0) return '0:00';
+    const minutes = Math.floor(sec / 60);
+    const seconds = Math.floor(sec % 60);
+    return `${minutes}:${String(seconds).padStart(2, '0')}`;
+  }
+
+  function glyph(path) {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('aria-hidden', 'true');
+    const shape = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    shape.setAttribute('d', path);
+    shape.setAttribute('fill', 'none');
+    shape.setAttribute('stroke', 'currentColor');
+    shape.setAttribute('stroke-width', '2.4');
+    shape.setAttribute('stroke-linecap', 'round');
+    shape.setAttribute('stroke-linejoin', 'round');
+    svg.appendChild(shape);
+    return svg;
+  }
+
+  function controlButton(label, icon) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'mac-dock-now__btn';
+    button.setAttribute('aria-label', label);
+    button.appendChild(icon);
+    return button;
+  }
+
+  const playerPrev = controlButton('Previous song', glyph('M6.5 5v14M18 6.8 9.5 12l8.5 5.2V6.8Z'));
+  const playerIconPlay = glyph('m8.5 6.5 9 5.5-9 5.5v-11Z');
+  const playerIconPause = glyph('M8.5 6v12M15.5 6v12');
+  playerIconPause.setAttribute('hidden', '');
+  const playerPlay = controlButton('Play', playerIconPlay);
+  playerPlay.classList.add('mac-dock-now__btn--play');
+  playerPlay.appendChild(playerIconPause);
+  const playerNext = controlButton('Next song', glyph('M17.5 5v14M6 6.8l8.5 5.2L6 17.2V6.8Z'));
+
+  const playerControls = document.createElement('div');
+  playerControls.className = 'mac-dock-now__controls';
+  playerControls.append(playerPrev, playerPlay, playerNext);
+
+  const waveform = document.createElement('div');
+  waveform.className = 'mac-dock-now__waveform';
+  waveform.setAttribute('aria-hidden', 'true');
+  const waveformBars = Array.from({ length: 10 }, (_, index) => {
+    const bar = document.createElement('span');
+    bar.style.height = `${7 + Math.cos(index * 0.55)}px`;
+    bar.style.animationDelay = `${(index - 9) * 45}ms`;
+    return bar;
+  });
+  waveform.append(...waveformBars);
+
+  playerBody.append(playerTitle, playerArtist, playerControls, playerTimeline, playerTimes, playerStatus);
+  playerEl.append(artworkCanvas, playerBody, waveform);
+  tabPanel.insertBefore(playerEl, tabRow);
+
+  function drawArtworkDistortion(now) {
+    artworkFrame = 0;
+    artworkContext.resetTransform();
+    artworkContext.clearRect(0, 0, artworkCanvas.width, artworkCanvas.height);
+    artworkTrail = artworkTrail.filter(({ time }) => now - time < artworkTrailDelay + artworkTrailLifetime);
+    artworkSparkles = artworkSparkles.filter(({ time }) => now - time < artworkSparkleLifetime);
+    if (!artworkTrail.length && !artworkSparkles.length) return;
+
+    const { width, height } = playerEl.getBoundingClientRect();
+    if (playerEl.hidden || !width || !height) return;
+
+    const density = window.devicePixelRatio || 1;
+    const canvasWidth = Math.ceil(width * density);
+    const canvasHeight = Math.ceil(height * density);
+    if (artworkCanvas.width !== canvasWidth) artworkCanvas.width = canvasWidth;
+    if (artworkCanvas.height !== canvasHeight) artworkCanvas.height = canvasHeight;
+    artworkContext.setTransform(canvasWidth / width, 0, 0, canvasHeight / height, 0, 0);
+    artworkContext.imageSmoothingEnabled = false;
+
+    if (artworkImage.complete && artworkImage.naturalWidth) {
+      drawArtworkTrail(now, width, height);
+    }
+    artworkContext.fillStyle = '#fff';
+    for (const sparkle of artworkSparkles) {
+      const age = Math.max(0, now - sparkle.time) / artworkSparkleLifetime;
+      artworkContext.globalAlpha = 0.9 * (1 - age) ** 2;
+      artworkContext.fillRect(
+        Math.round(sparkle.x + sparkle.driftX * age),
+        Math.round(sparkle.y + sparkle.driftY * age),
+        sparkle.size,
+        sparkle.size,
+      );
+    }
+    artworkContext.globalAlpha = 1;
+    requestArtworkDistortion();
+  }
+
+  function drawArtworkTrail(now, width, height) {
+    const imageWidth = artworkImage.naturalWidth;
+    const imageHeight = artworkImage.naturalHeight;
+    const scale = Math.max(width / imageWidth, height / imageHeight);
+    const position = parseFloat(getComputedStyle(playerEl).backgroundPositionX) / 100;
+    const artX = (width - imageWidth * scale) * position;
+    const artY = (height - imageHeight * scale) / 2;
+    const tile = 5;
+    const sampleSize = tile / scale;
+    const columns = Math.ceil(width / tile);
+    const tiles = new Map();
+
+    // Combine overlapping samples so each tile fades once, even when the trail doubles back.
+    for (const { x, y, time } of artworkTrail) {
+      const age = now - time - artworkTrailDelay;
+      if (age < 0) continue;
+
+      const strength = 1 - age / artworkTrailLifetime;
+      const radius = 5 + 7 * strength;
+      const startColumn = Math.max(0, Math.floor((x - radius) / tile));
+      const startRow = Math.max(0, Math.floor((y - radius) / tile));
+      for (let row = startRow; row * tile < Math.min(y + radius, height); row++) {
+        for (let column = startColumn; column * tile < Math.min(x + radius, width); column++) {
+          const distance = Math.hypot((column + 0.5) * tile - x, (row + 0.5) * tile - y);
+          if (distance >= radius) continue;
+          const alpha = strength * Math.min(1, (radius - distance) / tile);
+          const key = row * columns + column;
+          tiles.set(key, Math.max(alpha, tiles.get(key) ?? 0));
+        }
+      }
+    }
+
+    for (const [key, alpha] of tiles) {
+      const column = key % columns;
+      const row = Math.floor(key / columns);
+      const tileX = column * tile;
+      const tileY = row * tile;
+      const shiftX = ((column * 3 + row * 7) % 5 - 2) * 3;
+      const shiftY = ((column * 7 + row * 2) % 3 - 1) * 3;
+      const sampleX = Math.max(0, Math.min(imageWidth - sampleSize, (tileX - artX + shiftX) / scale));
+      const sampleY = Math.max(0, Math.min(imageHeight - sampleSize, (tileY - artY + shiftY) / scale));
+      artworkContext.globalAlpha = alpha;
+      artworkContext.drawImage(artworkImage, sampleX, sampleY, sampleSize, sampleSize, tileX, tileY, tile, tile);
+    }
+  }
+
+  function requestArtworkDistortion() {
+    if (artworkContext && !artworkFrame && (artworkTrail.length || artworkSparkles.length)) {
+      artworkFrame = requestAnimationFrame(drawArtworkDistortion);
+    }
+  }
+
+  function updateArtworkPointer(event) {
+    if (!artworkContext || event.pointerType !== 'mouse' || artworkReducedMotion.matches) return;
+
+    const { left, top, width, height } = playerEl.getBoundingClientRect();
+    const x = event.clientX - left;
+    const y = event.clientY - top;
+    if (x < 0 || y < 0 || x >= width || y >= height) return;
+
+    const time = performance.now();
+    const previous = previousArtworkPointer;
+    const distance = previous ? Math.hypot(x - previous.x, y - previous.y) : 0;
+    if (previous && distance < 4) return;
+    previousArtworkPointer = { x, y, time };
+
+    if (previous && time - previous.time < 80) {
+      const steps = Math.min(64, Math.ceil(distance / 6));
+      for (let step = 1; step < steps; step++) {
+        const fraction = step / steps;
+        artworkTrail.push({
+          x: previous.x + (x - previous.x) * fraction,
+          y: previous.y + (y - previous.y) * fraction,
+          time: previous.time + (time - previous.time) * fraction,
+        });
+      }
+    }
+    artworkTrail.push(previousArtworkPointer);
+
+    if (time - lastArtworkSparkle >= 34) {
+      lastArtworkSparkle = time;
+      artworkSparkles.push({
+        x: x + (Math.random() - 0.5) * 12,
+        y: y + (Math.random() - 0.5) * 12,
+        driftX: (Math.random() - 0.5) * 10,
+        driftY: -3 - Math.random() * 6,
+        size: Math.random() < 0.25 ? 3 : 2,
+        time,
+      });
+    }
+    requestArtworkDistortion();
+  }
+
+  function clearArtworkDistortion() {
+    previousArtworkPointer = null;
+    artworkTrail = [];
+    artworkSparkles = [];
+    lastArtworkSparkle = -Infinity;
+    if (artworkFrame) cancelAnimationFrame(artworkFrame);
+    artworkFrame = 0;
+    artworkContext?.resetTransform();
+    artworkContext?.clearRect(0, 0, artworkCanvas.width, artworkCanvas.height);
+  }
+
+  playerEl.addEventListener('pointermove', updateArtworkPointer);
+  playerEl.addEventListener('pointerleave', () => { previousArtworkPointer = null; });
+  playerEl.addEventListener('pointercancel', clearArtworkDistortion);
+  artworkReducedMotion.addEventListener('change', clearArtworkDistortion);
+
+  playerProgress.addEventListener('input', () => {
+    seekPreview = playerProgress.valueAsNumber;
+    syncPlayerTimes();
+  });
+
+  playerProgress.addEventListener('change', () => seekTrack(playerProgress.valueAsNumber));
+  playerProgress.addEventListener('pointercancel', () => {
+    seekPreview = null;
+    syncPlayerTimes();
+  });
+
+  playerProgress.addEventListener('keydown', (event) => {
+    if (playerProgress.disabled) return;
+    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+    event.preventDefault();
+    const delta = event.key === 'ArrowRight' ? 5 : -5;
+    seekTrack(playerProgress.valueAsNumber + delta);
+  });
+
+  playerPrev.addEventListener('click', () => stepSpotify(-1));
+  playerPlay.addEventListener('click', () => toggleTrack(activeSpotifyTab));
+  playerNext.addEventListener('click', () => stepSpotify(1));
+
+  shell.append(tabPanel, dock, trackAudio);
   mount.appendChild(shell);
+
+  trackAudio.addEventListener('ended', () => {
+    if (trackAudio.ended && playingTabId === activeSpotifyTab.id) stepSpotify(1);
+  });
+
+  for (const event of ['loadedmetadata', 'durationchange', 'canplay', 'timeupdate', 'progress', 'seeked']) {
+    trackAudio.addEventListener(event, syncPlayerTimes);
+  }
+  trackAudio.addEventListener('error', () => syncPlayer());
+
+  function seekTrack(time) {
+    if (playerProgress.disabled || !Number.isFinite(time)) return;
+    seekPreview = null;
+    pendingSeek = Math.max(0, Math.min(time, trackAudio.duration));
+    syncPlayerTimes();
+    if (pendingSeek !== null && !seekableAudioUrl && !seekDownload) loadSeekableAudio();
+  }
+
+  async function loadSeekableAudio() {
+    // Download a local copy when the server cannot serve the requested byte range.
+    const request = new AbortController();
+    seekDownload = request;
+    try {
+      const response = await fetch(loadedAudioPath, { signal: request.signal });
+      if (!response.ok) throw new Error('Audio download failed');
+      const audio = await response.blob();
+      if (seekDownload !== request || pendingSeek === null) return;
+
+      seekableAudioUrl = URL.createObjectURL(audio);
+      trackAudio.src = seekableAudioUrl;
+      trackAudio.currentTime = pendingSeek;
+      if (playingTabId === activeSpotifyTab.id) startTrackAudio();
+    } catch {
+      if (seekDownload !== request || pendingSeek === null) return;
+      pendingSeek = null;
+      playerStatus.textContent = 'Unable to seek in this track.';
+      syncPlayerTimes();
+    } finally {
+      if (seekDownload === request) seekDownload = null;
+    }
+  }
+
+  function syncPlayerTimes() {
+    const duration = trackAudio.duration;
+    const canSeek = Number.isFinite(duration) && duration > 0 && !trackAudio.error;
+    if (canSeek && pendingSeek !== null) {
+      const target = Math.min(pendingSeek, duration);
+      const seekable = trackAudio.seekable;
+      for (let index = 0; index < seekable.length; index++) {
+        if (target < seekable.start(index) || target > seekable.end(index) + 0.05) continue;
+        pendingSeek = null;
+        trackAudio.currentTime = target;
+        break;
+      }
+    }
+    if (playerEl.hidden) return;
+
+    const current = canSeek ? Math.min(trackAudio.currentTime, duration) : 0;
+    const sliderTime = canSeek ? Math.min(seekPreview ?? pendingSeek ?? current, duration) : 0;
+    const fraction = canSeek ? sliderTime / duration : 0;
+    playerProgress.disabled = !canSeek;
+    playerProgress.max = canSeek ? String(duration) : '0';
+    if (seekPreview === null) playerProgress.value = String(sliderTime);
+    playerProgress.setAttribute('aria-valuetext', canSeek ? `${formatTime(sliderTime)} of ${formatTime(duration)}` : 'Unavailable');
+    playerElapsed.textContent = formatTime(current);
+    playerDuration.textContent = canSeek ? formatTime(duration) : '—';
+    playerFill.style.width = `${fraction * 100}%`;
+    waveformBars.forEach((bar, index) => {
+      bar.classList.toggle('is-played', (index + 0.5) / waveformBars.length <= fraction);
+    });
+  }
+
+  function syncPlayerArtwork(artwork, direction) {
+    if (artwork === currentArtwork) return;
+    const previousArtwork = currentArtwork;
+    currentArtwork = artwork;
+    playerEl.style.setProperty('--player-artwork', `url("${artwork}")`);
+    clearArtworkDistortion();
+    artworkImage.src = artwork;
+
+    if (!previousArtwork) {
+      for (const track of APP_TABS.spotify) {
+        if (track.backgroundArt === artwork) continue;
+        const preload = new Image();
+        preload.src = track.backgroundArt;
+      }
+      return;
+    }
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const outgoingArt = document.createElement('div');
+    outgoingArt.className = 'mac-dock-now__outgoing-art';
+    outgoingArt.setAttribute('aria-hidden', 'true');
+    outgoingArt.style.setProperty('--player-artwork', `url("${previousArtwork}")`);
+    artworkCanvas.after(outgoingArt);
+
+    // Advance the edge in square steps, with each row clearing at a different rate.
+    const rows = [0.08, 0.18, 0.03, 0.14, 0, 0.11, 0.22, 0.06, 0.15, 0.02, 0.19, 0.09];
+    const edge = direction > 0 ? 100 : 0;
+    const frames = Array.from({ length: 13 }, (_, frame) => {
+      const points = rows.flatMap((delay, row) => {
+        const progress = Math.max(0, Math.min(1, (frame / 12 - delay) / 0.78));
+        const pixels = Math.round(progress * 64) / 64 * 100;
+        const x = direction > 0 ? pixels : 100 - pixels;
+        return [`${x}% ${row / rows.length * 100}%`, `${x}% ${(row + 1) / rows.length * 100}%`];
+      });
+      points.push(`${edge}% 100%`, `${edge}% 0%`);
+      return { clipPath: `polygon(${points.join(', ')})`, easing: 'steps(3, end)' };
+    });
+    const dissolve = outgoingArt.animate(frames, { duration: 560, easing: 'ease-in-out', fill: 'forwards' });
+    dissolve.onfinish = () => outgoingArt.remove();
+  }
+
+  function syncPlayer(direction = 1) {
+    const tab = activeSpotifyTab;
+    if (loadedAudioPath !== tab.audio) {
+      loadedAudioPath = tab.audio;
+      seekDownload?.abort();
+      seekDownload = null;
+      seekPreview = null;
+      pendingSeek = null;
+      trackAudio.src = tab.audio;
+      if (seekableAudioUrl) URL.revokeObjectURL(seekableAudioUrl);
+      seekableAudioUrl = null;
+    }
+    if (playerEl.hidden) return;
+    playerTitle.textContent = tab.title;
+    playerTitle.title = tab.title;
+    playerArtist.textContent = tab.subtitle || '';
+    syncPlayerArtwork(tab.backgroundArt, direction);
+    const playing = playingTabId === tab.id;
+    playerIconPlay.toggleAttribute('hidden', playing);
+    playerIconPause.toggleAttribute('hidden', !playing);
+    playerEl.classList.toggle('is-playing', playing);
+    playerPlay.setAttribute('aria-label', playing ? `Pause ${tab.title}` : `Play ${tab.title}`);
+    playerStatus.textContent = trackAudio.error ? 'Track unavailable.' : '';
+    syncPlayerTimes();
+  }
+
+  function playTab(tab, direction = 1) {
+    activeSpotifyTab = tab;
+    playingTabId = tab.id;
+    syncPlayer(direction);
+
+    // Apply gain where the browser leaves the media element volume fixed.
+    if (trackAudio.volume !== musicVolume && !musicAudioContext) {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (AudioContext) {
+        musicAudioContext = new AudioContext();
+        const gain = musicAudioContext.createGain();
+        gain.gain.value = musicVolume;
+        musicAudioContext.createMediaElementSource(trackAudio).connect(gain);
+        gain.connect(musicAudioContext.destination);
+      }
+    }
+    if (musicAudioContext && musicAudioContext.state !== 'running') {
+      musicAudioContext.resume().catch(() => {});
+    }
+
+    startTrackAudio();
+  }
+
+  function startTrackAudio() {
+    const tab = activeSpotifyTab;
+    const request = trackAudio.play();
+    playRequest = request;
+    request.catch(() => {
+      if (playRequest !== request || playingTabId !== tab.id) return;
+      playingTabId = null;
+      syncPlayer();
+    });
+  }
+
+  function toggleTrack(tab) {
+    if (playingTabId === tab.id) {
+      trackAudio.pause();
+      playingTabId = null;
+      syncPlayer();
+      return;
+    }
+    playTab(tab);
+  }
+
+  function showSpotifyTab(tab, autoplay, direction) {
+    if (autoplay) {
+      playTab(tab, direction);
+      return;
+    }
+    activeSpotifyTab = tab;
+    trackAudio.pause();
+    playingTabId = null;
+    syncPlayer(direction);
+  }
+
+  function stepSpotify(direction) {
+    const tabs = APP_TABS.spotify;
+    const index = tabs.indexOf(activeSpotifyTab);
+    const next = tabs[(index + direction + tabs.length) % tabs.length];
+    showSpotifyTab(next, direction > 0 || playingTabId === tabs[index].id, direction);
+  }
 
   const iconEls = APPS.map((app) => {
     const btn = document.createElement('button');
@@ -320,6 +805,10 @@
   }
 
   function appendTabIcon(container, tab) {
+    if (tab.audio && playingTabId === tab.id) {
+      container.classList.add('mac-dock-tab__icon--playing');
+      return;
+    }
     if (tab.icon) {
       const img = document.createElement('img');
       img.className = 'mac-dock-tab__icon-img';
@@ -404,6 +893,15 @@
     const tabs = APP_TABS[activeAppId] || [];
     applyAccentVars();
     updateAppHeader();
+    const isPlayer = activeAppId === 'spotify';
+    playerEl.hidden = !isPlayer;
+    tabRow.hidden = isPlayer;
+    if (isPlayer) {
+      syncPlayer();
+      requestAnimationFrame(() => updateCaretPosition());
+      return;
+    }
+    clearArtworkDistortion();
     tabRow.replaceChildren();
 
     tabs.forEach((tab) => {
@@ -422,6 +920,10 @@
       if (tab.external) {
         card.target = '_blank';
         card.rel = 'noopener noreferrer';
+      }
+      if (tab.audio) {
+        card.dataset.audio = 'true';
+        card.setAttribute('aria-pressed', playingTabId === tab.id ? 'true' : 'false');
       }
 
       const titleRow = document.createElement('div');
@@ -456,8 +958,9 @@
       }
 
       card.addEventListener('click', (e) => {
-        if (tab.href === '#' || tab.note) e.preventDefault();
+        if (tab.href === '#' || tab.note || tab.audio) e.preventDefault();
         activeTabId = tab.id;
+        if (tab.audio) toggleTrack(tab);
         renderTabPanel();
         if (tab.note) openNote(tab);
       });

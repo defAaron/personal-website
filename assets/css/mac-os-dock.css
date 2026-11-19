@@ -229,6 +229,322 @@ html[data-theme="dark"] .mac-dock-tab__copy.is-copied img {
   color: var(--aaron-dock-subtitle);
 }
 
+.mac-dock-tab__icon--playing {
+  gap: 2px;
+  color: var(--aaron-dock-subtitle);
+}
+
+.mac-dock-tab__icon--playing::before,
+.mac-dock-tab__icon--playing::after {
+  content: "";
+  width: 2px;
+  height: 0.65rem;
+  border-radius: 1px;
+  background: currentColor;
+}
+
+.mac-dock-tabs__row[hidden],
+.mac-dock-now[hidden] {
+  display: none;
+}
+
+.mac-dock-now {
+  --aaron-dock-panel: #080b24;
+  --aaron-dock-tab-hr: rgba(222, 232, 255, 0.6);
+  --aaron-ink: #fff;
+  --aaron-muted: #e5ebff;
+  --player-accent: #c1d6ff;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: stretch;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 160px;
+  padding: 10px 12px;
+  border-radius: 6px;
+}
+
+.mac-dock-now,
+.mac-dock-now__outgoing-art {
+  background-color: var(--aaron-dock-panel);
+  background-image: var(--player-artwork);
+  background-position: 35% center;
+  background-size: cover;
+}
+
+.mac-dock-now::before,
+.mac-dock-now__outgoing-art,
+.mac-dock-now__distortion {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.mac-dock-now::before {
+  content: '';
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(5, 8, 30, 0.56), rgba(5, 8, 30, 0.12) 52%, rgba(5, 8, 30, 0.6));
+}
+
+.mac-dock-now__distortion {
+  width: 100%;
+  height: 100%;
+}
+
+.mac-dock-now__body {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.mac-dock-now__title,
+.mac-dock-now__artist {
+  margin: 0;
+  padding-inline-end: 64px;
+  text-transform: lowercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mac-dock-now__title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--aaron-ink);
+}
+
+.mac-dock-now__artist {
+  margin-top: 2px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--aaron-muted);
+}
+
+.mac-dock-now__waveform {
+  position: absolute;
+  z-index: 2;
+  top: 10px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 52px;
+  height: 16px;
+  pointer-events: none;
+}
+
+.mac-dock-now__waveform span {
+  flex: 0 0 2px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--aaron-ink) 68%, transparent);
+}
+
+.mac-dock-now__waveform .is-played {
+  background: var(--aaron-ink);
+}
+
+.mac-dock-now.is-playing .mac-dock-now__waveform span {
+  animation: mac-dock-waveform 1800ms ease-in-out infinite;
+}
+
+@keyframes mac-dock-waveform {
+  0%, 55%, 100% { transform: scaleY(0.82); }
+  21% { transform: scaleY(1.55); }
+  38% { transform: scaleY(0.7); }
+}
+
+.mac-dock-now__timeline {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 24px;
+  margin-top: auto;
+}
+
+.mac-dock-now__track {
+  width: 100%;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--aaron-dock-tab-hr);
+  pointer-events: none;
+}
+
+.mac-dock-now__fill {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: var(--player-accent);
+}
+
+.mac-dock-now__progress {
+  position: absolute;
+  inset: 0 -5px;
+  width: calc(100% + 10px);
+  height: 24px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.mac-dock-now__progress:disabled {
+  cursor: default;
+}
+
+.mac-dock-now__progress::-webkit-slider-thumb {
+  appearance: none;
+  box-sizing: border-box;
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--aaron-dock-panel);
+  border-radius: 50%;
+  background: var(--player-accent);
+  box-shadow: 0 0 0 1px var(--player-accent);
+}
+
+.mac-dock-now__progress::-moz-range-thumb {
+  box-sizing: border-box;
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--aaron-dock-panel);
+  border-radius: 50%;
+  background: var(--player-accent);
+  box-shadow: 0 0 0 1px var(--player-accent);
+}
+
+.mac-dock-now__progress:disabled::-webkit-slider-thumb {
+  visibility: hidden;
+}
+
+.mac-dock-now__progress:disabled::-moz-range-thumb {
+  visibility: hidden;
+}
+
+.mac-dock-now__times {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  color: var(--aaron-muted);
+}
+
+.mac-dock-now__status {
+  margin: 4px 0 0;
+  font-size: 0.72rem;
+  color: var(--aaron-muted);
+}
+
+.mac-dock-now__status:empty {
+  margin: 0;
+}
+
+.mac-dock-now__controls {
+  display: flex;
+  align-self: flex-start;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.mac-dock-now__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 140ms ease;
+}
+
+.mac-dock-now__btn:focus-visible {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.mac-dock-now__progress:focus-visible,
+.mac-dock-now__btn:focus-visible {
+  outline: 2px solid var(--player-accent);
+  outline-offset: 2px;
+}
+
+.mac-dock-now__progress:focus-visible {
+  border-radius: 8px;
+}
+
+.mac-dock-now__btn svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.mac-dock-now__btn--play svg {
+  width: 18px;
+  height: 18px;
+}
+
+.mac-dock-now__btn svg[hidden] {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .mac-dock-now__controls,
+  .mac-dock-now__timeline,
+  .mac-dock-now__times {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 140ms ease;
+  }
+
+  .mac-dock-now:is(:hover, :has(:focus-visible)) :is(.mac-dock-now__controls, .mac-dock-now__timeline, .mac-dock-now__times) {
+    opacity: 1;
+    pointer-events: auto;
+    transition-duration: 360ms;
+  }
+
+  .mac-dock-now__btn {
+    width: 28px;
+    height: 22px;
+  }
+
+  .mac-dock-now__btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mac-dock-now__distortion {
+    display: none;
+  }
+
+  .mac-dock-now.is-playing .mac-dock-now__waveform span {
+    animation: none;
+  }
+
+  .mac-dock-now__controls,
+  .mac-dock-now__timeline,
+  .mac-dock-now__times,
+  .mac-dock-now__btn {
+    transition: none;
+  }
+}
+
 .mac-dock-tab__icon-img {
   display: block;
   width: 1rem;

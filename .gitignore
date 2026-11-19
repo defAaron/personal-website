@@ -17,6 +17,12 @@ Thumbs.db
 *.log
 npm-debug.log*
 
+# Playwright artifacts
+/.playwright-mcp/
+/playwright-report/
+/test-results/
+/playwright/.cache/
+
 # Scratch media dropped at repo root (keep optimized copies in assets/)
 /*.mp4
 /*.mov
