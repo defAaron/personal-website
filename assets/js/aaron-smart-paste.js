@@ -64,6 +64,7 @@
   }
 
   function selectEntry(selected) {
+    if (selected > 0) window.AaronSounds?.playSmartPasteWhoosh();
     rows.forEach((row, index) => {
       const offset = index - selected;
       const slot = slots[offset] || (offset < 0 ? [364, 1, 0] : [95, .4, 0]);
@@ -127,16 +128,24 @@
       return;
     }
 
+    window.AaronSounds?.prepareSmartPasteWhoosh();
     const introStart = 180;
     const historyStart = introStart + 1472;
     tile.dataset.stage = 'playing';
     rows.forEach((row, index) => {
       const [y, scale] = slots[index];
       positionRow(row, [y - 10, scale, 0]);
-      setTimeout(() => positionRow(row, slots[index]), historyStart + 190 + (3 - index) * 90);
+      const revealOrder = rows.length - 1 - index;
+      setTimeout(() => {
+        if (revealOrder === 0) window.AaronSounds?.playSmartPasteWhoosh();
+        positionRow(row, slots[index]);
+      }, historyStart + 190 + revealOrder * 90);
     });
 
-    setTimeout(() => { tile.dataset.stage = 'intro'; }, introStart);
+    setTimeout(() => {
+      tile.dataset.stage = 'intro';
+      window.AaronSounds?.playSmartPasteWhoosh();
+    }, introStart);
     setTimeout(() => { tile.dataset.stage = 'history'; }, historyStart);
     setTimeout(() => selectEntry(0), historyStart + 900);
     setTimeout(() => selectEntry(1), historyStart + 1350);

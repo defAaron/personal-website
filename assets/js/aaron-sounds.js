@@ -30,6 +30,12 @@
   ];
 
   const cache = Object.create(null);
+  // UI Hover Micro Swish by Qvantor (CC0): https://freesound.org/people/Qvantor/sounds/878248/
+  const whooshData = window.AudioContext && fetch('/assets/sounds/smart-paste-whoosh.mp3')
+    .then(response => response.ok ? response.arrayBuffer() : null)
+    .catch(() => null);
+  let whooshContext;
+  let whooshBuffer;
 
   function getAudio(src) {
     if (!cache[src]) {
@@ -44,6 +50,28 @@
     const audio = getAudio(src);
     audio.currentTime = 0;
     audio.play().catch(() => {});
+  }
+
+  function prepareSmartPasteWhoosh() {
+    if (!whooshData) return;
+
+    if (!whooshContext) {
+      whooshContext = new AudioContext();
+      whooshData.then(async data => {
+        if (data) whooshBuffer = await whooshContext.decodeAudioData(data);
+      }).catch(() => {});
+    }
+
+    if (whooshContext.state !== 'running') whooshContext.resume().catch(() => {});
+  }
+
+  function playSmartPasteWhoosh() {
+    if (!whooshBuffer || whooshContext.state !== 'running') return;
+
+    const source = whooshContext.createBufferSource();
+    source.buffer = whooshBuffer;
+    source.connect(whooshContext.destination);
+    source.start();
   }
 
   function findPressRule(target) {
@@ -71,5 +99,7 @@
     playSmartPasteKey(key) {
       play(SOUNDS.smartPaste[key]);
     },
+    prepareSmartPasteWhoosh,
+    playSmartPasteWhoosh,
   };
 })();

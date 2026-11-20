@@ -33,16 +33,18 @@
   <meta name="description" content="studying math and cs at the university of waterloo. avid builder, artist, and musician exploring computational math and agentic AI systems.">
   <link rel="canonical" href="https://aarondutta.com/">
   <link rel="icon" href="favicon.png" type="image/png">
-  <link rel="stylesheet" href="assets/css/aaron-base.css?v=20261119-1">
+  <link rel="stylesheet" href="assets/css/aaron-base.css?v=20261119-3">
   <link rel="stylesheet" href="assets/css/aaron-gallery.css?v=20261006-1">
   <link rel="stylesheet" href="assets/css/mac-os-dock.css?v=20261119-19">
   <link rel="stylesheet" href="assets/css/aaron-mirror.css?v=20261011-1">
   <link rel="stylesheet" href="assets/css/aaron-smart-paste.css?v=9">
+  <link rel="stylesheet" href="assets/css/aaron-site-metrics.css?v=3">
   <script src="assets/js/aaron-base.js?v=20261023-5" defer></script>
-  <script src="assets/js/aaron-smart-paste.js?v=7" defer></script>
+  <script src="assets/js/aaron-smart-paste.js?v=9" defer></script>
   <script src="assets/js/mac-os-dock.js?v=20261119-18" defer></script>
-  <script src="assets/js/aaron-sounds.js?v=20261119-2" defer></script>
+  <script src="assets/js/aaron-sounds.js?v=20261119-4" defer></script>
   <script src="assets/js/aaron-brick-blast-leaderboard.js?v=20261011-1" defer></script>
+  <script src="assets/js/aaron-site-metrics.js?v=2" defer></script>
   <script src="assets/js/aaron-brick-blast.js?v=20261011-1" defer></script>
   <script src="assets/js/aaron-mirror.js?v=20261023-1" defer></script>
 </head>
@@ -213,7 +215,38 @@
             </div>
             <span class="aaron-smart-paste__status" role="status"></span>
           </section>
-          <div class="aaron-tile" aria-hidden="true"></div>
+          <section class="aaron-tile aaron-site-metrics" aria-label="Site metrics"
+            data-metrics-url="https://aaron-last-container-default-rtdb.firebaseio.com/metrics">
+            <div class="aaron-site-metrics__header">
+              <h2 class="aaron-site-metrics__heading">show some love below</h2>
+              <p class="aaron-site-metrics__prompt">click the heart!</p>
+              <span class="aaron-site-metrics__status" role="status"></span>
+            </div>
+            <div class="aaron-site-metrics__reaction">
+              <button type="button" class="aaron-site-metrics__heart" aria-label="Send a heart">
+                <span class="aaron-site-metrics__face">
+                  <svg viewBox="0 0 48 48" aria-hidden="true">
+                    <path d="M24 42C20 39 4 29 4 16.5 4 5.7 17.2 2.5 24 12 30.8 2.5 44 5.7 44 16.5 44 29 28 39 24 42Z"/>
+                  </svg>
+                </span>
+              </button>
+              <span class="aaron-site-metrics__hearts" aria-live="polite">— hearts</span>
+            </div>
+            <div class="aaron-site-metrics__footer">
+              <span class="aaron-site-metrics__visits">
+                <span class="aaron-site-metrics__digits" aria-hidden="true">—</span>
+                <span class="aaron-site-metrics__label" aria-hidden="true">site visits</span>
+                <span class="aaron-site-metrics__visually-hidden">Site visits loading</span>
+              </span>
+              <button type="button" class="aaron-site-metrics__sound" aria-label="Sound effects" aria-pressed="true" title="Toggle sound">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor" stroke="none"/>
+                  <path class="aaron-site-metrics__waves" d="M16 9q3 3 0 6m3-9q5 6 0 12"/>
+                  <path class="aaron-site-metrics__mute" d="m16 10 5 5m0-5-5 5"/>
+                </svg>
+              </button>
+            </div>
+          </section>
         </div>
       </div>
     </main>
