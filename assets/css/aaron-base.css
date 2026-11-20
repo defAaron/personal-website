@@ -7,8 +7,9 @@
   --aaron-ink: #000;
   --aaron-muted: #707070;
   --aaron-caption: #949494;
-  --aaron-nav-muted: #999;
+  --aaron-nav-muted: #48484e;
   --aaron-nav-bg: rgba(255, 255, 255, 0.99);
+  --aaron-nav-glass: rgba(255, 255, 255, 0.74);
   --aaron-nav-border: rgba(0, 0, 0, 0.1);
   --aaron-nav-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.1);
   --aaron-nav-toggle-hover: rgba(0, 0, 0, 0.06);
@@ -43,8 +44,9 @@ html[data-theme="dark"] {
   --aaron-ink: #f2f2f3;
   --aaron-muted: #a3a3a8;
   --aaron-caption: #7c7c82;
-  --aaron-nav-muted: #8e8e94;
+  --aaron-nav-muted: #c0c0c6;
   --aaron-nav-bg: rgba(28, 28, 32, 0.96);
+  --aaron-nav-glass: rgba(28, 28, 32, 0.78);
   --aaron-nav-border: rgba(255, 255, 255, 0.1);
   --aaron-nav-shadow: 0 10px 18px -6px rgba(0, 0, 0, 0.55);
   --aaron-nav-toggle-hover: rgba(255, 255, 255, 0.08);
@@ -187,8 +189,14 @@ a {
   border: 1px solid var(--aaron-nav-border);
   border-radius: 56px;
   box-shadow: var(--aaron-nav-shadow);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .aaron-nav {
+    background: var(--aaron-nav-glass);
+    -webkit-backdrop-filter: blur(8px) saturate(145%);
+    backdrop-filter: blur(8px) saturate(145%);
+  }
 }
 
 .aaron-nav__item {
@@ -573,11 +581,6 @@ html[data-theme="dark"] .aaron-hero__description li.aaron-hero__description-lead
 html[data-theme="dark"] .aaron-hero__org-icon[src*="uwarg"],
 html[data-theme="dark"] .aaron-hero__org-icon[src*="uw-cube"] {
   filter: invert(1);
-}
-
-/* Navy inverts to yellow. Drop the hue, then lift the badge to white. */
-html[data-theme="dark"] .aaron-hero__org-icon[src*="magic-hour"] {
-  filter: invert(1) grayscale(1) brightness(1.2);
 }
 
 a.aaron-hero__hl {

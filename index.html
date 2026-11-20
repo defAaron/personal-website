@@ -33,14 +33,18 @@
   <meta name="description" content="studying math and cs at the university of waterloo. avid builder, artist, and musician exploring computational math and agentic AI systems.">
   <link rel="canonical" href="https://aarondutta.com/">
   <link rel="icon" href="favicon.png" type="image/png">
-  <link rel="stylesheet" href="assets/css/aaron-base.css?v=20261117-5">
+  <link rel="stylesheet" href="assets/css/aaron-base.css?v=20261119-3">
   <link rel="stylesheet" href="assets/css/aaron-gallery.css?v=20261006-1">
   <link rel="stylesheet" href="assets/css/mac-os-dock.css?v=20261119-19">
   <link rel="stylesheet" href="assets/css/aaron-mirror.css?v=20261011-1">
+  <link rel="stylesheet" href="assets/css/aaron-smart-paste.css?v=9">
+  <link rel="stylesheet" href="assets/css/aaron-site-metrics.css?v=3">
   <script src="assets/js/aaron-base.js?v=20261023-5" defer></script>
+  <script src="assets/js/aaron-smart-paste.js?v=9" defer></script>
   <script src="assets/js/mac-os-dock.js?v=20261119-18" defer></script>
-  <script src="assets/js/aaron-sounds.js?v=20261119-1" defer></script>
+  <script src="assets/js/aaron-sounds.js?v=20261119-4" defer></script>
   <script src="assets/js/aaron-brick-blast-leaderboard.js?v=20261011-1" defer></script>
+  <script src="assets/js/aaron-site-metrics.js?v=2" defer></script>
   <script src="assets/js/aaron-brick-blast.js?v=20261011-1" defer></script>
   <script src="assets/js/aaron-mirror.js?v=20261023-1" defer></script>
 </head>
@@ -104,7 +108,7 @@
           <div class="aaron-hero__bio">
             <ul class="aaron-hero__description">
               <li class="aaron-hero__description-lead">what I'm doing:</li>
-              <li>software engineering intern <a href="https://magichour.ai" class="aaron-hero__hl aaron-hero__hl--dusty-purple" target="_blank" rel="noopener noreferrer">@ <img class="aaron-hero__org-icon" src="assets/icons/magic-hour.png" alt="" width="16" height="16" aria-hidden="true">Magic Hour</a> (YC W24)</li>
+              <li>software engineering intern <a href="https://magichour.ai" class="aaron-hero__hl aaron-hero__hl--dusty-purple" target="_blank" rel="noopener noreferrer">@ <img class="aaron-hero__org-icon" src="assets/icons/magic-hour.svg" alt="" width="16" height="16" aria-hidden="true">Magic Hour</a> (YC W24)</li>
               <li>building internal tools <a href="https://www.linkedin.com/company/uwcube/posts/?feedView=all" class="aaron-hero__hl aaron-hero__hl--slate-blue" target="_blank" rel="noopener noreferrer">@ <img class="aaron-hero__org-icon" src="assets/icons/uw-cube.png" alt="" width="16" height="16" aria-hidden="true">UW Cube</a></li>
               <li>writing software for autonomous drones <a href="https://www.uwarg.com" class="aaron-hero__hl aaron-hero__hl--muted-teal" target="_blank" rel="noopener noreferrer">@ <img class="aaron-hero__org-icon" src="assets/icons/uwarg.png" alt="" width="16" height="16" aria-hidden="true">UWARG</a></li>
               <li>fine-tuning <a href="https://technique-titan.vercel.app" class="aaron-hero__hl" target="_blank" rel="noopener noreferrer">AI models for pianists</a></li>
@@ -187,20 +191,63 @@
           </span>
         </a>
 
-        <!-- Awards -->
-        <section class="aaron-tile aaron-awards">
-          <h2 class="aaron-awards__title">where I'm recognized:</h2>
-          <ul class="aaron-hero__description">
-            <li><span class="aaron-hero__hl aaron-hero__hl--yellow">Winner</span>, Rescue Hacks 2026</li>
-            <li><span class="aaron-hero__hl aaron-hero__hl--yellow">2nd Best Overall Hack</span>, Katy Youth Hacks 2026</li>
-            <li><span class="aaron-hero__hl aaron-hero__hl--yellow">3rd Best Security/Privacy Hack</span>, STEMist Hacks IV 2026</li>
-            <li><span class="aaron-hero__hl aaron-hero__hl--yellow">Winner</span>, STEM MINDS Hackathon 2026</li>
-            <li><span class="aaron-hero__hl aaron-hero__hl--yellow">Top 70/16,000</span>, Fermat 2025</li>
-            <li><span class="aaron-hero__hl aaron-hero__hl--yellow">Top 400/6,150</span>, Hypatia 2025</li>
-            <li><span class="aaron-hero__hl aaron-hero__hl--yellow">Top 17%</span>, Euclid, Chem13, Sir Isaac Newton 2025</li>
-            <li><span class="aaron-hero__hl aaron-hero__hl--yellow">2x Gold Winner</span>, IMFC 2025</li>
-          </ul>
-        </section>
+        <div class="aaron-grid__split">
+          <section class="aaron-tile aaron-smart-paste" aria-label="Smart Paste demo">
+            <div class="aaron-smart-paste__scene">
+              <div class="aaron-smart-paste__keys">
+                <button type="button" class="aaron-smart-paste__key" data-key="command" aria-label="Command" aria-pressed="false">
+                  <span class="aaron-smart-paste__hint" aria-hidden="true">
+                    Click here
+                    <img src="assets/icons/smart-paste/v-down-arrow.svg" alt="">
+                  </span>
+                  <img class="aaron-smart-paste__symbol" src="assets/icons/smart-paste/command-sign.svg" alt="">
+                </button>
+                <button type="button" class="aaron-smart-paste__key" data-key="paste" aria-label="Magic Hour" aria-disabled="true">
+                  <span class="aaron-smart-paste__hint" aria-hidden="true">
+                    And here
+                    <img src="assets/icons/smart-paste/v-down-arrow.svg" alt="">
+                  </span>
+                  <img class="aaron-smart-paste__symbol aaron-smart-paste__symbol--logo" src="assets/icons/magic-hour.svg" alt="">
+                </button>
+              </div>
+              <h2 class="aaron-smart-paste__heading">what I've been up to at Magic Hour</h2>
+              <ul class="aaron-smart-paste__entries"></ul>
+            </div>
+            <span class="aaron-smart-paste__status" role="status"></span>
+          </section>
+          <section class="aaron-tile aaron-site-metrics" aria-label="Site metrics"
+            data-metrics-url="https://aaron-last-container-default-rtdb.firebaseio.com/metrics">
+            <div class="aaron-site-metrics__header">
+              <h2 class="aaron-site-metrics__heading">show some love below</h2>
+              <p class="aaron-site-metrics__prompt">click the heart!</p>
+              <span class="aaron-site-metrics__status" role="status"></span>
+            </div>
+            <div class="aaron-site-metrics__reaction">
+              <button type="button" class="aaron-site-metrics__heart" aria-label="Send a heart">
+                <span class="aaron-site-metrics__face">
+                  <svg viewBox="0 0 48 48" aria-hidden="true">
+                    <path d="M24 42C20 39 4 29 4 16.5 4 5.7 17.2 2.5 24 12 30.8 2.5 44 5.7 44 16.5 44 29 28 39 24 42Z"/>
+                  </svg>
+                </span>
+              </button>
+              <span class="aaron-site-metrics__hearts" aria-live="polite">— hearts</span>
+            </div>
+            <div class="aaron-site-metrics__footer">
+              <span class="aaron-site-metrics__visits">
+                <span class="aaron-site-metrics__digits" aria-hidden="true">—</span>
+                <span class="aaron-site-metrics__label" aria-hidden="true">site visits</span>
+                <span class="aaron-site-metrics__visually-hidden">Site visits loading</span>
+              </span>
+              <button type="button" class="aaron-site-metrics__sound" aria-label="Sound effects" aria-pressed="true" title="Toggle sound">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor" stroke="none"/>
+                  <path class="aaron-site-metrics__waves" d="M16 9q3 3 0 6m3-9q5 6 0 12"/>
+                  <path class="aaron-site-metrics__mute" d="m16 10 5 5m0-5-5 5"/>
+                </svg>
+              </button>
+            </div>
+          </section>
+        </div>
       </div>
     </main>
 
