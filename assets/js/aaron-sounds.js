@@ -8,6 +8,10 @@
     dock: '/assets/sounds/ios-app-switch.mp3',
     tilda: '/assets/sounds/tilda-click.mp3',
     item: '/assets/sounds/item-click.mp3',
+    smartPaste: {
+      command: '/assets/sounds/smart-paste-command.mp3',
+      paste: '/assets/sounds/smart-paste-key.mp3',
+    },
   };
 
   const PRESS_RULES = [
@@ -63,6 +67,9 @@
   window.AaronSounds = {
     playNav() {
       play(SOUNDS.nav);
+    },
+    playSmartPasteKey(key) {
+      play(SOUNDS.smartPaste[key]);
     },
   };
 })();

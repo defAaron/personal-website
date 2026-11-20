@@ -1,0 +1,137 @@
+.aaron-twitter-card {
+  container-type: size;
+  --twitter-handle: #949495;
+  --twitter-link: #1685c7;
+  --twitter-border: rgb(0 0 0 / 10%);
+  --twitter-hover: rgb(0 0 0 / 30%);
+}
+
+html[data-theme="dark"] .aaron-twitter-card {
+  --twitter-handle: #a3a3a8;
+  --twitter-link: #6bbbf0;
+  --twitter-border: rgb(255 255 255 / 18%);
+  --twitter-hover: rgb(255 255 255 / 20%);
+}
+
+.aaron-twitter-card__body {
+  --twitter-unit: min(1px, calc(100cqw / 328));
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 328px);
+  height: 100%;
+  margin-inline: auto;
+  padding: calc(24 * var(--twitter-unit));
+}
+
+.aaron-twitter-card__header,
+.aaron-twitter-card__profile {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: calc(8 * var(--twitter-unit));
+}
+
+.aaron-twitter-card__header {
+  justify-content: space-between;
+}
+
+.aaron-twitter-card__profile,
+.aaron-twitter-card__bio a,
+.aaron-twitter-card__button {
+  text-decoration: none;
+}
+
+.aaron-twitter-card__avatar {
+  display: block;
+  flex: none;
+  width: calc(48 * var(--twitter-unit));
+  height: calc(48 * var(--twitter-unit));
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.aaron-twitter-card__name,
+.aaron-twitter-card__handle {
+  display: block;
+}
+
+.aaron-twitter-card__name {
+  font-size: max(11px, calc(17 * var(--twitter-unit)));
+  line-height: 1.2;
+}
+
+.aaron-twitter-card__handle {
+  color: var(--twitter-handle);
+  font-size: max(10px, calc(16 * var(--twitter-unit)));
+  line-height: 1.4;
+}
+
+.aaron-twitter-card__app {
+  flex: none;
+  border-radius: calc(12 * var(--twitter-unit));
+  background: #4a99e9;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 25%);
+}
+
+.aaron-twitter-card__app img {
+  display: block;
+  width: calc(56 * var(--twitter-unit));
+  height: calc(56 * var(--twitter-unit));
+}
+
+.aaron-twitter-card__bio {
+  margin-top: calc(24 * var(--twitter-unit));
+  font-size: max(12px, calc(24 * var(--twitter-unit)));
+  line-height: 1.35;
+}
+
+.aaron-twitter-card__bio a {
+  color: var(--twitter-link);
+  white-space: nowrap;
+}
+
+.aaron-twitter-card__bio a:hover {
+  text-decoration: underline;
+}
+
+.aaron-twitter-card__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(8 * var(--twitter-unit));
+  min-height: max(32px, calc(46 * var(--twitter-unit)));
+  margin-top: auto;
+  border: 2px solid var(--twitter-border);
+  border-radius: 56px;
+  font-size: max(11px, calc(16 * var(--twitter-unit)));
+  font-weight: 600;
+  text-align: center;
+  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+}
+
+.aaron-twitter-card__button img {
+  width: max(14px, calc(22 * var(--twitter-unit)));
+  height: auto;
+}
+
+.aaron-twitter-card__button:is(:hover, :focus-visible) {
+  border-color: transparent;
+  background: var(--twitter-hover);
+  color: #fff;
+}
+
+html[data-theme="dark"] .aaron-twitter-card__button img,
+.aaron-twitter-card__button:is(:hover, :focus-visible) img {
+  filter: brightness(0) invert(1);
+}
+
+.aaron-twitter-card :focus-visible {
+  outline: 2px solid var(--twitter-link);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aaron-twitter-card__button {
+    transition: none;
+  }
+}
