@@ -233,9 +233,7 @@ a {
 }
 
 .aaron-theme-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
   flex-shrink: 0;
   width: 44px;
   height: 44px;
@@ -243,6 +241,7 @@ a {
   padding: 0;
   border: none;
   border-radius: 50%;
+  overflow: hidden;
   background: transparent;
   color: var(--aaron-nav-muted);
   cursor: pointer;
@@ -261,14 +260,32 @@ a {
 }
 
 .aaron-theme-toggle svg {
-  display: none;
+  position: absolute;
+  inset: 0;
+  margin: auto;
   width: 18px;
   height: 18px;
+  opacity: 0;
+}
+
+.aaron-theme-toggle__moon {
+  transform: translateX(-20px) rotate(-125deg);
+}
+
+.aaron-theme-toggle__sun {
+  transform: translateX(20px) rotate(125deg);
 }
 
 html:not([data-theme="dark"]) .aaron-theme-toggle__moon,
 html[data-theme="dark"] .aaron-theme-toggle__sun {
-  display: block;
+  opacity: 1;
+  transform: translateX(0) rotate(0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not(.aaron-preloading) .aaron-theme-toggle svg {
+    transition: transform 360ms ease-in-out, opacity 360ms ease-in-out;
+  }
 }
 
 /* —— Home grid (bento) —— */

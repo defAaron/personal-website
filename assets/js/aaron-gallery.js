@@ -9,7 +9,7 @@
 
   const ALBUM_LABELS = {
     auckland: 'Auckland Workshop',
-    drawings: 'Drawings',
+    art: 'Art',
     piano: 'Piano',
     travel: 'Travel',
   };
@@ -254,7 +254,7 @@
       btn.addEventListener('click', () => selectAlbum(btn.dataset.album));
     });
 
-    selectAlbum('auckland');
+    selectAlbum('travel');
     window.addEventListener('load', () => {
       const active = dock.querySelector('.aaron-photos__dock-btn.is-active');
       if (active) moveIndicator(active);

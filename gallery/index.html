@@ -29,10 +29,10 @@
   <meta name="description" content="Gallery of artwork and creative work by Aaron Dutta.">
   <link rel="canonical" href="https://aarondutta.com/gallery/">
   <link rel="icon" href="/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/assets/css/aaron-base.css?v=20261119-3">
-  <link rel="stylesheet" href="/assets/css/aaron-gallery.css?v=2">
+  <link rel="stylesheet" href="/assets/css/aaron-base.css?v=20261120-1">
+  <link rel="stylesheet" href="/assets/css/aaron-gallery.css?v=3">
   <script src="/assets/js/aaron-base.js" defer></script>
-  <script src="/assets/js/aaron-gallery.js?v=2" defer></script>
+  <script src="/assets/js/aaron-gallery.js?v=3" defer></script>
   <script src="/assets/js/aaron-sounds.js" defer></script>
 </head>
 <body>
@@ -72,10 +72,10 @@
         <section class="aaron-tile aaron-gallery-intro">
           <h1 class="aaron-gallery-intro__title">Gallery</h1>
           <p class="aaron-gallery-intro__desc">a visual scrapbook of my passions and experiences.</p>
-          <p class="aaron-gallery-intro__desc">navigate through the phone to view photos.</p>
+          <p class="aaron-gallery-intro__desc">click on each frame to move between photos.</p>
         </section>
 
-        <section class="aaron-panel is-active" data-panel="auckland" role="tabpanel">
+        <section class="aaron-panel" data-panel="auckland" role="tabpanel" hidden>
           <div class="aaron-tile aaron-split__copy">
             <p class="aaron-split__desc"><a href="https://uwaterloo.ca" class="aaron-hero__hl aaron-hero__hl--yellow" target="_blank" rel="noopener noreferrer">@uwaterloo</a> invited me to a week-long workshop for the top 70 math students in Canada. problem solving sessions, first-year level math and cs lectures, new friends, and meeting Waterloo students and math/cs professors.</p>
             <figure class="aaron-split__feature">
@@ -84,9 +84,9 @@
           </div>
         </section>
 
-        <section class="aaron-panel" data-panel="drawings" role="tabpanel" hidden>
+        <section class="aaron-panel" data-panel="art" role="tabpanel" hidden>
           <div class="aaron-tile aaron-split__copy">
-            <p class="aaron-split__desc">art I created from multiple tools: graphite, pastel, charcoal, color pencils, watercolors, and acrylics.</p>
+            <p class="aaron-split__desc">love using graphite, pastel, charcoal, color pencils, watercolors, and acrylics.</p>
             <figure class="aaron-split__feature">
               <img src="/assets/gallery/drawings/tiger.webp" alt="Tiger drawing" loading="lazy">
             </figure>
@@ -95,16 +95,16 @@
 
         <section class="aaron-panel" data-panel="piano" role="tabpanel" hidden>
           <div class="aaron-tile aaron-split__copy">
-            <p class="aaron-split__desc">my favorite past-time activity since I was 3. currently working towards my ARCT diploma. check out my <a href="https://www.youtube.com/@aaron.dutta" class="aaron-hero__hl aaron-hero__hl--red" target="_blank" rel="noopener noreferrer">YouTube channel </a> for my performances.</p>
+            <p class="aaron-split__desc">playing since I was 3 years old. currently working towards my ARCT diploma. check out my <a href="https://www.youtube.com/@aaron.dutta" class="aaron-hero__hl aaron-hero__hl--red" target="_blank" rel="noopener noreferrer">YouTube channel </a> for my performances.</p>
             <figure class="aaron-split__feature">
               <img src="/assets/gallery/piano/10.webp" alt="Piano performance" loading="lazy">
             </figure>
           </div>
         </section>
 
-        <section class="aaron-panel" data-panel="travel" role="tabpanel" hidden>
+        <section class="aaron-panel is-active" data-panel="travel" role="tabpanel">
           <div class="aaron-tile aaron-split__copy">
-            <p class="aaron-split__desc">travelling the world and exploring the beauty it has to offer. click on different parts of the calendar to view where I've been.</p>
+            <p class="aaron-split__desc">travelling the world and exploring the beauty it has to offer.</p>
             <figure class="aaron-split__feature" id="aaron-travel-feature">
               <img class="aaron-fade__img is-active" data-country="canada" src="/assets/gallery/travel/canada/ban16.webp" alt="Banff, Canada">
               <img class="aaron-fade__img" data-country="spain" src="/assets/gallery/travel/spain/spain1.webp" alt="Spain" loading="lazy">
@@ -120,7 +120,7 @@
       <div class="aaron-gallery-main__col aaron-gallery-main__col--phone">
           <div class="aaron-tile aaron-split__phone" id="aaron-phone-tile">
             <div class="aaron-phone-frame">
-              <div class="aaron-phone" id="aaron-phone">
+              <div class="aaron-phone is-calendar" id="aaron-phone">
               <img class="aaron-phone__shell" src="/assets/phone/iphone.png" alt="" width="800" height="1616">
 
               <div class="aaron-phone__screen">
@@ -137,11 +137,11 @@
 
                   <div class="aaron-photos__heading-row">
                     <button type="button" class="aaron-photos__back" id="aaron-photos-back" hidden aria-label="Back to calendar">‹</button>
-                    <div class="aaron-photos__heading" id="aaron-photos-heading">Auckland Workshop</div>
+                    <div class="aaron-photos__heading" id="aaron-photos-heading">Travel</div>
                   </div>
 
                   <div class="aaron-photos__stage">
-                    <div class="aaron-photos__album is-active" data-album="auckland">
+                    <div class="aaron-photos__album" data-album="auckland" hidden>
                       <div class="aaron-fade">
                         <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/auckland/bus.webp" alt="Bus to campus">
                         <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/auckland/hall.webp" alt="Residence hall">
@@ -170,7 +170,7 @@
                       </div>
                     </div>
 
-                    <div class="aaron-photos__album" data-album="drawings" hidden>
+                    <div class="aaron-photos__album" data-album="art" hidden>
                       <div class="aaron-fade">
                         <img class="aaron-gallery__img aaron-fade__img is-active" src="/assets/gallery/drawings/collage.webp" alt="Drawing collage" loading="lazy">
                         <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/drawings/tiger.webp" alt="Tiger drawing" loading="lazy">
@@ -223,7 +223,7 @@
                         <img class="aaron-gallery__img aaron-fade__img" src="/assets/gallery/piano/A.webp" alt="Piano moment" loading="lazy">
                       </div>
                     </div>
-                    <div class="aaron-photos__album" data-album="travel" hidden>
+                    <div class="aaron-photos__album is-active" data-album="travel">
                       <div class="aaron-travel-cal">
                         <div class="aaron-phone__heading">
                           <div class="aaron-phone__heading-inner">
@@ -235,15 +235,12 @@
                         <div class="aaron-phone__hours">
                       <div class="aaron-phone__hour" data-country="canada">
                         <div class="aaron-phone__times"><span class="aaron-phone__tick">2026</span><span class="aaron-phone__tick">2024</span></div>
-                        <article class="aaron-phone__event is-purple" data-country="canada" role="button" tabindex="0" aria-label="Open Canada photos">
+                        <article class="aaron-phone__event is-purple" data-country="canada" role="button" tabindex="0" aria-label="Open Canada photos" aria-describedby="aaron-travel-cities-canada">
                           <img class="aaron-phone__event-shot" src="/assets/gallery/travel/canada/ban16.webp" alt="" loading="lazy">
                           <span class="aaron-phone__event-bar"></span>
                           <div class="aaron-phone__event-body">
-                            <div>
-                              <div class="aaron-phone__event-title">Canada</div>
-                              <div class="aaron-phone__event-when">34 photos</div>
-                            </div>
-                            <div class="aaron-phone__event-cal"><img src="/assets/phone/google-logo.svg" alt=""><span>Banff, Canmore, Jasper</span></div>
+                            <div class="aaron-phone__event-title">Canada</div>
+                            <div class="aaron-phone__event-cities" id="aaron-travel-cities-canada">Banff, Canmore, Jasper</div>
                           </div>
                         </article>
                         <div class="aaron-phone__slot">
@@ -253,15 +250,12 @@
                       </div>
                       <div class="aaron-phone__hour" data-country="spain">
                         <div class="aaron-phone__times"><span class="aaron-phone__tick is-hidden">2024</span><span class="aaron-phone__tick is-hidden"></span></div>
-                        <article class="aaron-phone__event is-yellow" data-country="spain" role="button" tabindex="0" aria-label="Open Spain photos">
+                        <article class="aaron-phone__event is-yellow" data-country="spain" role="button" tabindex="0" aria-label="Open Spain photos" aria-describedby="aaron-travel-cities-spain">
                           <img class="aaron-phone__event-shot" src="/assets/gallery/travel/spain/spain1.webp" alt="" loading="lazy">
                           <span class="aaron-phone__event-bar"></span>
                           <div class="aaron-phone__event-body">
-                            <div>
-                              <div class="aaron-phone__event-title">Spain</div>
-                              <div class="aaron-phone__event-when">34 photos</div>
-                            </div>
-                            <div class="aaron-phone__event-cal"><img src="/assets/phone/google-logo.svg" alt=""><span>Barcelona, Montserrat, Seville</span></div>
+                            <div class="aaron-phone__event-title">Spain</div>
+                            <div class="aaron-phone__event-cities" id="aaron-travel-cities-spain">Barcelona, Montserrat, Seville</div>
                           </div>
                         </article>
                         <div class="aaron-phone__slot">
@@ -271,15 +265,12 @@
                       </div>
                       <div class="aaron-phone__hour" data-country="france">
                         <div class="aaron-phone__times"><span class="aaron-phone__tick is-hidden"></span><span class="aaron-phone__tick">2023</span></div>
-                        <article class="aaron-phone__event is-pink" data-country="france" role="button" tabindex="0" aria-label="Open France photos">
+                        <article class="aaron-phone__event is-pink" data-country="france" role="button" tabindex="0" aria-label="Open France photos" aria-describedby="aaron-travel-cities-france">
                           <img class="aaron-phone__event-shot" src="/assets/gallery/travel/france/france1.webp" alt="" loading="lazy">
                           <span class="aaron-phone__event-bar"></span>
                           <div class="aaron-phone__event-body">
-                            <div>
-                              <div class="aaron-phone__event-title">France + Monaco</div>
-                              <div class="aaron-phone__event-when">13 photos</div>
-                            </div>
-                            <div class="aaron-phone__event-cal"><img src="/assets/phone/google-logo.svg" alt=""><span>Nice, Cannes, Eze</span></div>
+                            <div class="aaron-phone__event-title">France + Monaco</div>
+                            <div class="aaron-phone__event-cities" id="aaron-travel-cities-france">Nice, Cannes, Eze</div>
                           </div>
                         </article>
                         <div class="aaron-phone__slot">
@@ -289,15 +280,12 @@
                       </div>
                       <div class="aaron-phone__hour" data-country="italy">
                         <div class="aaron-phone__times"><span class="aaron-phone__tick is-hidden">2023</span><span class="aaron-phone__tick">2018</span></div>
-                        <article class="aaron-phone__event is-green" data-country="italy" role="button" tabindex="0" aria-label="Open Italy photos">
+                        <article class="aaron-phone__event is-green" data-country="italy" role="button" tabindex="0" aria-label="Open Italy photos" aria-describedby="aaron-travel-cities-italy">
                           <img class="aaron-phone__event-shot" src="/assets/gallery/travel/italy/italy1.webp" alt="" loading="lazy">
                           <span class="aaron-phone__event-bar"></span>
                           <div class="aaron-phone__event-body">
-                            <div>
-                              <div class="aaron-phone__event-title">Italy</div>
-                              <div class="aaron-phone__event-when">11 photos</div>
-                            </div>
-                            <div class="aaron-phone__event-cal"><img src="/assets/phone/google-logo.svg" alt=""><span>Venice, Florence, Rome, Milan, Pisa, Como, Brescia</span></div>
+                            <div class="aaron-phone__event-title">Italy</div>
+                            <div class="aaron-phone__event-cities" id="aaron-travel-cities-italy">Venice, Florence, Rome, Milan, Pisa, Como, Brescia</div>
                           </div>
                         </article>
                         <div class="aaron-phone__slot">
@@ -307,15 +295,12 @@
                       </div>
                       <div class="aaron-phone__hour" data-country="austria">
                         <div class="aaron-phone__times"><span class="aaron-phone__tick is-hidden">2018</span><span class="aaron-phone__tick">2017</span></div>
-                        <article class="aaron-phone__event" data-country="austria" role="button" tabindex="0" aria-label="Open Austria photos">
+                        <article class="aaron-phone__event" data-country="austria" role="button" tabindex="0" aria-label="Open Austria photos" aria-describedby="aaron-travel-cities-austria">
                           <img class="aaron-phone__event-shot" src="/assets/gallery/travel/austria/aus1.webp" alt="" loading="lazy">
                           <span class="aaron-phone__event-bar"></span>
                           <div class="aaron-phone__event-body">
-                            <div>
-                              <div class="aaron-phone__event-title">Austria</div>
-                              <div class="aaron-phone__event-when">8 photos</div>
-                            </div>
-                            <div class="aaron-phone__event-cal"><img src="/assets/phone/google-logo.svg" alt=""><span>Vienna, Salzburg, Hallstatt</span></div>
+                            <div class="aaron-phone__event-title">Austria</div>
+                            <div class="aaron-phone__event-cities" id="aaron-travel-cities-austria">Vienna, Salzburg, Hallstatt</div>
                           </div>
                         </article>
                         <div class="aaron-phone__slot">
@@ -325,15 +310,12 @@
                       </div>
                       <div class="aaron-phone__hour" data-country="switzerland">
                         <div class="aaron-phone__times"><span class="aaron-phone__tick is-hidden">2017</span><span class="aaron-phone__tick is-hidden"></span></div>
-                        <article class="aaron-phone__event is-purple" data-country="switzerland" role="button" tabindex="0" aria-label="Open Switzerland photos">
+                        <article class="aaron-phone__event is-purple" data-country="switzerland" role="button" tabindex="0" aria-label="Open Switzerland photos" aria-describedby="aaron-travel-cities-switzerland">
                           <img class="aaron-phone__event-shot" src="/assets/gallery/travel/switzerland/swiss1.webp" alt="" loading="lazy">
                           <span class="aaron-phone__event-bar"></span>
                           <div class="aaron-phone__event-body">
-                            <div>
-                              <div class="aaron-phone__event-title">Switzerland</div>
-                              <div class="aaron-phone__event-when">9 photos</div>
-                            </div>
-                            <div class="aaron-phone__event-cal"><img src="/assets/phone/google-logo.svg" alt=""><span>Zermatt, Lauterbrunnen, Grindelwald, Interlaken, Zurich</span></div>
+                            <div class="aaron-phone__event-title">Switzerland</div>
+                            <div class="aaron-phone__event-cities" id="aaron-travel-cities-switzerland">Zermatt, Lauterbrunnen, Grindelwald, Interlaken, Zurich</div>
                           </div>
                         </article>
                         <div class="aaron-phone__slot">
@@ -518,17 +500,17 @@
 
                   <nav class="aaron-photos__dock" id="aaron-photos-dock" aria-label="Albums">
                     <span class="aaron-photos__indicator" id="aaron-photos-indicator"></span>
-                    <button type="button" class="aaron-photos__dock-btn is-active" data-album="auckland" aria-pressed="true" aria-label="Auckland Workshop">
-                      <img src="/assets/phone/icon-droplet.svg" alt="">
+                    <button type="button" class="aaron-photos__dock-btn is-active" data-album="travel" aria-pressed="true" aria-label="Travel">
+                      <img src="/assets/phone/icon-map.svg" alt="">
                     </button>
-                    <button type="button" class="aaron-photos__dock-btn" data-album="drawings" aria-pressed="false" aria-label="Drawings">
+                    <button type="button" class="aaron-photos__dock-btn" data-album="art" aria-pressed="false" aria-label="Art">
                       <img src="/assets/phone/icon-pencil.svg" alt="">
                     </button>
                     <button type="button" class="aaron-photos__dock-btn" data-album="piano" aria-pressed="false" aria-label="Piano">
                       <img src="/assets/phone/icon-piano.svg" alt="">
                     </button>
-                    <button type="button" class="aaron-photos__dock-btn" data-album="travel" aria-pressed="false" aria-label="Travel">
-                      <img src="/assets/phone/icon-map.svg" alt="">
+                    <button type="button" class="aaron-photos__dock-btn" data-album="auckland" aria-pressed="false" aria-label="Auckland Workshop">
+                      <img src="/assets/phone/icon-droplet.svg" alt="">
                     </button>
                   </nav>
                 </div>
